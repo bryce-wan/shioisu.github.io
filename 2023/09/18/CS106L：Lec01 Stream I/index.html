@@ -19,15 +19,15 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="You can imagine stream to be a character buffer that automatically interacts with the external source. Streams also will automatically convert variables to a string form that can be written into a">
+    <meta name="description" content="## Introduction to a stream You can imagine stream to be a character buffer that automatically interacts with the external source. Streams also automatically convert variables to a string form that">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CS106L：Lec01 Stream">
-<meta property="og:url" content="http://example.com/2023/09/18/CS106L%EF%BC%9ALec01%20Stream/index.html">
+<meta property="og:title" content="CS106L：Lec01 Stream I">
+<meta property="og:url" content="http://example.com/2023/09/18/CS106L%EF%BC%9ALec01%20Stream%20I/index.html">
 <meta property="og:site_name" content="Shio">
-<meta property="og:description" content="You can imagine stream to be a character buffer that automatically interacts with the external source. Streams also will automatically convert variables to a string form that can be written into a">
+<meta property="og:description" content="## Introduction to a stream You can imagine stream to be a character buffer that automatically interacts with the external source. Streams also automatically convert variables to a string form that">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-18T12:08:45.236Z">
-<meta property="article:modified_time" content="2023-09-18T12:59:07.432Z">
+<meta property="article:modified_time" content="2023-09-18T14:33:56.379Z">
 <meta property="article:author" content="Chenyang Wan">
 <meta property="article:tag" content="cpp">
 <meta name="twitter:card" content="summary">
@@ -35,7 +35,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
     
-    <title>CS106L：Lec01 Stream · Sh1o&#39;s Studio</title>
+    <title>CS106L：Lec01 Stream I · Sh1o&#39;s Studio</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -208,6 +208,19 @@
     <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
     <!-- algolia -->
     
+        <script>
+            var hits = JSON.parse('{"per_page":10}')
+            var labels = JSON.parse('{"input_placeholder":"Search for Posts","hits_empty":"We did not find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}')
+
+            var algolia = {
+                applicationID: 'QMR0N75T75',
+                apiKey: '99c1542c165e16767697a8cefd24cc8c',
+                indexName: 'sh1o',
+                hits: hits,
+                labels: labels
+            }
+        </script>
+    
     <!-- 百度统计  -->
     
     <!-- Google tag (gtag.js) -->
@@ -262,7 +275,7 @@
                 <a href="/">Sh1o&#39;s Studio</a>
             </div>
             <div class="post-title header-element">
-                <a href="#" class="post-name">CS106L：Lec01 Stream</a>
+                <a href="#" class="post-name">CS106L：Lec01 Stream I</a>
             </div>
         </div>
     
@@ -308,7 +321,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-                CS106L：Lec01 Stream
+                CS106L：Lec01 Stream I
             <!-- 404 -->
             
         </h1>
@@ -336,7 +349,7 @@
                 <!-- 文章字数统计 -->
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">77</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">451</span>Reading time: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -497,17 +510,43 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <p>You can imagine stream to be a character buffer that automatically
-interacts with the external source. Streams also will automatically
-convert variables to a string form that can be written into a
-buffer.</p>
-<p>A string stream is not connected to any external source.</p>
+        <h2 id="introduction-to-a-stream">## Introduction to a stream</h2>
+<p>You can imagine stream to be a <strong>character buffer</strong> that
+automatically interacts with the external source. Streams also
+automatically convert variables to a string form that can be written
+into a buffer. A string stream is not connected to any external
+source.</p>
+<h2 id="output-from-a-stream">## Output from a stream</h2>
+<p>After you initializing an stream (empty, or initialized with a
+<code>const char*</code> or something else), the position starts at the
+beginning of the "buffer". But after your stream insertion, the position
+starts at the end. Here is an example with the
+<code>ostringstream</code> :</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span> <span class="comment">// for cout</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span>  <span class="comment">// for ostringstream</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// ostringstream is a stream that writes to a string</span></span><br><span class="line">	</span><br><span class="line">    <span class="function">std::ostringstream <span class="title">oss1</span><span class="params">(<span class="string">&quot; Hello world. &quot;</span>)</span></span>; <span class="comment">// initialize with string</span></span><br><span class="line">    std::cout &lt;&lt; oss1.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    std::ostringstream oss2; <span class="comment">// initialize with no string</span></span><br><span class="line">    oss2 &lt;&lt; <span class="string">&quot; Nice 2 meet u. &quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; oss2.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    oss2 &lt;&lt; <span class="string">&quot; See u tomorrow. &quot;</span> &lt;&lt; std::endl; <span class="comment">// append a string</span></span><br><span class="line">    std::cout &lt;&lt; oss2.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>And the output is:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hello world.</span><br><span class="line">Nice 2 meet u.</span><br><span class="line">Nice 2 meet u. See u tomorrow.</span><br></pre></td></tr></table></figure>
+<h2 id="input-from-a-stream">## Input from a stream</h2>
+<p>Now we want to know the behavior of input streams. Take the
+<code>istringstream</code> as an example.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function">std::istringstream <span class="title">iss</span><span class="params">(<span class="string">&quot; Nice to meet u 2. &quot;</span>)</span></span>;</span><br><span class="line">    std::cout &lt;&lt; iss.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line">    </span><br><span class="line">    std::string word;</span><br><span class="line">    <span class="type">double</span> number;</span><br><span class="line"></span><br><span class="line">    iss &gt;&gt; word &gt;&gt; number;</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;word: &quot;</span> &lt;&lt; word &lt;&lt; std::endl; <span class="comment">// &quot;word: Nice&quot;</span></span><br><span class="line">    std::cout &lt;&lt; iss.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;number: &quot;</span> &lt;&lt; number &lt;&lt; std::endl; <span class="comment">// &quot;number: ?&quot;</span></span><br></pre></td></tr></table></figure>
+<p>And the output is:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> Nice to meet u 2.</span><br><span class="line">word: Nice</span><br><span class="line"> Nice to meet u 2.</span><br><span class="line">number: 0</span><br></pre></td></tr></table></figure>
+<p>In the example above, the variables read something from the
+<code>istringstream</code>. But clearly the <em>number</em> failed to
+read the value expected. Now we modify the <em>iss</em> a little.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function">std::istringstream <span class="title">iss</span><span class="params">(<span class="string">&quot; Nice 2 meet u too. &quot;</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>And now the output is:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> Nice to meet u 2.</span><br><span class="line">word: Nice</span><br><span class="line"> Nice to meet u 2.</span><br><span class="line">number: 2</span><br></pre></td></tr></table></figure>
 <p>So far, we have been using the <strong>iostream</strong> standard
 library, which
-provides <strong>cin</strong> and <strong>cout</strong> methods for
+provides <code>std::cin</code> and <code>std::cout</code> methods for
 reading from standard input and writing to standard output
 respectively.</p>
 <table>
+<colgroup>
+<col style="width: 52%" />
+<col style="width: 48%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;">library name</th>
@@ -517,11 +556,14 @@ respectively.</p>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">ofstream</td>
-<td style="text-align: left;">Title</td>
+<td style="text-align: left;">This data type represents the output file
+stream and is used to create files and to write information to
+files.</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">ifstream</td>
-<td style="text-align: left;">Text</td>
+<td style="text-align: left;">This data type represents the input file
+stream and is used to read information from files.</td>
 </tr>
 </tbody>
 </table>
@@ -689,7 +731,7 @@ respectively.</p>
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction-to-a-stream"><span class="toc-number">1.</span> <span class="toc-text">## Introduction to a stream</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#output-from-a-stream"><span class="toc-number">2.</span> <span class="toc-text">## Output from a stream</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#input-from-a-stream"><span class="toc-number">3.</span> <span class="toc-text">## Input from a stream</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -726,6 +768,10 @@ respectively.</p>
         </div>
         <!-- search  -->
         
+            <div class="site-search site-search-loading popup-trigger">
+                <span class="iconfont-archer search-icon">&#xe627;</span>
+            </div>
+        
     </div>
     
     <div class="post-archive">
@@ -739,7 +785,7 @@ respectively.</p>
         
         <li class="archive-post-item">
             <span class="archive-post-date">09/18</span>
-            <a class="archive-post-title" href="/2023/09/18/CS106L%EF%BC%9ALec01%20Stream/">CS106L：Lec01 Stream</a>
+            <a class="archive-post-title" href="/2023/09/18/CS106L%EF%BC%9ALec01%20Stream%20I/">CS106L：Lec01 Stream I</a>
         </li>
     
         
@@ -802,6 +848,28 @@ respectively.</p>
         <!-- fancybox -->
         <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
         <!-- algolia -->
+        
+            <div class="site-search site-search-loading">
+    <div class="algolia-popup popup">
+        <div class="algolia-search">
+            <div class="algolia-search-input-icon">
+                <i class="fa fa-search"></i>
+            </div>
+            <div class="algolia-search-input" id="algolia-search-input"></div>
+            <div class="popup-btn-close">
+                <i class="iconfont-archer">&#xe609;</i>
+            </div>
+        </div>
+
+        <div class="algolia-results">
+            <div id="algolia-stats" class="algolia-stats"></div>
+            <div id="algolia-hits"></div>
+            <div id="algolia-pagination" class="algolia-pagination"></div>
+        </div>
+    </div>
+</div>
+
+            <script src="/scripts/search.js?v=20211217" defer></script>
         
         <!-- busuanzi -->
         

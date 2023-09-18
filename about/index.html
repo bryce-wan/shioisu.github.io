@@ -19,22 +19,22 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="您的自我介绍正文 graph TD; A--&gt;B; A--&gt;C; B--&gt;D; C--&gt;D;">
+    <meta name="description" content="很高兴见到你。 graph TD; A--&gt;B; A--&gt;C; B--&gt;D; C--&gt;D;">
 <meta property="og:type" content="website">
-<meta property="og:title" content="自我介绍">
+<meta property="og:title" content="About me">
 <meta property="og:url" content="http://example.com/about/index.html">
 <meta property="og:site_name" content="Shio">
-<meta property="og:description" content="您的自我介绍正文 graph TD; A--&gt;B; A--&gt;C; B--&gt;D; C--&gt;D;">
+<meta property="og:description" content="很高兴见到你。 graph TD; A--&gt;B; A--&gt;C; B--&gt;D; C--&gt;D;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-17T09:01:01.665Z">
-<meta property="article:modified_time" content="2023-09-17T09:01:01.665Z">
+<meta property="article:published_time" content="2023-09-18T14:33:48.767Z">
+<meta property="article:modified_time" content="2023-09-18T14:33:48.767Z">
 <meta property="article:author" content="Chenyang Wan">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
     
-    <title>自我介绍 · Sh1o&#39;s Studio</title>
+    <title>About me · Sh1o&#39;s Studio</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -207,6 +207,19 @@
     <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
     <!-- algolia -->
     
+        <script>
+            var hits = JSON.parse('{"per_page":10}')
+            var labels = JSON.parse('{"input_placeholder":"Search for Posts","hits_empty":"We did not find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}')
+
+            var algolia = {
+                applicationID: 'QMR0N75T75',
+                apiKey: '99c1542c165e16767697a8cefd24cc8c',
+                indexName: 'sh1o',
+                hits: hits,
+                labels: labels
+            }
+        </script>
+    
     <!-- 百度统计  -->
     
     <!-- Google tag (gtag.js) -->
@@ -295,7 +308,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-                自我介绍
+                About me
             
         </h1>
         <!-- 副标题 -->
@@ -436,7 +449,7 @@
                 <!-- 不可以删除，否则会调用 post 的 layout -->
 <main class="main about-page">
     <article class="article-entry">
-        <p>您的自我介绍正文</p>
+        <p>很高兴见到你。</p>
 <pre class="mermaid">graph TD;
 A-->B;
 A-->C;
@@ -579,6 +592,10 @@ C-->D;</pre>
         </div>
         <!-- search  -->
         
+            <div class="site-search site-search-loading popup-trigger">
+                <span class="iconfont-archer search-icon">&#xe627;</span>
+            </div>
+        
     </div>
     
     <div class="post-archive">
@@ -592,7 +609,7 @@ C-->D;</pre>
         
         <li class="archive-post-item">
             <span class="archive-post-date">09/18</span>
-            <a class="archive-post-title" href="/2023/09/18/CS106L%EF%BC%9ALec01%20Stream/">CS106L：Lec01 Stream</a>
+            <a class="archive-post-title" href="/2023/09/18/CS106L%EF%BC%9ALec01%20Stream%20I/">CS106L：Lec01 Stream I</a>
         </li>
     
         
@@ -655,6 +672,28 @@ C-->D;</pre>
         <!-- fancybox -->
         <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
         <!-- algolia -->
+        
+            <div class="site-search site-search-loading">
+    <div class="algolia-popup popup">
+        <div class="algolia-search">
+            <div class="algolia-search-input-icon">
+                <i class="fa fa-search"></i>
+            </div>
+            <div class="algolia-search-input" id="algolia-search-input"></div>
+            <div class="popup-btn-close">
+                <i class="iconfont-archer">&#xe609;</i>
+            </div>
+        </div>
+
+        <div class="algolia-results">
+            <div id="algolia-stats" class="algolia-stats"></div>
+            <div id="algolia-hits"></div>
+            <div id="algolia-pagination" class="algolia-pagination"></div>
+        </div>
+    </div>
+</div>
+
+            <script src="/scripts/search.js?v=20211217" defer></script>
         
         <!-- busuanzi -->
         
