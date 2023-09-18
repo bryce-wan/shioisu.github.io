@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-09-18T11:58:35.847Z</updated>
+  <updated>2023-09-18T12:59:07.432Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,35 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CS106L：Lec01 Stream</title>
+    <link href="http://example.com/2023/09/18/CS106L%EF%BC%9ALec01%20Stream/"/>
+    <id>http://example.com/2023/09/18/CS106L%EF%BC%9ALec01%20Stream/</id>
+    <published>2023-09-18T12:08:45.236Z</published>
+    <updated>2023-09-18T12:59:07.432Z</updated>
+    
+    <content type="html"><![CDATA[<p>You can imagine stream to be a character buffer that automaticallyinteracts with the external source. Streams also will automaticallyconvert variables to a string form that can be written into abuffer.</p><p>A string stream is not connected to any external source.</p><p>So far, we have been using the <strong>iostream</strong> standardlibrary, whichprovides <strong>cin</strong> and <strong>cout</strong> methods forreading from standard input and writing to standard outputrespectively.</p><table><thead><tr class="header"><th style="text-align: center;">library name</th><th style="text-align: left;">Description</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;">ofstream</td><td style="text-align: left;">Title</td></tr><tr class="even"><td style="text-align: center;">ifstream</td><td style="text-align: left;">Text</td></tr></tbody></table>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;You can imagine stream to be a character buffer that automatically
+interacts with the external source. Streams also will automatically
+</summary>
+      
+    
+    
+    
+    
+    <category term="cpp" scheme="http://example.com/tags/cpp/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hello World</title>
     <link href="http://example.com/2023/09/15/hello-world/"/>
     <id>http://example.com/2023/09/15/hello-world/</id>
     <published>2023-09-15T07:02:32.580Z</published>
-    <updated>2023-09-18T11:58:35.847Z</updated>
+    <updated>2023-09-18T12:12:14.709Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your veryfirst post. Check <a href="https://hexo.io/docs/">documentation</a> formore info. If you get any problems when using Hexo, you can find theanswer in <ahref="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> oryou can ask me on <ahref="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="quick-start">Quick Start</h2><h3 id="create-a-new-post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="run-server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="generate-static-files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="deploy-to-remote-sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
     
