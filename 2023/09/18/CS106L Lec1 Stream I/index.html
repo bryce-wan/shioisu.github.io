@@ -19,18 +19,23 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Shio">
-<meta property="og:url" content="http://example.com/tags/Cpp/index.html">
+    <meta name="description" content="Introduction to streams Abstractly, a stream is a sequence of bytes that can be accessed sequentially. Over time, a stream may produce or consume potentially unlimited amounts of data. You can imag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS106L: Lec1 Stream I">
+<meta property="og:url" content="http://example.com/2023/09/18/CS106L%20Lec1%20Stream%20I/index.html">
 <meta property="og:site_name" content="Shio">
+<meta property="og:description" content="Introduction to streams Abstractly, a stream is a sequence of bytes that can be accessed sequentially. Over time, a stream may produce or consume potentially unlimited amounts of data. You can imag">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-18T12:08:45.236Z">
+<meta property="article:modified_time" content="2023-09-19T09:22:39.986Z">
 <meta property="article:author" content="Chenyang Wan">
+<meta property="article:tag" content="Cpp">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
     
-    <title>Sh1o&#39;s Studio</title>
+    <title>CS106L: Lec1 Stream I · Sh1o&#39;s Studio</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -232,6 +237,8 @@
         }
     </script>
     
+        <body class="post-body">
+    
         <!-- header -->
         <header class="header header-mobile">
     <!-- top read progress line -->
@@ -261,6 +268,17 @@
     </div>
     <!-- toggle banner for post layout -->
     
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="/">Sh1o&#39;s Studio</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name">CS106L: Lec1 Stream I</a>
+            </div>
+        </div>
+    
 </header>
 
         <!-- fixed footer -->
@@ -287,24 +305,80 @@
 
 
 
+    height:50vh;
+
 ">
     
     <!-- 主页  -->
     
+        
+    <!-- 404页  -->
+    
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+                CS106L: Lec1 Stream I
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+                
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Cpp">Cpp</a>
+    
+</div>
+
+                
+                <!-- 文章字数统计 -->
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">748</span>Reading time: <span class="post-count reading-time">4 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2023/09/18</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -434,74 +508,9 @@
 
             <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
             <div class="container container-unloaded">
-                <main class="main index-page">
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/19/CS106L%20Lec0%20Intro/">
-                
-                <span class="abstract-title-text">CS106L: Lec0 Intro</span>
-            </a>
-            <div class="abstract-content">
-                <h2 id="c-types-and-structs">C++ Types and Structs</h2>
-<h3 id="fundamental-types">Fundamental Types</h3>
-<h3 id="dynamic-and-static-typing">Dynamic and Static typing</h3>
-<p>C++ is a <strong>statically typed language.</strong></p>
-<ul>
-<li><code>statically typed</code>: Everything with a name (variables,
-functions, etc) is <strong>given a type before runtime.</strong>
-(C++)</li>
-<li><code>dynamically typed</code>: Everything with a name (variables,
-functions, etc) is <strong>given a type at runtime</strong> based on the
-thing’s current value. (Python)</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CRASH during runtime, can’t divide a string</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">div_3</span>(<span class="params">x</span>):</span><br><span class="line">	<span class="keyword">return</span> x / <span class="number">3</span> </span><br><span class="line"></span><br><span class="line">div_3(<span class="string">&quot;hello&quot;</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Compile error: this code will never run</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">div_3</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x / <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">div_3</span>(<span class="string">&quot;hello&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p><code>Runtime</code>: Period when program is executing commands
-(after compilation, if compiled).</p>
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/19">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/19</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Cpp">Cpp</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/18/CS106L%20Lec1%20Stream%20I/">
-                
-                <span class="abstract-title-text">CS106L: Lec1 Stream I</span>
-            </a>
-            <div class="abstract-content">
-                <h2 id="introduction-to-streams">Introduction to streams</h2>
+                <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="introduction-to-streams">Introduction to streams</h2>
 <p>Abstractly, a <strong>stream</strong> is a sequence of bytes that can
 be accessed sequentially. Over time, a stream may produce or consume
 potentially unlimited amounts of data. You can imagine stream to be a
@@ -528,29 +537,125 @@ starts at the end. Here is an example with the
 <h2 id="input-streams">Input streams</h2>
 <p>Now we want to know the behavior of input streams. Take the
 <code>std::istringstream</code> as an example.</p>
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/19">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/18</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Cpp">Cpp</a>
-    
-</div>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function">std::istringstream <span class="title">iss</span><span class="params">(<span class="string">&quot; Nice to meet u 2. &quot;</span>)</span></span>;</span><br><span class="line">    std::cout &lt;&lt; iss.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line">    </span><br><span class="line">    std::string word;</span><br><span class="line">    <span class="type">double</span> number;</span><br><span class="line"></span><br><span class="line">    iss &gt;&gt; word &gt;&gt; number;</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;word: &quot;</span> &lt;&lt; word &lt;&lt; std::endl; <span class="comment">// &quot;word: Nice&quot;</span></span><br><span class="line">    std::cout &lt;&lt; iss.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;number: &quot;</span> &lt;&lt; number &lt;&lt; std::endl; <span class="comment">// &quot;number: ?&quot;</span></span><br></pre></td></tr></table></figure>
+<p>And the output is:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> Nice to meet u 2.</span><br><span class="line">word: Nice</span><br><span class="line"> Nice to meet u 2.</span><br><span class="line">number: 0</span><br></pre></td></tr></table></figure>
+<p>In the example above, the variables read something from the
+<code>std::istringstream</code>. But clearly the <em>number</em> failed
+to read the value expected. Now we modify the <em>iss</em> a little.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function">std::istringstream <span class="title">iss</span><span class="params">(<span class="string">&quot; Nice 2 meet u too. &quot;</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>And now the output is:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> Nice to meet u 2.</span><br><span class="line">word: Nice</span><br><span class="line"> Nice to meet u 2.</span><br><span class="line">number: 2</span><br></pre></td></tr></table></figure>
+<h2 id="locate-and-set-the-position">Locate and set the position</h2>
+<p>We use the method <code>tellp()</code> to get the position,
+<code>std::stream()</code> to create offset, and the
+<code>seekp()</code> to set a new position in the stream <code>ss</code>
+in the example below. These methods let you to manually set the
+position, and most useful is the offset can be <strong>added</strong> to
+positions. But remember that <strong>the position can never be less than
+0</strong>.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    std::fpos pos = ss.<span class="built_in">tellp</span>() + std::<span class="built_in">streamoff</span>(<span class="number">3</span>); <span class="comment">// get position</span></span><br><span class="line">    ss.<span class="built_in">seekp</span>(pos); <span class="comment">// set position</span></span><br></pre></td></tr></table></figure>
+<h2 id="state-bits">State bits</h2>
+<p>There four bits to indicate the state of the stream.</p>
+<ol type="1">
+<li><code>Good bit</code>: Ready for read/write. Nothing unusual, on
+when <strong>other bits are off</strong>.</li>
+<li><code>Fail bit</code>: Previous operation failed, all future
+operations <strong>frozen</strong>. Like:
+<ul>
+<li>Type mismatch</li>
+<li>File can't be opened</li>
+<li>Seeking failed</li>
+</ul></li>
+<li><code>EOF bit</code>: Previous operation reached the end of the
+buffer content. Nothing left.</li>
+<li><code>Bad bit</code>: External error, likely irrecoverable. Could
+not move characters from external source (e.g. the file you are reading
+from is suddenly deleted).</li>
+</ol>
+<p><strong>Caution</strong> - <code>Good</code> and <code>Fail</code>
+are not opposite, and <code>Good</code> and <code>Bad</code> are not
+opposite. - <code>Fail</code> and <code>EOF</code> are normally you will
+be checking. - You will rarely use <code>Good</code>. -</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="type">void</span> <span class="title">printStreamState</span><span class="params">(std::ostream &amp; os)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;good: &quot;</span> &lt;&lt; os.<span class="built_in">good</span>() &lt;&lt; std::endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;fail: &quot;</span> &lt;&lt; os.<span class="built_in">fail</span>() &lt;&lt; std::endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;eof: &quot;</span> &lt;&lt; os.<span class="built_in">eof</span>() &lt;&lt; std::endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;bad: &quot;</span> &lt;&lt; os.<span class="built_in">bad</span>() &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>So far, we have been using the <strong>iostream</strong> standard
+library, which
+provides <code>std::cin</code> and <code>std::cout</code> methods for
+reading from standard input and writing to standard output
+respectively.</p>
+<table>
+<colgroup>
+<col style="width: 52%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">library name</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">ofstream</td>
+<td style="text-align: left;">This data type represents the output file
+stream and is used to create files and to write information to
+files.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">ifstream</td>
+<td style="text-align: left;">This data type represents the input file
+stream and is used to read information from files.</td>
+</tr>
+</tbody>
+</table>
 
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
+    </article>
+    <!-- license -->
     
-    <!-- paginator  -->
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2023/09/19/CS229%20Lec1/" title="CS229: Lec1 Supervised Learning">
+                    <div class="nextTitle">CS229: Lec1 Supervised Learning</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+        </li>
+    </ul>
+    <!-- comment -->
+    
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+
+            
+
+            
+
+            
+
+            <!-- utteranc评论 -->
+
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
+            
+            
+
+            
+
+        </div>
+    
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <!-- Mathjax -->
     
 </main>
 
@@ -652,6 +757,23 @@ starts at the end. Here is an example with the
 
         </div>
         <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction-to-streams"><span class="toc-number">1.</span> <span class="toc-text">Introduction to streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#standard-streams"><span class="toc-number">2.</span> <span class="toc-text">Standard streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#output-streams"><span class="toc-number">3.</span> <span class="toc-text">Output streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#input-streams"><span class="toc-number">4.</span> <span class="toc-text">Input streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#locate-and-set-the-position"><span class="toc-number">5.</span> <span class="toc-text">Locate and set the position</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#state-bits"><span class="toc-number">6.</span> <span class="toc-text">State bits</span></a></li></ol>
+            </div>
         
         <!-- sidebar -->
         <div class="sidebar sidebar-hide">
@@ -879,7 +1001,16 @@ starts at the end. Here is an example with the
         
         <!-- async load share.js -->
         
+            <script src="/scripts/share.js?v=20211217" async></script>
+        
         <!-- mermaid -->
+        
+            <script src='https://cdn.jsdelivr.net/npm/mermaid@8.11.0/dist/mermaid.min.js'></script>
+            <script>
+                if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                }
+            </script>
         
     </body>
 </html>

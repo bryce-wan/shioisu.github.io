@@ -21,7 +21,7 @@
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Shio">
-<meta property="og:url" content="http://example.com/tags/Cpp/index.html">
+<meta property="og:url" content="http://example.com/tags/Linux/index.html">
 <meta property="og:site_name" content="Shio">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Chenyang Wan">
@@ -444,27 +444,12 @@
             
         
         <article class="index-post">
-            <a class="abstract-title" href="/2023/09/19/CS106L%20Lec0%20Intro/">
+            <a class="abstract-title" href="/2023/09/19/Debug%20list%20Linux/">
                 
-                <span class="abstract-title-text">CS106L: Lec0 Intro</span>
+                <span class="abstract-title-text">Debug list: Linux</span>
             </a>
             <div class="abstract-content">
-                <h2 id="c-types-and-structs">C++ Types and Structs</h2>
-<h3 id="fundamental-types">Fundamental Types</h3>
-<h3 id="dynamic-and-static-typing">Dynamic and Static typing</h3>
-<p>C++ is a <strong>statically typed language.</strong></p>
-<ul>
-<li><code>statically typed</code>: Everything with a name (variables,
-functions, etc) is <strong>given a type before runtime.</strong>
-(C++)</li>
-<li><code>dynamically typed</code>: Everything with a name (variables,
-functions, etc) is <strong>given a type at runtime</strong> based on the
-thing’s current value. (Python)</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CRASH during runtime, can’t divide a string</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">div_3</span>(<span class="params">x</span>):</span><br><span class="line">	<span class="keyword">return</span> x / <span class="number">3</span> </span><br><span class="line"></span><br><span class="line">div_3(<span class="string">&quot;hello&quot;</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Compile error: this code will never run</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">div_3</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x / <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">div_3</span>(<span class="string">&quot;hello&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p><code>Runtime</code>: Period when program is executing commands
-(after compilation, if compiled).</p>
+                
 
             </div>
             <!-- read more -->
@@ -479,69 +464,9 @@ thing’s current value. (Python)</li>
                     <div class= abstract-tags >
     
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Cpp">Cpp</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Debug">Debug</a>
     
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/18/CS106L%20Lec1%20Stream%20I/">
-                
-                <span class="abstract-title-text">CS106L: Lec1 Stream I</span>
-            </a>
-            <div class="abstract-content">
-                <h2 id="introduction-to-streams">Introduction to streams</h2>
-<p>Abstractly, a <strong>stream</strong> is a sequence of bytes that can
-be accessed sequentially. Over time, a stream may produce or consume
-potentially unlimited amounts of data. You can imagine stream to be a
-<strong>character buffer</strong> that automatically interacts with the
-external source. Streams automatically convert variables to a string
-form that can be written into a buffer. And the opposite is a similar
-case. A string stream is not connected to any external source.</p>
-<h2 id="standard-streams">Standard streams</h2>
-<ul>
-<li><code>cin</code>：</li>
-<li><code>cout</code>：</li>
-<li><code>cerr</code>：</li>
-<li><code>clog</code>：</li>
-<li><h2 id="output-streams">Output streams</h2></li>
-</ul>
-<p>After you initializing an stream (empty, or initialized with a
-<code>const char*</code> or something else), the position starts at the
-beginning of the "buffer". But after your stream insertion, the position
-starts at the end. Here is an example with the
-<code>std::ostringstream</code> :</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span> <span class="comment">// for cout</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span>  <span class="comment">// for ostringstream</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// ostringstream is a stream that writes to a string</span></span><br><span class="line">	</span><br><span class="line">    <span class="function">std::ostringstream <span class="title">oss1</span><span class="params">(<span class="string">&quot; Hello world. &quot;</span>)</span></span>; <span class="comment">// initialize with string</span></span><br><span class="line">    std::cout &lt;&lt; oss1.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    std::ostringstream oss2; <span class="comment">// initialize with no string</span></span><br><span class="line">    oss2 &lt;&lt; <span class="string">&quot; Nice 2 meet u. &quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; oss2.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    oss2 &lt;&lt; <span class="string">&quot; See u tomorrow. &quot;</span> &lt;&lt; std::endl; <span class="comment">// append a string</span></span><br><span class="line">    std::cout &lt;&lt; oss2.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>And the output is:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hello world.</span><br><span class="line">Nice 2 meet u.</span><br><span class="line">Nice 2 meet u. See u tomorrow.</span><br></pre></td></tr></table></figure>
-<h2 id="input-streams">Input streams</h2>
-<p>Now we want to know the behavior of input streams. Take the
-<code>std::istringstream</code> as an example.</p>
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/19">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/18</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Cpp">Cpp</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
     
 </div>
 
