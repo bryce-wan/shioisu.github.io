@@ -27,7 +27,7 @@
 <meta property="og:description" content="Introduction to streams Abstractly, a stream is a sequence of bytes that can be accessed sequentially. Over time, a stream may produce or consume potentially unlimited amounts of data. You can imag">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-18T12:08:45.236Z">
-<meta property="article:modified_time" content="2023-09-19T09:22:39.986Z">
+<meta property="article:modified_time" content="2023-09-19T08:02:30.475Z">
 <meta property="article:author" content="Chenyang Wan">
 <meta property="article:tag" content="Cpp">
 <meta name="twitter:card" content="summary">
@@ -349,7 +349,7 @@
                 <!-- 文章字数统计 -->
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">748</span>Reading time: <span class="post-count reading-time">4 min</span></span>
+                        <span>Word count: <span class="post-count word-count">895</span>Reading time: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -520,12 +520,16 @@ form that can be written into a buffer. And the opposite is a similar
 case. A string stream is not connected to any external source.</p>
 <h2 id="standard-streams">Standard streams</h2>
 <ul>
-<li><code>cin</code>：</li>
-<li><code>cout</code>：</li>
-<li><code>cerr</code>：</li>
-<li><code>clog</code>：</li>
-<li><h2 id="output-streams">Output streams</h2></li>
+<li><code>cin</code>: an <code>istream</code> object tied to the
+standard input (typically the keyboard)</li>
+<li><code>cout</code>: an <code>ostream</code> object tied to the
+standard output (typically the monitor)</li>
+<li><code>cerr</code>: an <code>ostream</code> object tied to the
+standard error (typically the monitor), providing unbuffered output</li>
+<li><code>clog</code>: an <code>ostream</code> object tied to the
+standard error (typically the monitor), providing buffered output</li>
 </ul>
+<h2 id="output-streams">Output streams</h2>
 <p>After you initializing an stream (empty, or initialized with a
 <code>const char*</code> or something else), the position starts at the
 beginning of the "buffer". But after your stream insertion, the position
@@ -554,7 +558,7 @@ in the example below. These methods let you to manually set the
 position, and most useful is the offset can be <strong>added</strong> to
 positions. But remember that <strong>the position can never be less than
 0</strong>.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    std::fpos pos = ss.<span class="built_in">tellp</span>() + std::<span class="built_in">streamoff</span>(<span class="number">3</span>); <span class="comment">// get position</span></span><br><span class="line">    ss.<span class="built_in">seekp</span>(pos); <span class="comment">// set position</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    std::fpos pos = ss.<span class="built_in">tellp</span>() + std::<span class="built_in">streamoff</span>(<span class="number">3</span>); <span class="comment">// get position, and add 3</span></span><br><span class="line">    ss.<span class="built_in">seekp</span>(pos); <span class="comment">// set position</span></span><br></pre></td></tr></table></figure>
 <h2 id="state-bits">State bits</h2>
 <p>There four bits to indicate the state of the stream.</p>
 <ol type="1">
@@ -573,41 +577,24 @@ buffer content. Nothing left.</li>
 not move characters from external source (e.g. the file you are reading
 from is suddenly deleted).</li>
 </ol>
-<p><strong>Caution</strong> - <code>Good</code> and <code>Fail</code>
-are not opposite, and <code>Good</code> and <code>Bad</code> are not
-opposite. - <code>Fail</code> and <code>EOF</code> are normally you will
-be checking. - You will rarely use <code>Good</code>. -</p>
+<p><strong>Caution !!!</strong> - <code>Good</code> and
+<code>Fail</code> are not opposite, and <code>Good</code> and
+<code>Bad</code> are not opposite. - <code>Fail</code> and
+<code>EOF</code> are normally you will be checking. - You will rarely
+use <code>Good</code>.</p>
+<p>Here is a function <code>printStreamState</code> to print the state
+bits of a stream.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="type">void</span> <span class="title">printStreamState</span><span class="params">(std::ostream &amp; os)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;good: &quot;</span> &lt;&lt; os.<span class="built_in">good</span>() &lt;&lt; std::endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;fail: &quot;</span> &lt;&lt; os.<span class="built_in">fail</span>() &lt;&lt; std::endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;eof: &quot;</span> &lt;&lt; os.<span class="built_in">eof</span>() &lt;&lt; std::endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;bad: &quot;</span> &lt;&lt; os.<span class="built_in">bad</span>() &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>So far, we have been using the <strong>iostream</strong> standard
-library, which
-provides <code>std::cin</code> and <code>std::cout</code> methods for
-reading from standard input and writing to standard output
-respectively.</p>
-<table>
-<colgroup>
-<col style="width: 52%" />
-<col style="width: 48%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">library name</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">ofstream</td>
-<td style="text-align: left;">This data type represents the output file
-stream and is used to create files and to write information to
-files.</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">ifstream</td>
-<td style="text-align: left;">This data type represents the input file
-stream and is used to read information from files.</td>
-</tr>
-</tbody>
-</table>
+<p>As a result, we can implement a complete version of the function
+<code>stringToInteger</code> with <strong>error-checking</strong>.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">stringToInteger</span><span class="params">(<span class="type">const</span> string&amp; str)</span> <span class="comment">//passing by reference and never change it</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">std::istringstream <span class="title">iss</span><span class="params">(str)</span></span>;</span><br><span class="line">	<span class="type">int</span> result;</span><br><span class="line">	iss &gt;&gt; result;</span><br><span class="line">	<span class="keyword">if</span> (iss.<span class="built_in">fail</span>()) <span class="keyword">throw</span> std::<span class="built_in">domin_error</span>(...); <span class="comment">//read an integer from the buffer</span></span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> remain;</span><br><span class="line">	iss &gt;&gt; remain;</span><br><span class="line">	<span class="keyword">if</span> (!iss.<span class="built_in">fail</span>()) <span class="keyword">throw</span> std::<span class="built_in">domin_error</span>(...); <span class="comment">//make sure no characters left in the buffer</span></span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>In fact, the <code>&gt;&gt;</code> operator returns the stream which
+is converted to <code>!stream.fail()</code>. So we can have a very
+helpful shortcut from it:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iss &gt;&gt; ch;</span><br><span class="line"><span class="keyword">if</span> (iss.<span class="built_in">fail</span>()) &#123; <span class="comment">//report error&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!(iss &gt;&gt; ch)) &#123; <span class="comment">//report error&#125;</span></span><br></pre></td></tr></table></figure>
+<p>So the error-checking part in the function
+<code>stringToInteger</code> can be rewrite as:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!(iss &gt;&gt; result) || iss &gt;&gt; remain) </span><br><span class="line">	<span class="keyword">throw</span> std::<span class="built_in">domin_error</span>(...); <span class="comment">//read an integer from the buffer</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     </article>
     <!-- license -->
@@ -811,7 +798,22 @@ stream and is used to read information from files.</td>
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -830,7 +832,7 @@ stream and is used to read information from files.</td>
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 5
+        Total : 6
         </div>
         <!-- search  -->
         
@@ -851,6 +853,12 @@ stream and is used to read information from files.</td>
         
         <li class="archive-post-item">
             <span class="archive-post-date">09/19</span>
+            <a class="archive-post-title" href="/2023/09/19/Debug%20list%20ROS/">Debug list: ROS</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/19</span>
             <a class="archive-post-title" href="/2023/09/19/CS106L%20Lec0%20Intro/">CS106L: Lec0 Intro</a>
         </li>
     
@@ -858,6 +866,27 @@ stream and is used to read information from files.</td>
         <li class="archive-post-item">
             <span class="archive-post-date">09/19</span>
             <a class="archive-post-title" href="/2023/09/19/Debug%20list%20Linux/">Debug list: Linux</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/18</span>
+            <a class="archive-post-title" href="/2023/09/18/CS106L%20Lec1%20Stream%20I/">CS106L: Lec1 Stream I</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> Invalid date </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span>
+            <a class="archive-post-title" href="/2023/09/19/CS106L%20Lec2%20Stream%20II/">CS106L: Lec2 Stream II</a>
         </li>
     
         
@@ -873,27 +902,6 @@ stream and is used to read information from files.</td>
         <li class="archive-post-item">
             <span class="archive-post-date">Invalid date</span>
             <a class="archive-post-title" href="/2023/09/19/CS229%20Lec1/">CS229: Lec1 Supervised Learning</a>
-        </li>
-    
-        
-            
-            
-                
-                </ul>
-            
-            <div class="archive-year"> 2023 </div>
-            <ul class="year-list">
-            
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/19</span>
-            <a class="archive-post-title" href="/2023/09/19/Debug%20list%20ROS/">Debug list: ROS</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/18</span>
-            <a class="archive-post-title" href="/2023/09/18/CS106L%20Lec1%20Stream%20I/">CS106L: Lec1 Stream I</a>
         </li>
     
     </div>
@@ -917,14 +925,14 @@ stream and is used to read information from files.</td>
                 Linux
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MachineLearning">
-                <span class="iconfont-archer">&#xe606;</span>
-                MachineLearning
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="ROS">
                 <span class="iconfont-archer">&#xe606;</span>
                 ROS
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="MachineLearning">
+                <span class="iconfont-archer">&#xe606;</span>
+                MachineLearning
             </span>
         
     </div>
