@@ -444,6 +444,168 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2023/09/25/Python%20Handbook/">
+                
+                <span class="abstract-title-text">[Untitled Post]</span>
+            </a>
+            <div class="abstract-content">
+                <h2 id="file-io">File I/O</h2>
+<ul>
+<li>将一个txt文件中的矩阵读出/将一个矩阵写入txt文件中。
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">file_to_matrix</span>(<span class="params">path</span>):</span><br><span class="line">    mat = np.loadtxt(path, dtype=np.int32, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    mat = np.array(mat, dtype=np.uint8)</span><br><span class="line">    <span class="keyword">return</span> mat</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">matrix_to_file</span>(<span class="params">mat, path</span>):</span><br><span class="line">    np.savetxt(path, np.c_[mat], fmt=<span class="string">&#x27;%d&#x27;</span>, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="matrix">Matrix</h2>
+<ul>
+<li>将矩阵展开成为一维数组。 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mat = mat.ravel() <span class="comment">#横向</span></span><br><span class="line"></span><br><span class="line">mat = mat.ravel(order=<span class="string">&#x27;F&#x27;</span>) <span class="comment">#纵向</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/09/25">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/25</span>
+                </div>
+                <!-- tags -->
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2023/09/24/Articulated%20Robots%20Lec1/">
+                
+                <span class="abstract-title-text">[Untitled Post]</span>
+            </a>
+            <div class="abstract-content">
+                <hr>
+<hr>
+<h2 id="intro">Intro</h2>
+<ul>
+<li><strong>Mechanism</strong>: a system of two or more linked machine
+parts with kinetic parts.
+<ul>
+<li>serially-connected open chain/close chain</li>
+</ul></li>
+<li><strong>Kinetic pairs</strong>: the moveable contact between two
+linked machine pairs (Spot, Line, Surface).
+<ul>
+<li>by pressure of contacts:
+<ul>
+<li>lower pairs - surface</li>
+<li>higher pairs - spot and line <strong>Notion: most pairs in a robot
+are planar pairs.</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="degree-of-freedom">Degree of Freedom</h2>
+<ul>
+<li>a particle: <span class="math inline">\(DoF=3\)</span></li>
+<li>a rigid body: <span class="math inline">\(DoF=6\)</span></li>
+<li>a robot: <span class="math inline">\(DoF\)</span> depends...</li>
+</ul>
+<h3 id="dof-of-planar-mechanisms">DoF of Planar Mechanisms</h3>
+<p>No. of movable parts: <span class="math inline">\(n=N-1\)</span> (N
+is the number of pairs) No. of lower pairs: <span class="math inline">\(L\)</span> (brings <span class="math inline">\(2L\)</span> constraints) No. of higher pairs:
+<span class="math inline">\(H\)</span> (brings <span class="math inline">\(H\)</span> constraints)</p>
+<p>total <span class="math inline">\(DoF\)</span>: <span class="math inline">\(3n-2L-H\)</span></p>
+<h2 id="robot-manipulators">Robot Manipulators</h2>
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/09/24">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/24</span>
+                </div>
+                <!-- tags -->
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
+            <a class="abstract-title" href="/2023/09/20/z%E5%8F%98%E6%8D%A2/">
+                
+                <span class="abstract-title-text">z变换</span>
+            </a>
+            <div class="abstract-content">
+                <p><span class="math inline">\(z\)</span>变换（<span class="math inline">\(ZT\)</span>）<strong>是对离散序列进行的一种数学变换</strong>，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入<span class="math inline">\(z\)</span>变换的主要目的是希望方便对于离散控制系统的研究。</p>
+<h2 id="z变换"><span class="math inline">\(z\)</span>变换</h2>
+<h3 id="z变换的定义"><span class="math inline">\(z\)</span>变换的定义</h3>
+<p>设连续函数<span class="math inline">\(e(t)\)</span>是可拉氏变换的，则其拉氏变换定义为：
+<span class="math display">\[
+    E(s)=\mathscr{L}\left[ e(t) \right]=\int_{0}^{\infty}e(t)e^{-sT}dt
+\]</span> 对<span class="math inline">\(e(t)\)</span>的采样后的信号的表达式为： <span class="math display">\[
+e^*(t)=\sum_0^\infty e(nT)\delta(t-nT)
+\]</span> 采样信号<span class="math inline">\(e^*(t)\)</span>的拉氏变换为：</p>
+<p><span class="math display">\[
+E^*(s)=\mathscr{L}[e^*(t)]=\sum_0^\infty e(nT)e^{-nsT}
+\]</span> 可以看到在<span class="math inline">\(s\)</span>域中的结果是比较复杂的，所以为了方便起见我们定义<span class="math inline">\(z=e^{sT}\)</span>，<span class="math inline">\(T\)</span>为采样周期，<span class="math inline">\(z\)</span>是在复数平面上定义的一个复变量，称为<span class="math inline">\(z\)</span>为变换算子。</p>
+<p>采样信号<span class="math inline">\(e^*(t)\)</span>的<span class="math inline">\(z\)</span>变换为： <span class="math display">\[
+E(z)=\mathscr{Z}[e^*(t)]=\sum_0^\infty e(nT)e^{-snT}
+|_{s=\frac{1}{T}lnz}=\sum_0^\infty e(nT)z^{-n}
+\]</span>
+这个结果的形式是很简单的，实际上就是采样所得函数在每个采样点<span class="math inline">\(t=nT\)</span>时候的值乘上<span class="math inline">\(z^{-n}\)</span>，所以这个序列实际上表达出了每个特定的时刻的原函数取值。</p>
+<h3 id="求z变换的方法">求<span class="math inline">\(z\)</span>变换的方法</h3>
+<ol type="1">
+<li><p>级数求和 根据定义求<span class="math inline">\(z\)</span>变换：
+<span class="math display">\[
+F(z)=\mathscr{Z}[f^*(t)]=\sum_0^\infty f(nT)e^{-snT}
+|_{s=\frac{1}{T}lnz}=\sum_0^\infty f(nT)z^{-n}
+\]</span> 我们对于连续信号<span class="math inline">\(f(t)\)</span>只需要将其在采样时间<span class="math inline">\(t=nT\)</span>的时候的取值与对应的<span class="math inline">\(z^{-n}\)</span>相乘然后求和即可。</p></li>
+<li><p>部分分式展开 这种方法主要用于对<span class="math inline">\(F(s)\)</span>进行变换。也就是说先求出已知的连续时间函数<span class="math inline">\(f(x)\)</span>的拉氏变换<span class="math inline">\(F(s)\)</span>，再把这个拉氏变换的结果展开成部分分式之和的形式，使得每一个部分对应的分式能够对应简单的时间函数。然后可得对应部分分式之和的<span class="math inline">\(z\)</span>变换结果。</p></li>
+</ol>
+<p>注意：<span class="math inline">\(F(z)=\mathscr{Z}[f^*(t)] \neq
+\mathscr{Z}[f(t)]\)</span></p>
+<p>对于拉氏变换的结果<span class="math inline">\(F(s)\)</span>，将其写为有理函数的形式： <span class="math display">\[
+                F(s)=\frac{P(s)}{Q(s)}=\frac{\sum_{i=0}^n(s-s_i)^r}{\sum_{j=0}^m(s-s_j)^r}=
+\]</span> 从而可以得到</p>
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2023/09/26">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/20</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Math">Math</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2023/09/19/CS106L%20Lec2%20Stream%20II/">
                 
                 <span class="abstract-title-text">CS106L: Lec2 Stream II</span>
@@ -508,7 +670,7 @@ thing’s current value. (Python)</li>
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/19">
+                <div class="abstract-date" title="Last updated: 2023/09/23">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/19</span>
                 </div>
                 <!-- tags -->
@@ -653,7 +815,7 @@ thing’s current value. (Python)</li>
                 <span class="abstract-title-text">CS106L: Lec1 Stream I</span>
             </a>
             <div class="abstract-content">
-                <h2 id="introduction-to-streams">Introduction to streams</h2>
+                <p>3## Introduction to streams</p>
 <p>Abstractly, a <strong>stream</strong> is a sequence of bytes that can
 be accessed sequentially. Over time, a stream may produce or consume
 potentially unlimited amounts of data. You can imagine stream to be a
@@ -687,7 +849,7 @@ starts at the end. Here is an example with the
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/19">
+                <div class="abstract-date" title="Last updated: 2023/09/21">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/18</span>
                 </div>
                 <!-- tags -->
@@ -848,7 +1010,40 @@ starts at the end. Here is an example with the
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -877,7 +1072,7 @@ starts at the end. Here is an example with the
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 6
+        Total : 9
         </div>
         <!-- search  -->
         
@@ -895,6 +1090,24 @@ starts at the end. Here is an example with the
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/25</span>
+            <a class="archive-post-title" href="/2023/09/25/Python%20Handbook/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/24</span>
+            <a class="archive-post-title" href="/2023/09/24/Articulated%20Robots%20Lec1/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span>
+            <a class="archive-post-title" href="/2023/09/20/z%E5%8F%98%E6%8D%A2/">z变换</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">09/19</span>
@@ -960,6 +1173,11 @@ starts at the end. Here is an example with the
                 Cpp
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MachineLearning">
+                <span class="iconfont-archer">&#xe606;</span>
+                MachineLearning
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Debug">
                 <span class="iconfont-archer">&#xe606;</span>
                 Debug
@@ -975,9 +1193,9 @@ starts at the end. Here is an example with the
                 ROS
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MachineLearning">
+            <span class="sidebar-tag-name" data-tags="Math">
                 <span class="iconfont-archer">&#xe606;</span>
-                MachineLearning
+                Math
             </span>
         
     </div>

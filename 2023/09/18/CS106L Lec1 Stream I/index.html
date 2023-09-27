@@ -19,15 +19,15 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="Introduction to streams Abstractly, a stream is a sequence of bytes that can be accessed sequentially. Over time, a stream may produce or consume potentially unlimited amounts of data. You can imag">
+    <meta name="description" content="3## Introduction to streams Abstractly, a stream is a sequence of bytes that can be accessed sequentially. Over time, a stream may produce or consume potentially unlimited amounts of data. You can">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS106L: Lec1 Stream I">
 <meta property="og:url" content="http://example.com/2023/09/18/CS106L%20Lec1%20Stream%20I/index.html">
 <meta property="og:site_name" content="Shio">
-<meta property="og:description" content="Introduction to streams Abstractly, a stream is a sequence of bytes that can be accessed sequentially. Over time, a stream may produce or consume potentially unlimited amounts of data. You can imag">
+<meta property="og:description" content="3## Introduction to streams Abstractly, a stream is a sequence of bytes that can be accessed sequentially. Over time, a stream may produce or consume potentially unlimited amounts of data. You can">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-18T12:08:45.236Z">
-<meta property="article:modified_time" content="2023-09-19T08:02:30.475Z">
+<meta property="article:modified_time" content="2023-09-21T02:22:58.660Z">
 <meta property="article:author" content="Chenyang Wan">
 <meta property="article:tag" content="Cpp">
 <meta name="twitter:card" content="summary">
@@ -349,7 +349,7 @@
                 <!-- 文章字数统计 -->
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">895</span>Reading time: <span class="post-count reading-time">5 min</span></span>
+                        <span>Word count: <span class="post-count word-count">896</span>Reading time: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -510,7 +510,7 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h2 id="introduction-to-streams">Introduction to streams</h2>
+        <p>3## Introduction to streams</p>
 <p>Abstractly, a <strong>stream</strong> is a sequence of bytes that can
 be accessed sequentially. Over time, a stream may produce or consume
 potentially unlimited amounts of data. You can imagine stream to be a
@@ -593,7 +593,7 @@ is converted to <code>!stream.fail()</code>. So we can have a very
 helpful shortcut from it:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iss &gt;&gt; ch;</span><br><span class="line"><span class="keyword">if</span> (iss.<span class="built_in">fail</span>()) &#123; <span class="comment">//report error&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!(iss &gt;&gt; ch)) &#123; <span class="comment">//report error&#125;</span></span><br></pre></td></tr></table></figure>
 <p>So the error-checking part in the function
-<code>stringToInteger</code> can be rewrite as:</p>
+<code>stringToInteger</code> can be rewriten as:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!(iss &gt;&gt; result) || iss &gt;&gt; remain) </span><br><span class="line">	<span class="keyword">throw</span> std::<span class="built_in">domin_error</span>(...); <span class="comment">//read an integer from the buffer</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     </article>
@@ -759,7 +759,7 @@ helpful shortcut from it:</p>
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#introduction-to-streams"><span class="toc-number">1.</span> <span class="toc-text">Introduction to streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#standard-streams"><span class="toc-number">2.</span> <span class="toc-text">Standard streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#output-streams"><span class="toc-number">3.</span> <span class="toc-text">Output streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#input-streams"><span class="toc-number">4.</span> <span class="toc-text">Input streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#locate-and-set-the-position"><span class="toc-number">5.</span> <span class="toc-text">Locate and set the position</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#state-bits"><span class="toc-number">6.</span> <span class="toc-text">State bits</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#standard-streams"><span class="toc-number">1.</span> <span class="toc-text">Standard streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#output-streams"><span class="toc-number">2.</span> <span class="toc-text">Output streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#input-streams"><span class="toc-number">3.</span> <span class="toc-text">Input streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#locate-and-set-the-position"><span class="toc-number">4.</span> <span class="toc-text">Locate and set the position</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#state-bits"><span class="toc-number">5.</span> <span class="toc-text">State bits</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -803,7 +803,40 @@ helpful shortcut from it:</p>
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -832,7 +865,7 @@ helpful shortcut from it:</p>
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 6
+        Total : 9
         </div>
         <!-- search  -->
         
@@ -850,6 +883,24 @@ helpful shortcut from it:</p>
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/25</span>
+            <a class="archive-post-title" href="/2023/09/25/Python%20Handbook/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/24</span>
+            <a class="archive-post-title" href="/2023/09/24/Articulated%20Robots%20Lec1/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span>
+            <a class="archive-post-title" href="/2023/09/20/z%E5%8F%98%E6%8D%A2/">z变换</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">09/19</span>
@@ -915,6 +966,11 @@ helpful shortcut from it:</p>
                 Cpp
             </span>
         
+            <span class="sidebar-tag-name" data-tags="MachineLearning">
+                <span class="iconfont-archer">&#xe606;</span>
+                MachineLearning
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Debug">
                 <span class="iconfont-archer">&#xe606;</span>
                 Debug
@@ -930,9 +986,9 @@ helpful shortcut from it:</p>
                 ROS
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MachineLearning">
+            <span class="sidebar-tag-name" data-tags="Math">
                 <span class="iconfont-archer">&#xe606;</span>
-                MachineLearning
+                Math
             </span>
         
     </div>
