@@ -449,37 +449,18 @@
                 <span class="abstract-title-text">z变换</span>
             </a>
             <div class="abstract-content">
-                <p><span class="math inline">\(z\)</span>变换（<span class="math inline">\(ZT\)</span>）<strong>是对离散序列进行的一种数学变换</strong>，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入<span class="math inline">\(z\)</span>变换的主要目的是希望方便对于离散控制系统的研究。</p>
-<h2 id="z变换"><span class="math inline">\(z\)</span>变换</h2>
-<h3 id="z变换的定义"><span class="math inline">\(z\)</span>变换的定义</h3>
-<p>设连续函数<span class="math inline">\(e(t)\)</span>是可拉氏变换的，则其拉氏变换定义为：
-<span class="math display">\[
-    E(s)=\mathscr{L}\left[ e(t) \right]=\int_{0}^{\infty}e(t)e^{-sT}dt
-\]</span> 对<span class="math inline">\(e(t)\)</span>的采样后的信号的表达式为： <span class="math display">\[
-e^*(t)=\sum_0^\infty e(nT)\delta(t-nT)
-\]</span> 采样信号<span class="math inline">\(e^*(t)\)</span>的拉氏变换为：</p>
-<p><span class="math display">\[
-E^*(s)=\mathscr{L}[e^*(t)]=\sum_0^\infty e(nT)e^{-nsT}
-\]</span> 可以看到在<span class="math inline">\(s\)</span>域中的结果是比较复杂的，所以为了方便起见我们定义<span class="math inline">\(z=e^{sT}\)</span>，<span class="math inline">\(T\)</span>为采样周期，<span class="math inline">\(z\)</span>是在复数平面上定义的一个复变量，称为<span class="math inline">\(z\)</span>为变换算子。</p>
-<p>采样信号<span class="math inline">\(e^*(t)\)</span>的<span class="math inline">\(z\)</span>变换为： <span class="math display">\[
-E(z)=\mathscr{Z}[e^*(t)]=\sum_0^\infty e(nT)e^{-snT}
-|_{s=\frac{1}{T}lnz}=\sum_0^\infty e(nT)z^{-n}
-\]</span>
-这个结果的形式是很简单的，实际上就是采样所得函数在每个采样点<span class="math inline">\(t=nT\)</span>时候的值乘上<span class="math inline">\(z^{-n}\)</span>，所以这个序列实际上表达出了每个特定的时刻的原函数取值。</p>
-<h3 id="求z变换的方法">求<span class="math inline">\(z\)</span>变换的方法</h3>
-<ol type="1">
-<li><p>级数求和 根据定义求<span class="math inline">\(z\)</span>变换：
-<span class="math display">\[
-F(z)=\mathscr{Z}[f^*(t)]=\sum_0^\infty f(nT)e^{-snT}
-|_{s=\frac{1}{T}lnz}=\sum_0^\infty f(nT)z^{-n}
-\]</span> 我们对于连续信号<span class="math inline">\(f(t)\)</span>只需要将其在采样时间<span class="math inline">\(t=nT\)</span>的时候的取值与对应的<span class="math inline">\(z^{-n}\)</span>相乘然后求和即可。</p></li>
-<li><p>部分分式展开 这种方法主要用于对<span class="math inline">\(F(s)\)</span>进行变换。也就是说先求出已知的连续时间函数<span class="math inline">\(f(x)\)</span>的拉氏变换<span class="math inline">\(F(s)\)</span>，再把这个拉氏变换的结果展开成部分分式之和的形式，使得每一个部分对应的分式能够对应简单的时间函数。然后可得对应部分分式之和的<span class="math inline">\(z\)</span>变换结果。</p></li>
+                <p>$z$变换（$ZT$）<strong>是对离散序列进行的一种数学变换</strong>，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入$z$变换的主要目的是希望方便对于离散控制系统的研究。</p>
+<h2 id="z-变换"><a href="#z-变换" class="headerlink" title="$z$变换"></a>$z$变换</h2><h3 id="z-变换的定义"><a href="#z-变换的定义" class="headerlink" title="$z$变换的定义"></a>$z$变换的定义</h3><p>设连续函数$e(t)$是可拉氏变换的，则其拉氏变换定义为：<br>$$<br>    E(s)&#x3D;\mathscr{L}\left[ e(t) \right]&#x3D;\int_{0}^{\infty}e(t)e^{-sT}dt<br>$$<br>对$e(t)$的采样后的信号的表达式为：<br>$$<br>e^*(t)&#x3D;\sum_0^\infty e(nT)\delta(t-nT)<br>$$<br>采样信号$e^*(t)$的拉氏变换为：</p>
+<p>$$<br>E^*(s)&#x3D;\mathscr{L}[e^*(t)]&#x3D;\sum_0^\infty e(nT)e^{-nsT}<br>$$<br>可以看到在$s$域中的结果是比较复杂的，所以为了方便起见我们定义$z&#x3D;e^{sT}$，$T$为采样周期，$z$是在复数平面上定义的一个复变量，称为$z$为变换算子。</p>
+<p>采样信号$e^*(t)$的$z$变换为：<br>$$<br>E(z)&#x3D;\mathscr{Z}[e^*(t)]&#x3D;\sum_0^\infty e(nT)e^{-snT} |_{s&#x3D;\frac{1}{T}lnz}&#x3D;\sum_0^\infty e(nT)z^{-n}<br>$$<br>这个结果的形式是很简单的，实际上就是采样所得函数在每个采样点$t&#x3D;nT$时候的值乘上$z^{-n}$，所以这个序列实际上表达出了每个特定的时刻的原函数取值。</p>
+<h3 id="求-z-变换的方法"><a href="#求-z-变换的方法" class="headerlink" title="求$z$变换的方法"></a>求$z$变换的方法</h3><ol>
+<li><p>级数求和<br>根据定义求$z$变换：<br>$$<br>F(z)&#x3D;\mathscr{Z}[f^*(t)]&#x3D;\sum_0^\infty f(nT)e^{-snT} |_{s&#x3D;\frac{1}{T}lnz}&#x3D;\sum_0^\infty f(nT)z^{-n}<br>$$<br>我们对于连续信号$f(t)$只需要将其在采样时间$t&#x3D;nT$的时候的取值与对应的$z^{-n}$相乘然后求和即可。</p>
+</li>
+<li><p>部分分式展开<br>这种方法主要用于对$F(s)$进行变换。也就是说先求出已知的连续时间函数$f(x)$的拉氏变换$F(s)$，再把这个拉氏变换的结果展开成部分分式之和的形式，使得每一个部分对应的分式能够对应简单的时间函数。然后可得对应部分分式之和的$z$变换结果。</p>
+</li>
 </ol>
-<p>注意：<span class="math inline">\(F(z)=\mathscr{Z}[f^*(t)] \neq
-\mathscr{Z}[f(t)]\)</span></p>
-<p>对于拉氏变换的结果<span class="math inline">\(F(s)\)</span>，将其写为有理函数的形式： <span class="math display">\[
-                F(s)=\frac{P(s)}{Q(s)}=\frac{\sum_{i=0}^n(s-s_i)^r}{\sum_{j=0}^m(s-s_j)^r}=
-\]</span> 从而可以得到</p>
+<p>注意：$F(z)&#x3D;\mathscr{Z}[f^*(t)] \neq  \mathscr{Z}[f(t)]$</p>
+<p>对于拉氏变换的结果$F(s)$，将其写为有理函数的形式：<br>$$<br>                F(s)&#x3D;\frac{P(s)}{Q(s)}&#x3D;\frac{\sum_{i&#x3D;0}^n(s-s_i)^r}{\sum_{j&#x3D;0}^m(s-s_j)^r}&#x3D;<br>$$<br>从而可以得到</p>
             </div>
             <!-- read more -->
             
@@ -684,20 +665,6 @@ F(z)=\mathscr{Z}[f^*(t)]=\sum_0^\infty f(nT)e^{-snT}
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     
     
     
@@ -724,38 +691,14 @@ F(z)=\mathscr{Z}[f^*(t)]=\sum_0^\infty f(nT)e^{-snT}
             
         
         <li class="archive-post-item">
-            <span class="archive-post-date">09/25</span>
-            <a class="archive-post-title" href="/2023/09/25/Python%20Handbook/">[Untitled Post]</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
             <span class="archive-post-date">09/24</span>
-            <a class="archive-post-title" href="/2023/09/24/Articulated%20Robots%20Lec1/">[Untitled Post]</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/20</span>
-            <a class="archive-post-title" href="/2023/09/20/z%E5%8F%98%E6%8D%A2/">z变换</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/19</span>
-            <a class="archive-post-title" href="/2023/09/19/Debug%20list%20ROS/">Debug list: ROS</a>
+            <a class="archive-post-title" href="/2023/09/24/Articulated%20Robots%20Lec1/">Articulated Robots: Lec1 Introduction</a>
         </li>
     
         
         <li class="archive-post-item">
             <span class="archive-post-date">09/19</span>
             <a class="archive-post-title" href="/2023/09/19/CS106L%20Lec0%20Intro/">CS106L: Lec0 Intro</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/19</span>
-            <a class="archive-post-title" href="/2023/09/19/Debug%20list%20Linux/">Debug list: Linux</a>
         </li>
     
         
@@ -794,6 +737,39 @@ F(z)=\mathscr{Z}[f^*(t)]=\sum_0^\infty f(nT)e^{-snT}
             <a class="archive-post-title" href="/2023/09/19/CS106L%20Lec2%20Stream%20II/">CS106L: Lec2 Stream II</a>
         </li>
     
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2023 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/25</span>
+            <a class="archive-post-title" href="/2023/09/25/Python%20Handbook/">Python Handbook</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span>
+            <a class="archive-post-title" href="/2023/09/20/z%E5%8F%98%E6%8D%A2/">z变换</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/19</span>
+            <a class="archive-post-title" href="/2023/09/19/Debug%20list%20ROS/">Debug list: ROS</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/19</span>
+            <a class="archive-post-title" href="/2023/09/19/Debug%20list%20Linux/">Debug list: Linux</a>
+        </li>
+    
     </div>
 </div>
 
@@ -810,19 +786,24 @@ F(z)=\mathscr{Z}[f^*(t)]=\sum_0^\infty f(nT)e^{-snT}
                 MachineLearning
             </span>
         
+            <span class="sidebar-tag-name" data-tags="Python">
+                <span class="iconfont-archer">&#xe606;</span>
+                Python
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Debug">
                 <span class="iconfont-archer">&#xe606;</span>
                 Debug
             </span>
         
-            <span class="sidebar-tag-name" data-tags="Linux">
-                <span class="iconfont-archer">&#xe606;</span>
-                Linux
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="ROS">
                 <span class="iconfont-archer">&#xe606;</span>
                 ROS
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Linux">
+                <span class="iconfont-archer">&#xe606;</span>
+                Linux
             </span>
         
             <span class="sidebar-tag-name" data-tags="Math">

@@ -21,7 +21,7 @@
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Shio">
-<meta property="og:url" content="http://example.com/tags/ROS/index.html">
+<meta property="og:url" content="http://example.com/tags/Python/index.html">
 <meta property="og:site_name" content="Shio">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Chenyang Wan">
@@ -441,30 +441,35 @@
         
         
             
+            
         
         <article class="index-post">
-            <a class="abstract-title" href="/2023/09/19/Debug%20list%20ROS/">
+            <a class="abstract-title" href="/2023/09/25/Python%20Handbook/">
                 
-                <span class="abstract-title-text">Debug list: ROS</span>
+                <span class="abstract-title-text">Python Handbook</span>
             </a>
             <div class="abstract-content">
-                
+                <h2 id="File-I-O"><a href="#File-I-O" class="headerlink" title="File I&#x2F;O"></a>File I&#x2F;O</h2><ul>
+<li>将一个txt文件中的矩阵读出&#x2F;将一个矩阵写入txt文件中。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">file_to_matrix</span>(<span class="params">path</span>):</span><br><span class="line">    mat = np.loadtxt(path, dtype=np.int32, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    mat = np.array(mat, dtype=np.uint8)</span><br><span class="line">    <span class="keyword">return</span> mat</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">matrix_to_file</span>(<span class="params">mat, path</span>):</span><br><span class="line">    np.savetxt(path, np.c_[mat], fmt=<span class="string">&#x27;%d&#x27;</span>, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Matrix"><a href="#Matrix" class="headerlink" title="Matrix"></a>Matrix</h2><ul>
+<li>将矩阵展开成为一维数组。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mat = mat.ravel() <span class="comment">#横向</span></span><br><span class="line"></span><br><span class="line">mat = mat.ravel(order=<span class="string">&#x27;F&#x27;</span>) <span class="comment">#纵向</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
             </div>
             <!-- read more -->
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/19">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/19</span>
+                <div class="abstract-date" title="Last updated: 2023/09/27">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/25</span>
                 </div>
                 <!-- tags -->
                 
                     <div class= abstract-tags >
     
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Debug">Debug</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="ROS">ROS</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Python">Python</a>
     
 </div>
 
