@@ -19,12 +19,12 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="3## Introduction to streams Abstractly, a stream is a sequence of bytes that can be accessed sequentially. Over time, a stream may produce or consume potentially unlimited amounts of data. You can ima">
+    <meta name="description" content="3## Introduction to streams Abstractly, a stream is a sequence of bytes that can be accessed sequentially. Over time, a stream may produce or consume potentially unlimited amounts of data. You can">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS106L: Lec1 Stream I">
 <meta property="og:url" content="http://example.com/2023/09/18/CS106L%20Lec1%20Stream%20I/index.html">
 <meta property="og:site_name" content="Shio">
-<meta property="og:description" content="3## Introduction to streams Abstractly, a stream is a sequence of bytes that can be accessed sequentially. Over time, a stream may produce or consume potentially unlimited amounts of data. You can ima">
+<meta property="og:description" content="3## Introduction to streams Abstractly, a stream is a sequence of bytes that can be accessed sequentially. Over time, a stream may produce or consume potentially unlimited amounts of data. You can">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-18T12:08:45.236Z">
 <meta property="article:modified_time" content="2023-09-21T02:22:58.660Z">
@@ -349,7 +349,7 @@
                 <!-- 文章字数统计 -->
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">893</span>Reading time: <span class="post-count reading-time">5 min</span></span>
+                        <span>Word count: <span class="post-count word-count">896</span>Reading time: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -511,62 +511,89 @@
                 <main class="main post-page">
     <article class="article-entry">
         <p>3## Introduction to streams</p>
-<p>Abstractly, a <strong>stream</strong> is a sequence of bytes that can be accessed sequentially. Over time, a stream may produce or consume potentially unlimited amounts of data. You can imagine stream to be a <strong>character buffer</strong> that automatically interacts with the external source. Streams automatically convert variables to a string form that can be written into a buffer.  And the opposite is a similar case. A string stream is not connected to any external source. </p>
-<h2 id="Standard-streams"><a href="#Standard-streams" class="headerlink" title="Standard streams"></a>Standard streams</h2><ul>
-<li><code>cin</code>: an <code>istream</code> object tied to the standard input (typically the keyboard)</li>
-<li><code>cout</code>: an <code>ostream</code> object tied to the standard output (typically the monitor)</li>
-<li><code>cerr</code>: an <code>ostream</code> object tied to the standard error (typically the monitor), providing unbuffered output</li>
-<li><code>clog</code>: an <code>ostream</code> object tied to the standard error (typically the monitor), providing buffered output</li>
+<p>Abstractly, a <strong>stream</strong> is a sequence of bytes that can
+be accessed sequentially. Over time, a stream may produce or consume
+potentially unlimited amounts of data. You can imagine stream to be a
+<strong>character buffer</strong> that automatically interacts with the
+external source. Streams automatically convert variables to a string
+form that can be written into a buffer. And the opposite is a similar
+case. A string stream is not connected to any external source.</p>
+<h2 id="standard-streams">Standard streams</h2>
+<ul>
+<li><code>cin</code>: an <code>istream</code> object tied to the
+standard input (typically the keyboard)</li>
+<li><code>cout</code>: an <code>ostream</code> object tied to the
+standard output (typically the monitor)</li>
+<li><code>cerr</code>: an <code>ostream</code> object tied to the
+standard error (typically the monitor), providing unbuffered output</li>
+<li><code>clog</code>: an <code>ostream</code> object tied to the
+standard error (typically the monitor), providing buffered output</li>
 </ul>
-<h2 id="Output-streams"><a href="#Output-streams" class="headerlink" title="Output streams"></a>Output streams</h2><p>After you initializing an stream (empty, or initialized with a <code>const char*</code> or something else), the position starts at the beginning of the “buffer”. But after your stream insertion, the position starts at the end. Here is an example with the <code>std::ostringstream</code> : </p>
+<h2 id="output-streams">Output streams</h2>
+<p>After you initializing an stream (empty, or initialized with a
+<code>const char*</code> or something else), the position starts at the
+beginning of the "buffer". But after your stream insertion, the position
+starts at the end. Here is an example with the
+<code>std::ostringstream</code> :</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span> <span class="comment">// for cout</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span>  <span class="comment">// for ostringstream</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// ostringstream is a stream that writes to a string</span></span><br><span class="line">	</span><br><span class="line">    <span class="function">std::ostringstream <span class="title">oss1</span><span class="params">(<span class="string">&quot; Hello world. &quot;</span>)</span></span>; <span class="comment">// initialize with string</span></span><br><span class="line">    std::cout &lt;&lt; oss1.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    std::ostringstream oss2; <span class="comment">// initialize with no string</span></span><br><span class="line">    oss2 &lt;&lt; <span class="string">&quot; Nice 2 meet u. &quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; oss2.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    oss2 &lt;&lt; <span class="string">&quot; See u tomorrow. &quot;</span> &lt;&lt; std::endl; <span class="comment">// append a string</span></span><br><span class="line">    std::cout &lt;&lt; oss2.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>And the output is:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hello world.</span><br><span class="line">Nice 2 meet u.</span><br><span class="line">Nice 2 meet u. See u tomorrow.</span><br></pre></td></tr></table></figure>
-
-<h2 id="Input-streams"><a href="#Input-streams" class="headerlink" title="Input streams"></a>Input streams</h2><p>Now we want to know the behavior of input streams. Take the <code>std::istringstream</code> as an example. </p>
+<h2 id="input-streams">Input streams</h2>
+<p>Now we want to know the behavior of input streams. Take the
+<code>std::istringstream</code> as an example.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function">std::istringstream <span class="title">iss</span><span class="params">(<span class="string">&quot; Nice to meet u 2. &quot;</span>)</span></span>;</span><br><span class="line">    std::cout &lt;&lt; iss.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line">    </span><br><span class="line">    std::string word;</span><br><span class="line">    <span class="type">double</span> number;</span><br><span class="line"></span><br><span class="line">    iss &gt;&gt; word &gt;&gt; number;</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;word: &quot;</span> &lt;&lt; word &lt;&lt; std::endl; <span class="comment">// &quot;word: Nice&quot;</span></span><br><span class="line">    std::cout &lt;&lt; iss.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;number: &quot;</span> &lt;&lt; number &lt;&lt; std::endl; <span class="comment">// &quot;number: ?&quot;</span></span><br></pre></td></tr></table></figure>
-
 <p>And the output is:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> Nice to meet u 2.</span><br><span class="line">word: Nice</span><br><span class="line"> Nice to meet u 2.</span><br><span class="line">number: 0</span><br></pre></td></tr></table></figure>
-
-<p>In the example above, the variables read something from the <code>std::istringstream</code>. But clearly the <em>number</em> failed to read the value expected. Now we modify the <em>iss</em> a little.</p>
+<p>In the example above, the variables read something from the
+<code>std::istringstream</code>. But clearly the <em>number</em> failed
+to read the value expected. Now we modify the <em>iss</em> a little.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function">std::istringstream <span class="title">iss</span><span class="params">(<span class="string">&quot; Nice 2 meet u too. &quot;</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-
 <p>And now the output is:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> Nice to meet u 2.</span><br><span class="line">word: Nice</span><br><span class="line"> Nice to meet u 2.</span><br><span class="line">number: 2</span><br></pre></td></tr></table></figure>
-
-<h2 id="Locate-and-set-the-position"><a href="#Locate-and-set-the-position" class="headerlink" title="Locate and set the position"></a>Locate and set the position</h2><p>We use the method <code>tellp()</code> to get the position, <code>std::stream()</code> to create offset, and the <code>seekp()</code> to set a new position in the stream <code>ss</code> in the example below. These methods let you to manually set the position, and most useful is the offset can be <strong>added</strong> to positions. But remember that <strong>the position can never be less than 0</strong>. </p>
+<h2 id="locate-and-set-the-position">Locate and set the position</h2>
+<p>We use the method <code>tellp()</code> to get the position,
+<code>std::stream()</code> to create offset, and the
+<code>seekp()</code> to set a new position in the stream <code>ss</code>
+in the example below. These methods let you to manually set the
+position, and most useful is the offset can be <strong>added</strong> to
+positions. But remember that <strong>the position can never be less than
+0</strong>.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    std::fpos pos = ss.<span class="built_in">tellp</span>() + std::<span class="built_in">streamoff</span>(<span class="number">3</span>); <span class="comment">// get position, and add 3</span></span><br><span class="line">    ss.<span class="built_in">seekp</span>(pos); <span class="comment">// set position</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="State-bits"><a href="#State-bits" class="headerlink" title="State bits"></a>State bits</h2><p>There four bits to indicate the state of the stream.</p>
-<ol>
-<li><code>Good bit</code>: Ready for read&#x2F;write. Nothing unusual, on when <strong>other bits are off</strong>.</li>
-<li><code>Fail bit</code>: Previous operation failed, all future operations <strong>frozen</strong>. Like: <ul>
-<li>Type mismatch</li>
-<li>File can’t be opened</li>
-<li>Seeking failed</li>
-</ul>
-</li>
-<li><code>EOF bit</code>: Previous operation reached the end of the buffer content. Nothing left.</li>
-<li><code>Bad bit</code>: External error, likely irrecoverable. Could not move characters from external source (e.g. the file you are reading from is suddenly deleted).</li>
-</ol>
-<p><strong>Caution !!!</strong></p>
+<h2 id="state-bits">State bits</h2>
+<p>There four bits to indicate the state of the stream.</p>
+<ol type="1">
+<li><code>Good bit</code>: Ready for read/write. Nothing unusual, on
+when <strong>other bits are off</strong>.</li>
+<li><code>Fail bit</code>: Previous operation failed, all future
+operations <strong>frozen</strong>. Like:
 <ul>
-<li><code>Good</code> and <code>Fail</code> are not opposite, and <code>Good</code> and <code>Bad</code> are not opposite. </li>
-<li><code>Fail</code> and <code>EOF</code> are normally you will be checking. </li>
-<li>You will rarely use <code>Good</code>.</li>
-</ul>
-<p>Here is a function <code>printStreamState</code> to print the state bits of a stream.</p>
+<li>Type mismatch</li>
+<li>File can't be opened</li>
+<li>Seeking failed</li>
+</ul></li>
+<li><code>EOF bit</code>: Previous operation reached the end of the
+buffer content. Nothing left.</li>
+<li><code>Bad bit</code>: External error, likely irrecoverable. Could
+not move characters from external source (e.g. the file you are reading
+from is suddenly deleted).</li>
+</ol>
+<p><strong>Caution !!!</strong> - <code>Good</code> and
+<code>Fail</code> are not opposite, and <code>Good</code> and
+<code>Bad</code> are not opposite. - <code>Fail</code> and
+<code>EOF</code> are normally you will be checking. - You will rarely
+use <code>Good</code>.</p>
+<p>Here is a function <code>printStreamState</code> to print the state
+bits of a stream.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="type">void</span> <span class="title">printStreamState</span><span class="params">(std::ostream &amp; os)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;good: &quot;</span> &lt;&lt; os.<span class="built_in">good</span>() &lt;&lt; std::endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;fail: &quot;</span> &lt;&lt; os.<span class="built_in">fail</span>() &lt;&lt; std::endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;eof: &quot;</span> &lt;&lt; os.<span class="built_in">eof</span>() &lt;&lt; std::endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;bad: &quot;</span> &lt;&lt; os.<span class="built_in">bad</span>() &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>As a result, we can implement a complete version of the function <code>stringToInteger</code> with <strong>error-checking</strong>.</p>
+<p>As a result, we can implement a complete version of the function
+<code>stringToInteger</code> with <strong>error-checking</strong>.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">stringToInteger</span><span class="params">(<span class="type">const</span> string&amp; str)</span> <span class="comment">//passing by reference and never change it</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">std::istringstream <span class="title">iss</span><span class="params">(str)</span></span>;</span><br><span class="line">	<span class="type">int</span> result;</span><br><span class="line">	iss &gt;&gt; result;</span><br><span class="line">	<span class="keyword">if</span> (iss.<span class="built_in">fail</span>()) <span class="keyword">throw</span> std::<span class="built_in">domin_error</span>(...); <span class="comment">//read an integer from the buffer</span></span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> remain;</span><br><span class="line">	iss &gt;&gt; remain;</span><br><span class="line">	<span class="keyword">if</span> (!iss.<span class="built_in">fail</span>()) <span class="keyword">throw</span> std::<span class="built_in">domin_error</span>(...); <span class="comment">//make sure no characters left in the buffer</span></span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>In fact, the <code>&gt;&gt;</code> operator returns the stream which is converted to <code>!stream.fail()</code>. So we can have a very helpful shortcut from it: </p>
+<p>In fact, the <code>&gt;&gt;</code> operator returns the stream which
+is converted to <code>!stream.fail()</code>. So we can have a very
+helpful shortcut from it:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iss &gt;&gt; ch;</span><br><span class="line"><span class="keyword">if</span> (iss.<span class="built_in">fail</span>()) &#123; <span class="comment">//report error&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!(iss &gt;&gt; ch)) &#123; <span class="comment">//report error&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>So the error-checking part in the function <code>stringToInteger</code> can be rewriten as:</p>
+<p>So the error-checking part in the function
+<code>stringToInteger</code> can be rewriten as:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!(iss &gt;&gt; result) || iss &gt;&gt; remain) </span><br><span class="line">	<span class="keyword">throw</span> std::<span class="built_in">domin_error</span>(...); <span class="comment">//read an integer from the buffer</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     </article>
@@ -732,7 +759,7 @@
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Standard-streams"><span class="toc-number">1.</span> <span class="toc-text">Standard streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Output-streams"><span class="toc-number">2.</span> <span class="toc-text">Output streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Input-streams"><span class="toc-number">3.</span> <span class="toc-text">Input streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Locate-and-set-the-position"><span class="toc-number">4.</span> <span class="toc-text">Locate and set the position</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#State-bits"><span class="toc-number">5.</span> <span class="toc-text">State bits</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#standard-streams"><span class="toc-number">1.</span> <span class="toc-text">Standard streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#output-streams"><span class="toc-number">2.</span> <span class="toc-text">Output streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#input-streams"><span class="toc-number">3.</span> <span class="toc-text">Input streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#locate-and-set-the-position"><span class="toc-number">4.</span> <span class="toc-text">Locate and set the position</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#state-bits"><span class="toc-number">5.</span> <span class="toc-text">State bits</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -814,6 +841,22 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
     
     
@@ -840,8 +883,26 @@
             
         
         <li class="archive-post-item">
+            <span class="archive-post-date">09/25</span>
+            <a class="archive-post-title" href="/2023/09/25/Python%20Handbook/">Python Handbook</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
             <span class="archive-post-date">09/24</span>
             <a class="archive-post-title" href="/2023/09/24/Articulated%20Robots%20Lec1/">Articulated Robots: Lec1 Introduction</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span>
+            <a class="archive-post-title" href="/2023/09/20/z%E5%8F%98%E6%8D%A2/">z变换</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/19</span>
+            <a class="archive-post-title" href="/2023/09/19/Debug%20list%20ROS/">Debug list: ROS</a>
         </li>
     
         
@@ -852,23 +913,14 @@
     
         
         <li class="archive-post-item">
-            <span class="archive-post-date">09/18</span>
-            <a class="archive-post-title" href="/2023/09/18/CS106L%20Lec1%20Stream%20I/">CS106L: Lec1 Stream I</a>
+            <span class="archive-post-date">09/19</span>
+            <a class="archive-post-title" href="/2023/09/19/Debug%20list%20Linux/">Debug list: Linux</a>
         </li>
     
         
-            
-            
-                
-                </ul>
-            
-            <div class="archive-year"> Invalid date </div>
-            <ul class="year-list">
-            
-        
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span>
-            <a class="archive-post-title" href="/2023/09/19/CS229%20Lec1/">CS229: Lec1 Supervised Learning</a>
+            <span class="archive-post-date">09/18</span>
+            <a class="archive-post-title" href="/2023/09/18/CS106L%20Lec1%20Stream%20I/">CS106L: Lec1 Stream I</a>
         </li>
     
         
@@ -892,31 +944,13 @@
                 
                 </ul>
             
-            <div class="archive-year"> 2023 </div>
+            <div class="archive-year"> Invalid date </div>
             <ul class="year-list">
             
         
         <li class="archive-post-item">
-            <span class="archive-post-date">09/25</span>
-            <a class="archive-post-title" href="/2023/09/25/Python%20Handbook/">Python Handbook</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/20</span>
-            <a class="archive-post-title" href="/2023/09/20/z%E5%8F%98%E6%8D%A2/">z变换</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/19</span>
-            <a class="archive-post-title" href="/2023/09/19/Debug%20list%20ROS/">Debug list: ROS</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/19</span>
-            <a class="archive-post-title" href="/2023/09/19/Debug%20list%20Linux/">Debug list: Linux</a>
+            <span class="archive-post-date">Invalid date</span>
+            <a class="archive-post-title" href="/2023/09/19/CS229%20Lec1/">CS229: Lec1 Supervised Learning</a>
         </li>
     
     </div>
@@ -930,24 +964,9 @@
                 Cpp
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MachineLearning">
-                <span class="iconfont-archer">&#xe606;</span>
-                MachineLearning
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Python">
-                <span class="iconfont-archer">&#xe606;</span>
-                Python
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Debug">
                 <span class="iconfont-archer">&#xe606;</span>
                 Debug
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="ROS">
-                <span class="iconfont-archer">&#xe606;</span>
-                ROS
             </span>
         
             <span class="sidebar-tag-name" data-tags="Linux">
@@ -955,9 +974,24 @@
                 Linux
             </span>
         
+            <span class="sidebar-tag-name" data-tags="ROS">
+                <span class="iconfont-archer">&#xe606;</span>
+                ROS
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="MachineLearning">
+                <span class="iconfont-archer">&#xe606;</span>
+                MachineLearning
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Math">
                 <span class="iconfont-archer">&#xe606;</span>
                 Math
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Python">
+                <span class="iconfont-archer">&#xe606;</span>
+                Python
             </span>
         
     </div>

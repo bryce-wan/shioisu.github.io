@@ -464,11 +464,14 @@
                 <span class="abstract-title-text">Python Handbook</span>
             </a>
             <div class="abstract-content">
-                <h2 id="File-I-O"><a href="#File-I-O" class="headerlink" title="File I&#x2F;O"></a>File I&#x2F;O</h2><ul>
-<li>将一个txt文件中的矩阵读出&#x2F;将一个矩阵写入txt文件中。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">file_to_matrix</span>(<span class="params">path</span>):</span><br><span class="line">    mat = np.loadtxt(path, dtype=np.int32, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    mat = np.array(mat, dtype=np.uint8)</span><br><span class="line">    <span class="keyword">return</span> mat</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">matrix_to_file</span>(<span class="params">mat, path</span>):</span><br><span class="line">    np.savetxt(path, np.c_[mat], fmt=<span class="string">&#x27;%d&#x27;</span>, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+                <h2 id="file-io">File I/O</h2>
+<ul>
+<li>将一个txt文件中的矩阵读出/将一个矩阵写入txt文件中。
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">file_to_matrix</span>(<span class="params">path</span>):</span><br><span class="line">    mat = np.loadtxt(path, dtype=np.int32, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    mat = np.array(mat, dtype=np.uint8)</span><br><span class="line">    <span class="keyword">return</span> mat</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">matrix_to_file</span>(<span class="params">mat, path</span>):</span><br><span class="line">    np.savetxt(path, np.c_[mat], fmt=<span class="string">&#x27;%d&#x27;</span>, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="Matrix"><a href="#Matrix" class="headerlink" title="Matrix"></a>Matrix</h2><ul>
-<li>将矩阵展开成为一维数组。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mat = mat.ravel() <span class="comment">#横向</span></span><br><span class="line"></span><br><span class="line">mat = mat.ravel(order=<span class="string">&#x27;F&#x27;</span>) <span class="comment">#纵向</span></span><br></pre></td></tr></table></figure></li>
+<h2 id="matrix">Matrix</h2>
+<ul>
+<li>将矩阵展开成为一维数组。 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mat = mat.ravel() <span class="comment">#横向</span></span><br><span class="line"></span><br><span class="line">mat = mat.ravel(order=<span class="string">&#x27;F&#x27;</span>) <span class="comment">#纵向</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 
             </div>
@@ -506,29 +509,37 @@
                 <span class="abstract-title-text">Articulated Robots: Lec1 Introduction</span>
             </a>
             <div class="abstract-content">
-                <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><ul>
-<li><strong>Mechanism</strong>: a system of two or more linked machine parts with kinetic parts.<ul>
-<li>serially-connected open chain&#x2F;close chain</li>
-</ul>
-</li>
-<li><strong>Kinetic pairs</strong>: the moveable contact between two linked machine pairs (Spot, Line, Surface).<ul>
-<li>by pressure of contacts: <ul>
+                <h2 id="intro">Intro</h2>
+<ul>
+<li><strong>Mechanism</strong>: a system of two or more linked machine
+parts with kinetic parts.
+<ul>
+<li>serially-connected open chain/close chain</li>
+</ul></li>
+<li><strong>Kinetic pairs</strong>: the moveable contact between two
+linked machine pairs (Spot, Line, Surface).
+<ul>
+<li>by pressure of contacts:
+<ul>
 <li>lower pairs - surface</li>
-<li>higher pairs - spot and line</li>
+<li>higher pairs - spot and line <strong>Notion: most pairs in a robot
+are planar pairs.</strong></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
+<h2 id="degree-of-freedom">Degree of Freedom</h2>
+<ul>
+<li>a particle: <span class="math inline">\(DoF=3\)</span></li>
+<li>a rigid body: <span class="math inline">\(DoF=6\)</span></li>
+<li>a robot: <span class="math inline">\(DoF\)</span> depends...</li>
 </ul>
-</li>
-</ul>
-<p><strong>Notion: most pairs in a robot are planar pairs.</strong></p>
-<h2 id="Degree-of-Freedom"><a href="#Degree-of-Freedom" class="headerlink" title="Degree of Freedom"></a>Degree of Freedom</h2><ul>
-<li>a particle: $DoF&#x3D;3$</li>
-<li>a rigid body: $DoF&#x3D;6$</li>
-<li>a robot: $DoF$ depends…</li>
-</ul>
-<h3 id="DoF-of-Planar-Mechanisms"><a href="#DoF-of-Planar-Mechanisms" class="headerlink" title="DoF of Planar Mechanisms"></a>DoF of Planar Mechanisms</h3><p>No. of movable parts: $n&#x3D;N-1$ (N is the number of pairs)<br>No. of lower pairs: $L$ (brings $2L$ constraints)<br>No. of higher pairs: $H$ (brings $H$ constraints)</p>
-<p>total $DoF$: $3n-2L-H$</p>
-<h2 id="Robot-Manipulators"><a href="#Robot-Manipulators" class="headerlink" title="Robot Manipulators"></a>Robot Manipulators</h2>
+<h3 id="dof-of-planar-mechanisms">DoF of Planar Mechanisms</h3>
+<p>No. of movable parts: <span class="math inline">\(n=N-1\)</span> (N
+is the number of pairs) No. of lower pairs: <span class="math inline">\(L\)</span> (brings <span class="math inline">\(2L\)</span> constraints) No. of higher pairs:
+<span class="math inline">\(H\)</span> (brings <span class="math inline">\(H\)</span> constraints)</p>
+<p>total <span class="math inline">\(DoF\)</span>: <span class="math inline">\(3n-2L-H\)</span></p>
+<h2 id="robot-manipulators">Robot Manipulators</h2>
+
             </div>
             <!-- read more -->
             
@@ -556,24 +567,43 @@
                 <span class="abstract-title-text">z变换</span>
             </a>
             <div class="abstract-content">
-                <p>$z$变换（$ZT$）<strong>是对离散序列进行的一种数学变换</strong>，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入$z$变换的主要目的是希望方便对于离散控制系统的研究。</p>
-<h2 id="z-变换"><a href="#z-变换" class="headerlink" title="$z$变换"></a>$z$变换</h2><h3 id="z-变换的定义"><a href="#z-变换的定义" class="headerlink" title="$z$变换的定义"></a>$z$变换的定义</h3><p>设连续函数$e(t)$是可拉氏变换的，则其拉氏变换定义为：<br>$$<br>    E(s)&#x3D;\mathscr{L}\left[ e(t) \right]&#x3D;\int_{0}^{\infty}e(t)e^{-sT}dt<br>$$<br>对$e(t)$的采样后的信号的表达式为：<br>$$<br>e^*(t)&#x3D;\sum_0^\infty e(nT)\delta(t-nT)<br>$$<br>采样信号$e^*(t)$的拉氏变换为：</p>
-<p>$$<br>E^*(s)&#x3D;\mathscr{L}[e^*(t)]&#x3D;\sum_0^\infty e(nT)e^{-nsT}<br>$$<br>可以看到在$s$域中的结果是比较复杂的，所以为了方便起见我们定义$z&#x3D;e^{sT}$，$T$为采样周期，$z$是在复数平面上定义的一个复变量，称为$z$为变换算子。</p>
-<p>采样信号$e^*(t)$的$z$变换为：<br>$$<br>E(z)&#x3D;\mathscr{Z}[e^*(t)]&#x3D;\sum_0^\infty e(nT)e^{-snT} |_{s&#x3D;\frac{1}{T}lnz}&#x3D;\sum_0^\infty e(nT)z^{-n}<br>$$<br>这个结果的形式是很简单的，实际上就是采样所得函数在每个采样点$t&#x3D;nT$时候的值乘上$z^{-n}$，所以这个序列实际上表达出了每个特定的时刻的原函数取值。</p>
-<h3 id="求-z-变换的方法"><a href="#求-z-变换的方法" class="headerlink" title="求$z$变换的方法"></a>求$z$变换的方法</h3><ol>
-<li><p>级数求和<br>根据定义求$z$变换：<br>$$<br>F(z)&#x3D;\mathscr{Z}[f^*(t)]&#x3D;\sum_0^\infty f(nT)e^{-snT} |_{s&#x3D;\frac{1}{T}lnz}&#x3D;\sum_0^\infty f(nT)z^{-n}<br>$$<br>我们对于连续信号$f(t)$只需要将其在采样时间$t&#x3D;nT$的时候的取值与对应的$z^{-n}$相乘然后求和即可。</p>
-</li>
-<li><p>部分分式展开<br>这种方法主要用于对$F(s)$进行变换。也就是说先求出已知的连续时间函数$f(x)$的拉氏变换$F(s)$，再把这个拉氏变换的结果展开成部分分式之和的形式，使得每一个部分对应的分式能够对应简单的时间函数。然后可得对应部分分式之和的$z$变换结果。</p>
-</li>
+                <p><span class="math inline">\(z\)</span>变换（<span class="math inline">\(ZT\)</span>）<strong>是对离散序列进行的一种数学变换</strong>，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入<span class="math inline">\(z\)</span>变换的主要目的是希望方便对于离散控制系统的研究。</p>
+<h2 id="z变换"><span class="math inline">\(z\)</span>变换</h2>
+<h3 id="z变换的定义"><span class="math inline">\(z\)</span>变换的定义</h3>
+<p>设连续函数<span class="math inline">\(e(t)\)</span>是可拉氏变换的，则其拉氏变换定义为：
+<span class="math display">\[
+    E(s)=\mathscr{L}\left[ e(t) \right]=\int_{0}^{\infty}e(t)e^{-sT}dt
+\]</span> 对<span class="math inline">\(e(t)\)</span>的采样后的信号的表达式为： <span class="math display">\[
+e^*(t)=\sum_0^\infty e(nT)\delta(t-nT)
+\]</span> 采样信号<span class="math inline">\(e^*(t)\)</span>的拉氏变换为：</p>
+<p><span class="math display">\[
+E^*(s)=\mathscr{L}[e^*(t)]=\sum_0^\infty e(nT)e^{-nsT}
+\]</span> 可以看到在<span class="math inline">\(s\)</span>域中的结果是比较复杂的，所以为了方便起见我们定义<span class="math inline">\(z=e^{sT}\)</span>，<span class="math inline">\(T\)</span>为采样周期，<span class="math inline">\(z\)</span>是在复数平面上定义的一个复变量，称为<span class="math inline">\(z\)</span>为变换算子。</p>
+<p>采样信号<span class="math inline">\(e^*(t)\)</span>的<span class="math inline">\(z\)</span>变换为： <span class="math display">\[
+E(z)=\mathscr{Z}[e^*(t)]=\sum_0^\infty e(nT)e^{-snT}
+|_{s=\frac{1}{T}lnz}=\sum_0^\infty e(nT)z^{-n}
+\]</span>
+这个结果的形式是很简单的，实际上就是采样所得函数在每个采样点<span class="math inline">\(t=nT\)</span>时候的值乘上<span class="math inline">\(z^{-n}\)</span>，所以这个序列实际上表达出了每个特定的时刻的原函数取值。</p>
+<h3 id="求z变换的方法">求<span class="math inline">\(z\)</span>变换的方法</h3>
+<ol type="1">
+<li><p>级数求和 根据定义求<span class="math inline">\(z\)</span>变换：
+<span class="math display">\[
+F(z)=\mathscr{Z}[f^*(t)]=\sum_0^\infty f(nT)e^{-snT}
+|_{s=\frac{1}{T}lnz}=\sum_0^\infty f(nT)z^{-n}
+\]</span> 我们对于连续信号<span class="math inline">\(f(t)\)</span>只需要将其在采样时间<span class="math inline">\(t=nT\)</span>的时候的取值与对应的<span class="math inline">\(z^{-n}\)</span>相乘然后求和即可。</p></li>
+<li><p>部分分式展开 这种方法主要用于对<span class="math inline">\(F(s)\)</span>进行变换。也就是说先求出已知的连续时间函数<span class="math inline">\(f(x)\)</span>的拉氏变换<span class="math inline">\(F(s)\)</span>，再把这个拉氏变换的结果展开成部分分式之和的形式，使得每一个部分对应的分式能够对应简单的时间函数。然后可得对应部分分式之和的<span class="math inline">\(z\)</span>变换结果。</p></li>
 </ol>
-<p>注意：$F(z)&#x3D;\mathscr{Z}[f^*(t)] \neq  \mathscr{Z}[f(t)]$</p>
-<p>对于拉氏变换的结果$F(s)$，将其写为有理函数的形式：<br>$$<br>                F(s)&#x3D;\frac{P(s)}{Q(s)}&#x3D;\frac{\sum_{i&#x3D;0}^n(s-s_i)^r}{\sum_{j&#x3D;0}^m(s-s_j)^r}&#x3D;<br>$$<br>从而可以得到</p>
+<p>注意：<span class="math inline">\(F(z)=\mathscr{Z}[f^*(t)] \neq
+\mathscr{Z}[f(t)]\)</span></p>
+<p>对于拉氏变换的结果<span class="math inline">\(F(s)\)</span>，将其写为有理函数的形式： <span class="math display">\[
+                F(s)=\frac{P(s)}{Q(s)}=\frac{\sum_{i=0}^n(s-s_i)^r}{\sum_{j=0}^m(s-s_j)^r}=
+\]</span> 从而可以得到</p>
             </div>
             <!-- read more -->
             
             <div class="abstract-post-meta">
                 <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/26">
+                <div class="abstract-date" title="Last updated: 2023/09/27">
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/20</span>
                 </div>
                 <!-- tags -->
@@ -595,6 +625,7 @@
         
         
             
+            
         
         <article class="index-post">
             <a class="abstract-title" href="/2023/09/19/CS106L%20Lec2%20Stream%20II/">
@@ -603,6 +634,7 @@
             </a>
             <div class="abstract-content">
                 
+
             </div>
             <!-- read more -->
             
@@ -638,16 +670,22 @@
                 <span class="abstract-title-text">CS106L: Lec0 Intro</span>
             </a>
             <div class="abstract-content">
-                <h2 id="C-Types-and-Structs"><a href="#C-Types-and-Structs" class="headerlink" title="C++ Types and Structs"></a>C++ Types and Structs</h2><h3 id="Fundamental-Types"><a href="#Fundamental-Types" class="headerlink" title="Fundamental Types"></a>Fundamental Types</h3><h3 id="Dynamic-and-Static-typing"><a href="#Dynamic-and-Static-typing" class="headerlink" title="Dynamic and Static typing"></a>Dynamic and Static typing</h3><p>C++ is a <strong>statically typed language.</strong></p>
+                <h2 id="c-types-and-structs">C++ Types and Structs</h2>
+<h3 id="fundamental-types">Fundamental Types</h3>
+<h3 id="dynamic-and-static-typing">Dynamic and Static typing</h3>
+<p>C++ is a <strong>statically typed language.</strong></p>
 <ul>
-<li><code>statically typed</code>: Everything with a name (variables, functions, etc) is <strong>given a type before runtime.</strong> (C++)</li>
-<li><code>dynamically typed</code>: Everything with a name (variables, functions, etc) is <strong>given a type at runtime</strong> based on the thing’s current value. (Python)</li>
+<li><code>statically typed</code>: Everything with a name (variables,
+functions, etc) is <strong>given a type before runtime.</strong>
+(C++)</li>
+<li><code>dynamically typed</code>: Everything with a name (variables,
+functions, etc) is <strong>given a type at runtime</strong> based on the
+thing’s current value. (Python)</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CRASH during runtime, can’t divide a string</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">div_3</span>(<span class="params">x</span>):</span><br><span class="line">	<span class="keyword">return</span> x / <span class="number">3</span> </span><br><span class="line"></span><br><span class="line">div_3(<span class="string">&quot;hello&quot;</span>)</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Compile error: this code will never run</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">div_3</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x / <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">div_3</span>(<span class="string">&quot;hello&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p><code>Runtime</code>: Period when program is executing commands (after compilation, if compiled).</p>
+<p><code>Runtime</code>: Period when program is executing commands
+(after compilation, if compiled).</p>
 
             </div>
             <!-- read more -->
@@ -676,6 +714,7 @@
         
         
             
+            
         
         <article class="index-post">
             <a class="abstract-title" href="/2023/09/19/Debug%20list%20ROS/">
@@ -684,6 +723,7 @@
             </a>
             <div class="abstract-content">
                 
+
             </div>
             <!-- read more -->
             
@@ -713,6 +753,7 @@
         
         
             
+            
         
         <article class="index-post">
             <a class="abstract-title" href="/2023/09/19/Debug%20list%20Linux/">
@@ -721,6 +762,7 @@
             </a>
             <div class="abstract-content">
                 
+
             </div>
             <!-- read more -->
             
@@ -750,6 +792,7 @@
         
         
             
+            
         
         <article class="index-post">
             <a class="abstract-title" href="/2023/09/19/CS229%20Lec1/">
@@ -758,6 +801,7 @@
             </a>
             <div class="abstract-content">
                 
+
             </div>
             <!-- read more -->
             
@@ -794,20 +838,34 @@
             </a>
             <div class="abstract-content">
                 <p>3## Introduction to streams</p>
-<p>Abstractly, a <strong>stream</strong> is a sequence of bytes that can be accessed sequentially. Over time, a stream may produce or consume potentially unlimited amounts of data. You can imagine stream to be a <strong>character buffer</strong> that automatically interacts with the external source. Streams automatically convert variables to a string form that can be written into a buffer.  And the opposite is a similar case. A string stream is not connected to any external source. </p>
-<h2 id="Standard-streams"><a href="#Standard-streams" class="headerlink" title="Standard streams"></a>Standard streams</h2><ul>
-<li><code>cin</code>: an <code>istream</code> object tied to the standard input (typically the keyboard)</li>
-<li><code>cout</code>: an <code>ostream</code> object tied to the standard output (typically the monitor)</li>
-<li><code>cerr</code>: an <code>ostream</code> object tied to the standard error (typically the monitor), providing unbuffered output</li>
-<li><code>clog</code>: an <code>ostream</code> object tied to the standard error (typically the monitor), providing buffered output</li>
+<p>Abstractly, a <strong>stream</strong> is a sequence of bytes that can
+be accessed sequentially. Over time, a stream may produce or consume
+potentially unlimited amounts of data. You can imagine stream to be a
+<strong>character buffer</strong> that automatically interacts with the
+external source. Streams automatically convert variables to a string
+form that can be written into a buffer. And the opposite is a similar
+case. A string stream is not connected to any external source.</p>
+<h2 id="standard-streams">Standard streams</h2>
+<ul>
+<li><code>cin</code>: an <code>istream</code> object tied to the
+standard input (typically the keyboard)</li>
+<li><code>cout</code>: an <code>ostream</code> object tied to the
+standard output (typically the monitor)</li>
+<li><code>cerr</code>: an <code>ostream</code> object tied to the
+standard error (typically the monitor), providing unbuffered output</li>
+<li><code>clog</code>: an <code>ostream</code> object tied to the
+standard error (typically the monitor), providing buffered output</li>
 </ul>
-<h2 id="Output-streams"><a href="#Output-streams" class="headerlink" title="Output streams"></a>Output streams</h2><p>After you initializing an stream (empty, or initialized with a <code>const char*</code> or something else), the position starts at the beginning of the “buffer”. But after your stream insertion, the position starts at the end. Here is an example with the <code>std::ostringstream</code> : </p>
+<h2 id="output-streams">Output streams</h2>
+<p>After you initializing an stream (empty, or initialized with a
+<code>const char*</code> or something else), the position starts at the
+beginning of the "buffer". But after your stream insertion, the position
+starts at the end. Here is an example with the
+<code>std::ostringstream</code> :</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span> <span class="comment">// for cout</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span>  <span class="comment">// for ostringstream</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// ostringstream is a stream that writes to a string</span></span><br><span class="line">	</span><br><span class="line">    <span class="function">std::ostringstream <span class="title">oss1</span><span class="params">(<span class="string">&quot; Hello world. &quot;</span>)</span></span>; <span class="comment">// initialize with string</span></span><br><span class="line">    std::cout &lt;&lt; oss1.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    std::ostringstream oss2; <span class="comment">// initialize with no string</span></span><br><span class="line">    oss2 &lt;&lt; <span class="string">&quot; Nice 2 meet u. &quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; oss2.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    oss2 &lt;&lt; <span class="string">&quot; See u tomorrow. &quot;</span> &lt;&lt; std::endl; <span class="comment">// append a string</span></span><br><span class="line">    std::cout &lt;&lt; oss2.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>And the output is:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hello world.</span><br><span class="line">Nice 2 meet u.</span><br><span class="line">Nice 2 meet u. See u tomorrow.</span><br></pre></td></tr></table></figure>
-
-<h2 id="Input-streams"><a href="#Input-streams" class="headerlink" title="Input streams"></a>Input streams</h2>
+<h2 id="input-streams">Input streams</h2>
             </div>
             <!-- read more -->
             
@@ -1128,6 +1186,22 @@
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
     
     
@@ -1154,8 +1228,26 @@
             
         
         <li class="archive-post-item">
+            <span class="archive-post-date">09/25</span>
+            <a class="archive-post-title" href="/2023/09/25/Python%20Handbook/">Python Handbook</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
             <span class="archive-post-date">09/24</span>
             <a class="archive-post-title" href="/2023/09/24/Articulated%20Robots%20Lec1/">Articulated Robots: Lec1 Introduction</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span>
+            <a class="archive-post-title" href="/2023/09/20/z%E5%8F%98%E6%8D%A2/">z变换</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/19</span>
+            <a class="archive-post-title" href="/2023/09/19/Debug%20list%20ROS/">Debug list: ROS</a>
         </li>
     
         
@@ -1166,23 +1258,14 @@
     
         
         <li class="archive-post-item">
-            <span class="archive-post-date">09/18</span>
-            <a class="archive-post-title" href="/2023/09/18/CS106L%20Lec1%20Stream%20I/">CS106L: Lec1 Stream I</a>
+            <span class="archive-post-date">09/19</span>
+            <a class="archive-post-title" href="/2023/09/19/Debug%20list%20Linux/">Debug list: Linux</a>
         </li>
     
         
-            
-            
-                
-                </ul>
-            
-            <div class="archive-year"> Invalid date </div>
-            <ul class="year-list">
-            
-        
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span>
-            <a class="archive-post-title" href="/2023/09/19/CS229%20Lec1/">CS229: Lec1 Supervised Learning</a>
+            <span class="archive-post-date">09/18</span>
+            <a class="archive-post-title" href="/2023/09/18/CS106L%20Lec1%20Stream%20I/">CS106L: Lec1 Stream I</a>
         </li>
     
         
@@ -1206,31 +1289,13 @@
                 
                 </ul>
             
-            <div class="archive-year"> 2023 </div>
+            <div class="archive-year"> Invalid date </div>
             <ul class="year-list">
             
         
         <li class="archive-post-item">
-            <span class="archive-post-date">09/25</span>
-            <a class="archive-post-title" href="/2023/09/25/Python%20Handbook/">Python Handbook</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/20</span>
-            <a class="archive-post-title" href="/2023/09/20/z%E5%8F%98%E6%8D%A2/">z变换</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/19</span>
-            <a class="archive-post-title" href="/2023/09/19/Debug%20list%20ROS/">Debug list: ROS</a>
-        </li>
-    
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/19</span>
-            <a class="archive-post-title" href="/2023/09/19/Debug%20list%20Linux/">Debug list: Linux</a>
+            <span class="archive-post-date">Invalid date</span>
+            <a class="archive-post-title" href="/2023/09/19/CS229%20Lec1/">CS229: Lec1 Supervised Learning</a>
         </li>
     
     </div>
@@ -1244,24 +1309,9 @@
                 Cpp
             </span>
         
-            <span class="sidebar-tag-name" data-tags="MachineLearning">
-                <span class="iconfont-archer">&#xe606;</span>
-                MachineLearning
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="Python">
-                <span class="iconfont-archer">&#xe606;</span>
-                Python
-            </span>
-        
             <span class="sidebar-tag-name" data-tags="Debug">
                 <span class="iconfont-archer">&#xe606;</span>
                 Debug
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="ROS">
-                <span class="iconfont-archer">&#xe606;</span>
-                ROS
             </span>
         
             <span class="sidebar-tag-name" data-tags="Linux">
@@ -1269,9 +1319,24 @@
                 Linux
             </span>
         
+            <span class="sidebar-tag-name" data-tags="ROS">
+                <span class="iconfont-archer">&#xe606;</span>
+                ROS
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="MachineLearning">
+                <span class="iconfont-archer">&#xe606;</span>
+                MachineLearning
+            </span>
+        
             <span class="sidebar-tag-name" data-tags="Math">
                 <span class="iconfont-archer">&#xe606;</span>
                 Math
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="Python">
+                <span class="iconfont-archer">&#xe606;</span>
+                Python
             </span>
         
     </div>
