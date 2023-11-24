@@ -19,11 +19,15 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta property="og:type" content="website">
+    <meta name="description" content="Optimization Mean Square Error(MSE) \[ \hat x &#x3D; arg \min_x \sum_i(b_i -a_i^T x)^2 \] - Why MSE? - Positive because we want to minimize the value of the function. - Square is better than absolute v">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Shio">
-<meta property="og:url" content="http://example.com/archives/2023/09/index.html">
+<meta property="og:url" content="http://example.com/2023/11/24/Computer%20Vision%20Lec4%20Model%20Fitting%20and%20Optimization/index.html">
 <meta property="og:site_name" content="Shio">
+<meta property="og:description" content="Optimization Mean Square Error(MSE) \[ \hat x &#x3D; arg \min_x \sum_i(b_i -a_i^T x)^2 \] - Why MSE? - Positive because we want to minimize the value of the function. - Square is better than absolute v">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-11-24T15:13:40.564Z">
+<meta property="article:modified_time" content="2023-10-22T22:01:50.041Z">
 <meta property="article:author" content="Chenyang Wan">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
@@ -232,6 +236,8 @@
         }
     </script>
     
+        <body class="post-body">
+    
         <!-- header -->
         <header class="header header-mobile">
     <!-- top read progress line -->
@@ -261,6 +267,17 @@
     </div>
     <!-- toggle banner for post layout -->
     
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="/">Sh1o&#39;s Studio</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name"></a>
+            </div>
+        </div>
+    
 </header>
 
         <!-- fixed footer -->
@@ -287,24 +304,78 @@
 
 
 
+    height:50vh;
+
 ">
     
     <!-- 主页  -->
     
+        
+    <!-- 404页  -->
+    
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+                [Untitled Post]
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+                
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+    
+</div>
+
+                
+                <!-- 文章字数统计 -->
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">1.1k</span>Reading time: <span class="post-count reading-time">6 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2023/11/24</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -434,344 +505,231 @@
 
             <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
             <div class="container container-unloaded">
-                <main class="main index-page">
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/25/Python%20Handbook/">
-                
-                <span class="abstract-title-text">Python Handbook</span>
-            </a>
-            <div class="abstract-content">
-                <h2 id="file-io">File I/O</h2>
-<ul>
-<li>将一个txt文件中的矩阵读出/将一个矩阵写入txt文件中。 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">file_to_matrix</span>(<span class="params">path</span>):</span><br><span class="line">    mat = np.loadtxt(path, dtype=np.int32, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    mat = np.array(mat, dtype=np.uint8)</span><br><span class="line">    <span class="keyword">return</span> mat</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">matrix_to_file</span>(<span class="params">mat, path</span>):</span><br><span class="line">    np.savetxt(path, np.c_[mat], fmt=<span class="string">&#x27;%d&#x27;</span>, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="matrix">Matrix</h2>
-<ul>
-<li>将矩阵展开成为一维数组。 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mat = mat.ravel() <span class="comment">#横向</span></span><br><span class="line"></span><br><span class="line">mat = mat.ravel(order=<span class="string">&#x27;F&#x27;</span>) <span class="comment">#纵向</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/10/06">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/25</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Python">Python</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/20/z%E5%8F%98%E6%8D%A2/">
-                
-                <span class="abstract-title-text">z变换</span>
-            </a>
-            <div class="abstract-content">
-                <p><span class="math inline">\(z\)</span>变换（<span class="math inline">\(ZT\)</span>）<strong>是对离散序列进行的一种数学变换</strong>，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入<span class="math inline">\(z\)</span>变换的主要目的是希望方便对于离散控制系统的研究。</p>
-<h2 id="z变换"><span class="math inline">\(z\)</span>变换</h2>
-<h3 id="z变换的定义"><span class="math inline">\(z\)</span>变换的定义</h3>
-<p>设连续函数<span class="math inline">\(e(t)\)</span>是可拉氏变换的，则其拉氏变换定义为： <span class="math display">\[
-    E(s)=\mathscr{L}\left[ e(t) \right]=\int_{0}^{\infty}e(t)e^{-sT}dt
-\]</span> 对<span class="math inline">\(e(t)\)</span>的采样后的信号的表达式为： <span class="math display">\[
-e^*(t)=\sum_0^\infty e(nT)\delta(t-nT)
-\]</span> 采样信号<span class="math inline">\(e^*(t)\)</span>的拉氏变换为：</p>
+                <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="optimization">Optimization</h2>
+<h3 id="mean-square-errormse">Mean Square Error(MSE)</h3>
 <p><span class="math display">\[
-E^*(s)=\mathscr{L}[e^*(t)]=\sum_0^\infty e(nT)e^{-nsT}
-\]</span> 可以看到在<span class="math inline">\(s\)</span>域中的结果是比较复杂的，所以为了方便起见我们定义<span class="math inline">\(z=e^{sT}\)</span>，<span class="math inline">\(T\)</span>为采样周期，<span class="math inline">\(z\)</span>是在复数平面上定义的一个复变量，称为<span class="math inline">\(z\)</span>为变换算子。</p>
-<p>采样信号<span class="math inline">\(e^*(t)\)</span>的<span class="math inline">\(z\)</span>变换为： <span class="math display">\[
-E(z)=\mathscr{Z}[e^*(t)]=\sum_0^\infty e(nT)e^{-snT} |_{s=\frac{1}{T}lnz}=\sum_0^\infty e(nT)z^{-n}
-\]</span> 这个结果的形式是很简单的，实际上就是采样所得函数在每个采样点<span class="math inline">\(t=nT\)</span>时候的值乘上<span class="math inline">\(z^{-n}\)</span>，所以这个序列实际上表达出了每个特定的时刻的原函数取值。</p>
-<h3 id="求z变换的方法">求<span class="math inline">\(z\)</span>变换的方法</h3>
+\hat x = arg \min_x \sum_i(b_i -a_i^T x)^2
+\]</span> - Why MSE? - Positive because we want to minimize the value of the function. - Square is better than absolute value because the absolute is not always smooth. - The statistics has given the proof. The square stuff comes from the Gaussian distribution. <strong>MSE = MLE with Gaussian noise assumption</strong> ### Maximum Likelihood Estimation(MLE)</p>
+<ul>
+<li>Error comes from:
+<ul>
+<li>Systematic error</li>
+<li>Measurement limitation</li>
+</ul></li>
+</ul>
+We assume the data is with Gaussian noise when we have no knowledge and no hypothesis about the distribution. <span class="math display">\[
+b_i = a_i^T x +n,n \sim G(0, \sigma) 
+\]</span> Given <span class="math inline">\(x\)</span>, the likelihood of observing the <span class="math inline">\((a_i, b_i)\)</span> is: <span class="math display">\[
+    P[(a_i,b_i)|x] = P[b_i - a_i^Tx] \propto \exp {-\frac{(b_i - a_i^Tx)^2}{2 \sigma^2}}
+\]</span> If the date points are independent: $$
+<span class="math display">\[\begin{aligned}
+
+P[(a_1,b_1)(a_2,b_2) \cdots |x] &amp;= \prod_i P[(a_i,b_i)|x]\\ 
+&amp;=\prod_iP[b_i - a_i^T x] \\
+&amp;\propto \exp {-\frac{(b_i - a_i^Tx)^2}{2 \sigma^2}}
+= \exp {-\frac{||Ax-b||_2^2}{2 \sigma^2}}
+\end{aligned}\]</span>
+<p>$$</p>
+<p>where: <span class="math display">\[
+A  = [a_1^T , a_2^T , \cdots, a_n^T]^T
+\]</span> <span class="math display">\[
+b = [b_1 ,b_2 ,\cdots ,b_n]^T
+\]</span> ## Numerical methods</p>
+<p>A simple case with analytical solution: <span class="math display">\[
+ \hat x = arg \min_x ||Ax-b||^2_2
+ \]</span> <span class="math inline">\(x\)</span> is the solution to: <span class="math display">\[A^TAx = A^Tb\]</span> If no analytical solution? We should try the numerical method:</p>
+<blockquote>
+<p><span class="math inline">\(x \leftarrow x_0\)</span><br />
+<span class="math inline">\(while\quad not \quad converge\)</span> <span class="math inline">\(h \leftarrow descending\_direction(x)\)</span> <span class="math inline">\(\alpha \leftarrow decending\_step(x,h)\)</span> <span class="math inline">\(x \leftarrow x+\alpha h\)</span></p>
+</blockquote>
+<h3 id="recap-taylor-expansion">Recap: Taylor expansion</h3>
+<ul>
+<li>First-order approximation <span class="math display">\[
+F(x_k+\Delta x)  \approx F(x_k) +J_F\Delta x
+\]</span> the <span class="math inline">\(J_F\)</span> is the Jacobian matrix: <span class="math display">\[
+J_F =[\frac{\delta f}{\delta x_1},\frac{\delta f}{\delta x_2},\cdots, \frac{\delta f}{\delta x_n} ]
+\]</span></li>
+<li>Second-order approximation <span class="math display">\[
+F(x_k+\Delta x)  \approx F(x_k) +J_F\Delta x+\frac{1}{2}\Delta x^TH_F\Delta x 
+\]</span></li>
+</ul>
+<h3 id="gradient-descent-gd">Gradient descent (GD)</h3>
+<h4 id="steps">Steps</h4>
 <ol type="1">
-<li><p>级数求和 根据定义求<span class="math inline">\(z\)</span>变换： <span class="math display">\[
-F(z)=\mathscr{Z}[f^*(t)]=\sum_0^\infty f(nT)e^{-snT} |_{s=\frac{1}{T}lnz}=\sum_0^\infty f(nT)z^{-n}
-\]</span> 我们对于连续信号<span class="math inline">\(f(t)\)</span>只需要将其在采样时间<span class="math inline">\(t=nT\)</span>的时候的取值与对应的<span class="math inline">\(z^{-n}\)</span>相乘然后求和即可。</p></li>
-<li><p>部分分式展开 这种方法主要用于对<span class="math inline">\(F(s)\)</span>进行变换。也就是说先求出已知的连续时间函数<span class="math inline">\(f(x)\)</span>的拉氏变换<span class="math inline">\(F(s)\)</span>，再把这个拉氏变换的结果展开成部分分式之和的形式，使得每一个部分对应的分式能够对应简单的时间函数。然后可得对应部分分式之和的<span class="math inline">\(z\)</span>变换结果。</p></li>
+<li><p>Determine the direction <span class="math display">\[
+F(x_k+\Delta x)  \approx F(x_k) +J_F\Delta x
+\]</span> When direction of <span class="math inline">\(\Delta x\)</span> is same as <span class="math inline">\(-J_F^T\)</span>, the objective function descend <strong>steepest</strong>.</p></li>
+<li><p>Determine the step size</p></li>
 </ol>
-<p>注意：<span class="math inline">\(F(z)=\mathscr{Z}[f^*(t)] \neq \mathscr{Z}[f(t)]\)</span></p>
-<p>对于拉氏变换的结果<span class="math inline">\(F(s)\)</span>，将其写为有理函数的形式： <span class="math display">\[
-                F(s)=\frac{P(s)}{Q(s)}=\frac{\sum_{i=0}^n(s-s_i)^r}{\sum_{j=0}^m(s-s_j)^r}=
-\]</span> 从而可以得到</p>
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/10/01">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/20</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Math">Math</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/19/CS106L%20Lec2%20Stream%20II/">
-                
-                <span class="abstract-title-text">CS106L: Lec2 Stream II</span>
-            </a>
-            <div class="abstract-content">
-                
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/19">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/19</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Cpp">Cpp</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/19/CS106L%20Lec0%20Intro/">
-                
-                <span class="abstract-title-text">CS106L: Lec0 Intro</span>
-            </a>
-            <div class="abstract-content">
-                <h2 id="c-types-and-structs">C++ Types and Structs</h2>
-<h3 id="fundamental-types">Fundamental Types</h3>
-<h3 id="dynamic-and-static-typing">Dynamic and Static typing</h3>
-<p>C++ is a <strong>statically typed language.</strong></p>
 <ul>
-<li><code>statically typed</code>: Everything with a name (variables,
-functions, etc) is <strong>given a type before runtime.</strong>
-(C++)</li>
-<li><code>dynamically typed</code>: Everything with a name (variables,
-functions, etc) is <strong>given a type at runtime</strong> based on the
-thing’s current value. (Python)</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CRASH during runtime, can’t divide a string</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">div_3</span>(<span class="params">x</span>):</span><br><span class="line">	<span class="keyword">return</span> x / <span class="number">3</span> </span><br><span class="line"></span><br><span class="line">div_3(<span class="string">&quot;hello&quot;</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Compile error: this code will never run</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">div_3</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x / <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">div_3</span>(<span class="string">&quot;hello&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p><code>Runtime</code>: Period when program is executing commands
-(after compilation, if compiled).</p>
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/23">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/19</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Cpp">Cpp</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/19/Debug%20list%20ROS/">
-                
-                <span class="abstract-title-text">Debug list: ROS</span>
-            </a>
-            <div class="abstract-content">
-                
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/19">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/19</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Debug">Debug</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="ROS">ROS</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/19/Debug%20list%20Linux/">
-                
-                <span class="abstract-title-text">Debug list: Linux</span>
-            </a>
-            <div class="abstract-content">
-                
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/19">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/19</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Debug">Debug</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/18/CS106L%20Lec1%20Stream%20I/">
-                
-                <span class="abstract-title-text">CS106L: Lec1 Stream I</span>
-            </a>
-            <div class="abstract-content">
-                <p>3## Introduction to streams</p>
-<p>Abstractly, a <strong>stream</strong> is a sequence of bytes that can
-be accessed sequentially. Over time, a stream may produce or consume
-potentially unlimited amounts of data. You can imagine stream to be a
-<strong>character buffer</strong> that automatically interacts with the
-external source. Streams automatically convert variables to a string
-form that can be written into a buffer. And the opposite is a similar
-case. A string stream is not connected to any external source.</p>
-<h2 id="standard-streams">Standard streams</h2>
+<li>Basic ideas
 <ul>
-<li><code>cin</code>: an <code>istream</code> object tied to the
-standard input (typically the keyboard)</li>
-<li><code>cout</code>: an <code>ostream</code> object tied to the
-standard output (typically the monitor)</li>
-<li><code>cerr</code>: an <code>ostream</code> object tied to the
-standard error (typically the monitor), providing unbuffered output</li>
-<li><code>clog</code>: an <code>ostream</code> object tied to the
-standard error (typically the monitor), providing buffered output</li>
+<li><span class="math inline">\(\alpha\)</span> is small, the change of <span class="math inline">\(\phi(\alpha) = F(x_0+\alpha h)\)</span> is small. -&gt; increase <span class="math inline">\(\alpha\)</span></li>
+<li><span class="math inline">\(\alpha\)</span> is big, <span class="math inline">\(\phi(\alpha) \textgreater \phi(0)\)</span>. -&gt;decrease <span class="math inline">\(\alpha\)</span></li>
+<li><span class="math inline">\(\alpha\)</span> is close to <span class="math inline">\(\phi(\alpha)\)</span> minimizer. -&gt; acceptable!</li>
+</ul></li>
+<li>Methods
+<ul>
+<li>Exact line search(i.e. 穷举法)</li>
+<li>Backtracking Algorithm
+<ol type="1">
+<li>Initialize <span class="math inline">\(\alpha\)</span> with a big value.</li>
+<li>Decrease <span class="math inline">\(\alpha\)</span> until <span class="math inline">\(\phi(\alpha) \leq \phi(0) +\gamma \phi&#39;(0)\alpha\)</span>, where <span class="math inline">\(\gamma\)</span> is a parameter and <span class="math inline">\(0 \textless \gamma \textless 1\)</span> #### Pros and Cons</li>
+</ol></li>
+</ul></li>
+<li>Advantage
+<ul>
+<li>Easy to implement</li>
+<li>Perform well when far from the minimum</li>
+</ul></li>
+<li>Disadvantage
+<ul>
+<li>Converge slowly when near the minimum</li>
+<li>Waste a lot of computation</li>
+</ul></li>
 </ul>
-<h2 id="output-streams">Output streams</h2>
-<p>After you initializing an stream (empty, or initialized with a
-<code>const char*</code> or something else), the position starts at the
-beginning of the "buffer". But after your stream insertion, the position
-starts at the end. Here is an example with the
-<code>std::ostringstream</code> :</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span> <span class="comment">// for cout</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span>  <span class="comment">// for ostringstream</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// ostringstream is a stream that writes to a string</span></span><br><span class="line">	</span><br><span class="line">    <span class="function">std::ostringstream <span class="title">oss1</span><span class="params">(<span class="string">&quot; Hello world. &quot;</span>)</span></span>; <span class="comment">// initialize with string</span></span><br><span class="line">    std::cout &lt;&lt; oss1.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    std::ostringstream oss2; <span class="comment">// initialize with no string</span></span><br><span class="line">    oss2 &lt;&lt; <span class="string">&quot; Nice 2 meet u. &quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; oss2.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    oss2 &lt;&lt; <span class="string">&quot; See u tomorrow. &quot;</span> &lt;&lt; std::endl; <span class="comment">// append a string</span></span><br><span class="line">    std::cout &lt;&lt; oss2.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>And the output is:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hello world.</span><br><span class="line">Nice 2 meet u.</span><br><span class="line">Nice 2 meet u. See u tomorrow.</span><br></pre></td></tr></table></figure>
-<h2 id="input-streams">Input streams</h2>
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/21">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/18</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Cpp">Cpp</a>
-    
-</div>
+<h3 id="newton-method">Newton method</h3>
+<h4 id="steps-1">Steps</h4>
+<ol type="1">
+<li>Do second-order expansion <span class="math display">\[
+F(x_k+\Delta x)  \approx F(x_k) +J_F\Delta x+\frac{1}{2}\Delta x^TH_F\Delta x 
+\]</span></li>
+<li>Find <span class="math inline">\(\Delta x\)</span> to minimize the <span class="math inline">\(F(x_k+\Delta x)\)</span> <span class="math display">\[
+H_F\Delta x + J_F^T = 0
+\]</span></li>
+<li>The optimal direction(Newton step)<span class="math display">\[\Delta x = -H_F^{-1}J_F^T\]</span>We can see that compared to the GD method, Newton method derive the optimal direction with more information. The <span class="math inline">\(H_F\)</span> contains the information about the variation of gradients. #### Pros and Cons</li>
+</ol>
+<ul>
+<li>Advantage
+<ul>
+<li>Fast convergence near the minimum</li>
+</ul></li>
+<li>Disadvantage
+<ul>
+<li>Hessian requires a lot of computation</li>
+</ul></li>
+</ul>
+<h3 id="gauss-newton-method">Gauss-Newton method</h3>
+<h4 id="steps-2">Steps</h4>
+<p>Useful for solving the non-linear least squares: <span class="math display">\[
+\hat x = arg \min_xF(x) = arg \min_x ||R(x)  ||_2^2
+\]</span> Instead of expanding the <span class="math inline">\(F(x)\)</span>, we expand the <span class="math inline">\(R(x)\)</span>, which is called the residual vector. <span class="math display">\[
+\begin{aligned}
+||R(x_k+\Delta x)||^2_2 &amp;\approx ||R(x_k+J_R\Delta x)||^2_2 \\
+&amp;= ||R(x_k)||_2^2+2(R_{x_k})^TJ_R\Delta x+ \Delta x^T J_R^T J_R \Delta x
+\end{aligned}
+\]</span> where <span class="math inline">\(J_R\)</span> is the Jacobian matrix of the <span class="math inline">\(R(x)\)</span>. And the optimal <span class="math inline">\(\Delta x\)</span> satisfies: <span class="math display">\[
+J_R^TJ_R\Delta x + J_R^TR(x_k)= 0
+\]</span> Finally we can get the optimal direction <span class="math inline">\(\Delta x = -(J_R^T J_R)^{-1}J_R^TR(x_k)\)</span>, compared to the result of the Newton method <span class="math inline">\(\Delta x = -H_F^{-1}J_R^TR(x_k)\)</span>, <strong>we can see that the Gauss-Newton method use <span class="math inline">\(J_R^TJ_R\)</span> to approximate the Hessian matrix <span class="math inline">\(H_F\)</span>.</strong> #### Pros and Cons - Advantage - No need to compute Hessian - Fast to converge - Disadvantage - If <span class="math inline">\(J_R^TJ_R\)</span> is singular, the algorithm becomes unstable</p>
+<h2 id="robust-estimation">Robust estimation</h2>
+<h3 id="outliers">Outliers</h3>
+<ul>
+<li>Outliers: differs significantly from the assumption</li>
+<li>Inliers: obeys the model assumption</li>
+</ul>
+<p>The outliers can make the MSE fail. That is because the MSE is proportional to the residual square. So the MSE will be affected a lot by the outliers.</p>
+<ul>
+<li>How to reduce the effect?
+<ul>
+<li>Not L2 loss, but like L1 loss, Huber loss</li>
+<li>They are called robust functions</li>
+</ul></li>
+</ul>
+<h3 id="random-sample-concensus-ransac">Random Sample Concensus (RANSAC)</h3>
+<blockquote>
+<p>The most powerful method to handle outliers</p>
+</blockquote>
+<h4 id="key-ideas">Key ideas</h4>
+<ul>
+<li>The distribution of inliers is similar while outliers differ a lot.</li>
+<li>Use data point pairs to vote.</li>
+<li>Inliers will vote for the inliers, but outliers will not vote for the outliers. #### Procedure</li>
+</ul>
+<p>每次随机取点进行模型的拟合，然后拿这个模型计算和没有被选中的数据之间的residue，让模型点进行投票。</p>
+<h3 id="overfitting-and-underfitting">Overfitting and underfitting</h3>
+<ul>
+<li>Overfitting occurs when a machine learning model learns the training data too well, capturing noise and fluctuations in the data rather than the underlying patterns. As a result, the model performs very well on the training data but poorly on new, unseen data.</li>
+<li></li>
+<li>Underfitting occurs when a model is too simplistic to capture the underlying patterns in the data. It doesn't learn the training data well and, as a result, performs poorly on both the training and test data. #### Ill-posed problem</li>
+<li>The solution is not unique (<span class="math inline">\(e.g.\)</span>, <span class="math inline">\(\min_x || Ax-b||^2\)</span> when #equations is less than the #variables)</li>
+</ul>
+<h5 id="l2-regularization">L2 regularization</h5>
+<ul>
+<li>L2 norm: <span class="math inline">\(||x||_2 = \sum_i x_i^2\)</span></li>
+<li>L2 regularization:
+<ul>
+<li>Make <span class="math inline">\(x\)</span>-&gt;0 让x的各个分量尽可能的小</li>
+<li>Supress the redundant variables <span class="math display">\[
+\min_x ||Ax-b||^2_2
+\]</span> <span class="math display">\[
+s.t. ||x||_2 \leq 1
+\]</span> ##### L1 regularization</li>
+</ul></li>
+<li>L1 norm: <span class="math inline">\(||x||_2 = \sum_i |x_i|\)</span></li>
+<li>L1 regularization:
+<ul>
+<li>Make <span class="math inline">\(x\)</span> sparse (<span class="math inline">\(x\)</span> will contains a lot of sparse, which means that the variable is useless) 去掉没用的变量，更多的留下有用的变量 <span class="math display">\[
+\min_x ||Ax-b||^2_2
+\]</span> <span class="math display">\[
+s.t. ||x||_1 \leq 1
+\]</span></li>
+</ul></li>
+</ul>
 
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
+    </article>
+    <!-- license -->
     
-    <!-- paginator  -->
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2023/11/24/Computer%20Vision%20Lec5%20Image%20Matching%20and%20Motion%20Estimation/" title="">
+                    <div class="nextTitle">[Untitled Post]</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2023/11/24/Computer%20Vision%20Lec3%20Image%20Processing/" title="">
+                    <div class="prevTitle">[Untitled Post]</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- comment -->
+    
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+
+            
+
+            
+
+            
+
+            <!-- utteranc评论 -->
+
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
+            
+            
+
+            
+
+        </div>
+    
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <!-- Mathjax -->
     
 </main>
 
@@ -873,6 +831,23 @@ starts at the end. Here is an example with the
 
         </div>
         <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#optimization"><span class="toc-number">1.</span> <span class="toc-text">Optimization</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mean-square-errormse"><span class="toc-number">1.1.</span> <span class="toc-text">Mean Square Error(MSE)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#recap-taylor-expansion"><span class="toc-number">1.2.</span> <span class="toc-text">Recap: Taylor expansion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gradient-descent-gd"><span class="toc-number">1.3.</span> <span class="toc-text">Gradient descent (GD)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#steps"><span class="toc-number">1.3.1.</span> <span class="toc-text">Steps</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#newton-method"><span class="toc-number">1.4.</span> <span class="toc-text">Newton method</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#steps-1"><span class="toc-number">1.4.1.</span> <span class="toc-text">Steps</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gauss-newton-method"><span class="toc-number">1.5.</span> <span class="toc-text">Gauss-Newton method</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#steps-2"><span class="toc-number">1.5.1.</span> <span class="toc-text">Steps</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#robust-estimation"><span class="toc-number">2.</span> <span class="toc-text">Robust estimation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#outliers"><span class="toc-number">2.1.</span> <span class="toc-text">Outliers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#random-sample-concensus-ransac"><span class="toc-number">2.2.</span> <span class="toc-text">Random Sample Concensus (RANSAC)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#key-ideas"><span class="toc-number">2.2.1.</span> <span class="toc-text">Key ideas</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#overfitting-and-underfitting"><span class="toc-number">2.3.</span> <span class="toc-text">Overfitting and underfitting</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#l2-regularization"><span class="toc-number">2.3.0.1.</span> <span class="toc-text">L2 regularization</span></a></li></ol></li></ol></li></ol></li></ol>
+            </div>
         
         <!-- sidebar -->
         <div class="sidebar sidebar-hide">
@@ -1282,7 +1257,16 @@ starts at the end. Here is an example with the
         
         <!-- async load share.js -->
         
+            <script src="/scripts/share.js?v=20211217" async></script>
+        
         <!-- mermaid -->
+        
+            <script src='https://cdn.jsdelivr.net/npm/mermaid@8.11.0/dist/mermaid.min.js'></script>
+            <script>
+                if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                }
+            </script>
         
     </body>
 </html>

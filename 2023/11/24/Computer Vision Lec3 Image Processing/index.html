@@ -19,22 +19,22 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="Intro  Mechanism: a system of two or more linked machine parts with kinetic parts.  serially-connected open chain&#x2F;close chain  Kinetic pairs: the moveable contact between two linked machine pa">
+    <meta name="description" content="Image Processing Basics  Review on Convolution   [[Pasted image 20231009142547.png]] [[Pasted image 20231009143039.png]]   Padding: Adding pixels around the image border  Zero values (usuall">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Articulated Robots: Lec1 Introduction">
-<meta property="og:url" content="http://example.com/2023/09/24/Articulated%20Robots%20Lec1/index.html">
+<meta property="og:title" content="Shio">
+<meta property="og:url" content="http://example.com/2023/11/24/Computer%20Vision%20Lec3%20Image%20Processing/index.html">
 <meta property="og:site_name" content="Shio">
-<meta property="og:description" content="Intro  Mechanism: a system of two or more linked machine parts with kinetic parts.  serially-connected open chain&#x2F;close chain  Kinetic pairs: the moveable contact between two linked machine pa">
+<meta property="og:description" content="Image Processing Basics  Review on Convolution   [[Pasted image 20231009142547.png]] [[Pasted image 20231009143039.png]]   Padding: Adding pixels around the image border  Zero values (usuall">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-24T07:19:58.405Z">
-<meta property="article:modified_time" content="2023-09-27T10:49:42.716Z">
+<meta property="article:published_time" content="2023-11-24T15:13:40.560Z">
+<meta property="article:modified_time" content="2023-10-16T05:54:09.629Z">
 <meta property="article:author" content="Chenyang Wan">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="icon" href="/assets/favicon.ico">
     
-    <title>Articulated Robots: Lec1 Introduction · Sh1o&#39;s Studio</title>
+    <title>Sh1o&#39;s Studio</title>
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -274,7 +274,7 @@
                 <a href="/">Sh1o&#39;s Studio</a>
             </div>
             <div class="post-title header-element">
-                <a href="#" class="post-name">Articulated Robots: Lec1 Introduction</a>
+                <a href="#" class="post-name"></a>
             </div>
         </div>
     
@@ -320,7 +320,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-                Articulated Robots: Lec1 Introduction
+                [Untitled Post]
             <!-- 404 -->
             
         </h1>
@@ -346,13 +346,13 @@
                 <!-- 文章字数统计 -->
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">110</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">236</span>Reading time: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <!-- 撰写日期 -->
                     <span class="iconfont-archer post-intro-calander">&#xe676;</span>
-                    <span class="post-intro-time">2023/09/24</span>
+                    <span class="post-intro-time">2023/11/24</span>
                     <!-- busuanzi -->
                     
                         <span id="busuanzi_container_page_pv" class="busuanzi-pv">
@@ -507,40 +507,77 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <h2 id="intro">Intro</h2>
+        <h2 id="image-processing-basics">Image Processing Basics</h2>
 <ul>
-<li><strong>Mechanism</strong>: a system of two or more linked machine
-parts with kinetic parts.
+<li>Review on Convolution
+<center></li>
+</ul>
+[[Pasted image 20231009142547.png]] [[Pasted image 20231009143039.png]]
+</center>
 <ul>
-<li>serially-connected open chain/close chain</li>
-</ul></li>
-<li><strong>Kinetic pairs</strong>: the moveable contact between two
-linked machine pairs (Spot, Line, Surface).
+<li>Padding: Adding pixels around the image border
 <ul>
-<li>by pressure of contacts:
-<ul>
-<li>lower pairs - surface</li>
-<li>higher pairs - spot and line <strong>Notion: most pairs in a robot
-are planar pairs.</strong></li>
-</ul></li>
+<li>Zero values (usually)</li>
+<li>Edge values</li>
+<li>Symmetric (different from edge values when more than one row/cols are added)</li>
 </ul></li>
 </ul>
-<h2 id="degree-of-freedom">Degree of Freedom</h2>
+<h2 id="image-sampling">Image Sampling</h2>
+<h3 id="resolution">Resolution</h3>
 <ul>
-<li>a particle: <span class="math inline">\(DoF=3\)</span></li>
-<li>a rigid body: <span class="math inline">\(DoF=6\)</span></li>
-<li>a robot: <span class="math inline">\(DoF\)</span> depends...</li>
+<li>Resolution = # of pixels per inch</li>
 </ul>
-<h3 id="dof-of-planar-mechanisms">DoF of Planar Mechanisms</h3>
-<p>No. of movable parts: <span class="math inline">\(n=N-1\)</span> (N
-is the number of pairs) No. of lower pairs: <span
-class="math inline">\(L\)</span> (brings <span
-class="math inline">\(2L\)</span> constraints) No. of higher pairs:
-<span class="math inline">\(H\)</span> (brings <span
-class="math inline">\(H\)</span> constraints)</p>
-<p>total <span class="math inline">\(DoF\)</span>: <span
-class="math inline">\(3n-2L-H\)</span></p>
-<h2 id="robot-manipulators">Robot Manipulators</h2>
+<h3 id="aliasing">Aliasing</h3>
+<blockquote>
+Alias is artifacts due to sampling. - Reason: Signals are changing too fast but sampled too slow.
+<center>
+</blockquote>
+<p>[[Pasted image 20231009145934.png]]</p>
+</center>
+<ul>
+<li>Solution: Higher frequencies need faster sampling.</li>
+</ul>
+<h4 id="why-fourier-transform">Why Fourier Transform?</h4>
+<ul>
+<li>Use FT to represent a function as a weighted sum of sines and cosines. <span class="math display">\[
+F(u) = \int_{ - \infty}^{\infty} f(x)e^{-i2\pi ux} dx
+\]</span> <span class="math display">\[
+f(x) = \int_{ - \infty}^{\infty} F(u)e^{-i2\pi ux} du
+\]</span></li>
+</ul>
+<center>
+<p>[[Pasted image 20231009152550.png]]</p>
+[[Pasted image 20231009152954.png]]
+</center>
+<ul>
+<li>The FT result of a image shows the frequency and the directions of the signals.
+<ul>
+<li>Box filter = low-pass filter</li>
+<li>Wider kernel = lower frequency #### Nyquist-Shannon Theorem Consider a band-limited signal: has no frequencies above <span class="math inline">\(f_0\)</span>, The signal can be perfectly reconstructed if sampled with a frequency larger than <span class="math inline">\(2f_0\)</span> .</li>
+</ul></li>
+</ul>
+<h4 id="to-reduce-aliasing">To Reduce Aliasing</h4>
+<ul>
+<li>Increasing sampling rate.</li>
+<li>Anti-aliasing: <strong>Filtering out high frequencies before sampling</strong>.</li>
+</ul>
+<h2 id="image-magnification">Image Magnification</h2>
+<h3 id="interpolation">Interpolation</h3>
+<ul>
+<li>Linear interpolation</li>
+<li>Cubic interpolation: guarantee continuous and smooth.</li>
+<li>Bilinear interpolation: distribute weights by distance. (Bilinear is good enough)</li>
+<li>Bicubic interpolation</li>
+</ul>
+<h3 id="seam-carvinginsertion">Seam Carving/Insertion</h3>
+<ul>
+<li>Problem statement: we need to remove n pixels from each row.</li>
+<li>Basic idea: remove unimportant pixels.
+<ul>
+<li>Measurement of importance: EDGES ARE IMPORTANT.</li>
+<li></li>
+</ul></li>
+</ul>
 
     </article>
     <!-- license -->
@@ -550,16 +587,16 @@ class="math inline">\(3n-2L-H\)</span></p>
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2023/09/25/Python%20Handbook/" title="Python Handbook">
-                    <div class="nextTitle">Python Handbook</div>
+                <a href="/2023/11/24/Computer%20Vision%20Lec4%20Model%20Fitting%20and%20Optimization/" title="">
+                    <div class="nextTitle">[Untitled Post]</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2023/09/20/z%E5%8F%98%E6%8D%A2/" title="z变换">
-                    <div class="prevTitle">z变换</div>
+                <a href="/2023/11/24/Computer%20Vision%20Lec2%20Image%20Formation/" title="">
+                    <div class="prevTitle">[Untitled Post]</div>
                 </a>
             
         </li>
@@ -594,21 +631,6 @@ class="math inline">\(3n-2L-H\)</span></p>
     <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
     
     <!-- Mathjax -->
-    
-        
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
-
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
-
-
     
 </main>
 
@@ -725,7 +747,7 @@ class="math inline">\(3n-2L-H\)</span></p>
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#degree-of-freedom"><span class="toc-number">2.</span> <span class="toc-text">Degree of Freedom</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dof-of-planar-mechanisms"><span class="toc-number">2.1.</span> <span class="toc-text">DoF of Planar Mechanisms</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#robot-manipulators"><span class="toc-number">3.</span> <span class="toc-text">Robot Manipulators</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#image-processing-basics"><span class="toc-number">1.</span> <span class="toc-text">Image Processing Basics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#image-sampling"><span class="toc-number">2.</span> <span class="toc-text">Image Sampling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#resolution"><span class="toc-number">2.1.</span> <span class="toc-text">Resolution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#aliasing"><span class="toc-number">2.2.</span> <span class="toc-text">Aliasing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#why-fourier-transform"><span class="toc-number">2.2.1.</span> <span class="toc-text">Why Fourier Transform?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#to-reduce-aliasing"><span class="toc-number">2.2.2.</span> <span class="toc-text">To Reduce Aliasing</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#image-magnification"><span class="toc-number">3.</span> <span class="toc-text">Image Magnification</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#interpolation"><span class="toc-number">3.1.</span> <span class="toc-text">Interpolation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#seam-carvinginsertion"><span class="toc-number">3.2.</span> <span class="toc-text">Seam Carving&#x2F;Insertion</span></a></li></ol></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -784,7 +806,87 @@ class="math inline">\(3n-2L-H\)</span></p>
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -829,7 +931,7 @@ class="math inline">\(3n-2L-H\)</span></p>
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 9
+        Total : 15
         </div>
         <!-- search  -->
         
@@ -849,14 +951,56 @@ class="math inline">\(3n-2L-H\)</span></p>
             
         
         <li class="archive-post-item">
-            <span class="archive-post-date">09/25</span>
-            <a class="archive-post-title" href="/2023/09/25/Python%20Handbook/">Python Handbook</a>
+            <span class="archive-post-date">11/24</span>
+            <a class="archive-post-title" href="/2023/11/24/Computer%20Vision%20Lec8%20Depth%20Estimation%20and%203D%20reconstruction/">[Untitled Post]</a>
         </li>
     
         
         <li class="archive-post-item">
-            <span class="archive-post-date">09/24</span>
-            <a class="archive-post-title" href="/2023/09/24/Articulated%20Robots%20Lec1/">Articulated Robots: Lec1 Introduction</a>
+            <span class="archive-post-date">11/24</span>
+            <a class="archive-post-title" href="/2023/11/24/Computer%20Vision%20Lec9%20Deep%20Learning/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/24</span>
+            <a class="archive-post-title" href="/2023/11/24/Computer%20Vision%20Lec7%20Structure%20from%20Motion/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/24</span>
+            <a class="archive-post-title" href="/2023/11/24/Computer%20Vision%20Lec6%20Image%20Stitching/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/24</span>
+            <a class="archive-post-title" href="/2023/11/24/Computer%20Vision%20Lec3%20Image%20Processing/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/24</span>
+            <a class="archive-post-title" href="/2023/11/24/Computer%20Vision%20Lec4%20Model%20Fitting%20and%20Optimization/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/24</span>
+            <a class="archive-post-title" href="/2023/11/24/Computer%20Vision%20Lec5%20Image%20Matching%20and%20Motion%20Estimation/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/24</span>
+            <a class="archive-post-title" href="/2023/11/24/Computer%20Vision%20Lec2%20Image%20Formation/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/25</span>
+            <a class="archive-post-title" href="/2023/09/25/Python%20Handbook/">Python Handbook</a>
         </li>
     
         
@@ -904,21 +1048,6 @@ class="math inline">\(3n-2L-H\)</span></p>
             <a class="archive-post-title" href="/2023/09/19/CS106L%20Lec2%20Stream%20II/">CS106L: Lec2 Stream II</a>
         </li>
     
-        
-            
-            
-                
-                </ul>
-            
-            <div class="archive-year"> Invalid date </div>
-            <ul class="year-list">
-            
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span>
-            <a class="archive-post-title" href="/2023/09/19/CS229%20Lec1/">CS229: Lec1 Supervised Learning</a>
-        </li>
-    
     </div>
 </div>
 
@@ -943,11 +1072,6 @@ class="math inline">\(3n-2L-H\)</span></p>
             <span class="sidebar-tag-name" data-tags="ROS">
                 <span class="iconfont-archer">&#xe606;</span>
                 ROS
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="MachineLearning">
-                <span class="iconfont-archer">&#xe606;</span>
-                MachineLearning
             </span>
         
             <span class="sidebar-tag-name" data-tags="Math">

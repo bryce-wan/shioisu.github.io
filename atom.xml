@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-09-27T10:39:57.760Z</updated>
+  <updated>2023-11-20T07:49:39.597Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,22 +17,379 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title></title>
+    <link href="http://example.com/2023/11/24/Computer%20Vision%20Lec9%20Deep%20Learning/"/>
+    <id>http://example.com/2023/11/24/Computer%20Vision%20Lec9%20Deep%20Learning/</id>
+    <published>2023-11-24T15:13:40.587Z</published>
+    <updated>2023-11-20T07:49:39.597Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="machine-learning">Machine Learning</h2><ul><li>注意区分training和testing<ul><li></li></ul></li></ul><p>[[Pasted image 20231120152806.png|500]]</p><h2 id="linear-classifier">Linear Classifier</h2><h2 id="neural-networks">Neural Networks</h2><h2 id="convolutional-neural-networks">Convolutional Neural Networks</h2><h2 id="training-neural-networks">Training Neural Networks</h2><h2 id="networks-architecture">Networks Architecture</h2>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;machine-learning&quot;&gt;Machine Learning&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;注意区分training和testing
+&lt;ul&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[[Pasted image 20231120152806.png|500]]&lt;/p&gt;
+&lt;h2 id=&quot;linear-classifier&quot;&gt;Linear Classifier&lt;/h2&gt;
+&lt;h2 id=&quot;neural-networks&quot;&gt;Neural Networks&lt;/h2&gt;
+&lt;h2 id=&quot;convolutional-neural-networks&quot;&gt;Convolutional Neural Networks&lt;/h2&gt;
+&lt;h2 id=&quot;training-neural-networks&quot;&gt;Training Neural Networks&lt;/h2&gt;
+&lt;h2 id=&quot;networks-architecture&quot;&gt;Networks Architecture&lt;/h2&gt;
+</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://example.com/2023/11/24/Computer%20Vision%20Lec8%20Depth%20Estimation%20and%203D%20reconstruction/"/>
+    <id>http://example.com/2023/11/24/Computer%20Vision%20Lec8%20Depth%20Estimation%20and%203D%20reconstruction/</id>
+    <published>2023-11-24T15:13:40.583Z</published>
+    <updated>2023-11-20T07:20:06.244Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="depth-estimation">Depth Estimation</h2><h3 id="introduction">Introduction</h3><h3 id="stereo-matching">Stereo matching</h3><h4 id="baseline">Baseline</h4><p>What's the optimal baseline? - Too small: large depth error - Too large: difficult search problem</p><p>Baseline比较大说明看同一个点的视角差距比较大，做匹配会比较难 Baseline比较小的时候做三角化存在歧义性。</p><p>[[Pasted image 20231120132949.png|423]]</p><h4 id="stereo-reconstruction-pipeline">Stereo reconstruction pipeline</h4><ol type="1"><li>Calibrate cameras</li><li>Rectify images</li><li>Compute disparity map</li><li>Estimate depth</li></ol><h4 id="errors">Errors</h4><h5 id="what-will-cause-errors">What will cause errors?</h5><ul><li>Camera calibration errors</li><li>Poor image resolution</li><li>Occlusions</li><li>Violations of brightness constancy (specular reflections) 两张图像是接近的同一位置同一时间拍的，但是由于镜面反射会导致亮度差距比较大，打破了亮度一致性的假设，造成匹配时候的误差。比如透明的玻璃或者金属表面</li><li>Texture-less regions 缺少纹理特征难以匹配 ##### Solution: Active stereo with structured light</li></ul><p>[[Pasted image 20231120133908.png|500]]</p><ul><li>Two methods:<ul><li>1 projector and 2 cameras 一个红外相机和一个RGB相机，投影仪投影的是红外光的pattern。红外相机接收的是红外光，所以pattern是红外光能够避免物体本身色彩的影响进行估计。然后重建要求恢复色彩模型所以加一个RGB相机。更精确。</li><li>1 projector and 1 camera 为什么可以少一个相机？因为投影的pattern是已知的，所以projector相当于一个相机。</li></ul></li></ul><h4 id="summary">Summary</h4><ul><li>Passive stereo: 2 RGB cameras</li><li>Active stereo: +projector</li><li>Lidar(ToF) ### Multi-view stereo(MVS)</li></ul><h4 id="introduction-1">Introduction</h4><h5 id="advantages">Advantages</h5><ul><li>Can match windows using more than 1 neighbor, giving a stronger constraint</li><li>If you have lots of potential neighbors, can choose the best subset of neighbors to match per reference image</li><li>Can reconstruct a depth map for each reference frame, and the merge into a complete 3D model</li></ul><h5 id="basic-idea">Basic idea</h5><ul><li>Correct depth gives consistent projections</li><li>Incorrect depth gives inconsistent projections</li><li>Compute the error for each depth value for each point in the reference image</li></ul><p>[[Pasted image 20231120135409.png|475]]</p><ul><li>Find the depth value that gives the smallest error 一般的做法是，对于每一个像素，每一个深度都遍历求解。计算开销比较大。得到一个cost volume</li></ul><h4 id="cost-volume">Cost Volume</h4><h5 id="idea">Idea</h5><ul><li>A 4D tensor and a search space 双目视觉立体匹配中的一种左右视差搜索空间，用于表示左右相机的水平视差和对应的像素点 ##### Plane Sweep</li><li>用来构造cost volume，方法是每次假设一个统一的深度，再把这个plane投影到其他的perspective上，然后对所有深度重复这一过程，得到cost volume</li></ul><p>[[Pasted image 20231120135837.png|500]]</p><p>[[Pasted image 20231120135940.png|500]]</p><h4 id="patch-match">Patch Match</h4><p>An efficient algorithm for solving correspondence problems - Assumptions - Large number of random sampling will yield some good guesses 随便猜，总有能猜中的 - Neighbors have similar offsets 相邻的像素的disparity是相似的</p><p>[[Pasted image 20231120140254.png|500]]</p><h5 id="steps">Steps</h5><ol type="1"><li>Initialization<ul><li>Each pixel is given a random patch offset as initialization 随机初始化</li></ul></li><li>Propagation<ul><li>Each pixels checks if the offsets from neighboring patches give a better matching patch. If so, adopt neighbor’s patch offset. 将一个patch的变换传播到邻近的patch，看看是不是变得更好，如果误差减小就接受，否则抛弃。</li></ul></li><li>Search<ul><li>Each pixels searches for better patch offsets within a concentric radius around the current offset.</li><li>The search radius starts with the size of the image and is halved each time until it is 1. 做一个局部的搜索，微调</li></ul></li></ol><p>[[Pasted image 20231120140706.png|500]]</p><h2 id="d-reconstruction">3D Reconstruction</h2><p>[[Pasted image 20231120140914.png|500]] ### 3D representations</p><h4 id="point-cloud">Point cloud</h4><ul><li>A set of 3D points</li></ul><p>[[Pasted image 20231120141904.png|500]]</p><h4 id="volume">Volume</h4><ul><li>Occupancy volume: a 3D volume with each voxel being 和点云相比，更加稠密，但是占用空间比较大，空间分辨率低，只是0和1的话变动大不够细致</li></ul><p>[[Pasted image 20231120141844.png|500]]</p><ul><li>SDF volume: 刻画更加精细，就是我可以知道某个点离表面多远（距离），是在表面外面还算是里面（带符号），不是简单的0或者1了</li></ul><p>[[Pasted image 20231120142113.png|500]]</p><ul><li>TSDF volume: 对于volume我只关心表面，所以我会把距离限定到一个范围内，不关心离表面太远的点，是SDF的特殊情况 #### Mesh</li><li>A polygon mesh with vertices and edges, Usually triangle mesh</li></ul><p>[[Pasted image 20231120142425.png|500]] ### 3D surface reconstruction</p><h4 id="idea-1">Idea</h4><h5 id="how-to-fuse-depth-maps-into-a-complete-3d-mesh">How to fuse depth maps into a complete 3D mesh?</h5><ol type="1"><li>Depth maps -&gt; Occupancy volume<ul><li>Poisson reconstruction</li></ul></li><li>Occupancy volume -&gt; mesh<ul><li>Marching cubes ##### Why first constructing a volume?</li></ul></li></ol><ul><li>Easier to be converted to mesh</li><li>Good for denoising volume相比pointcloud更好去噪</li></ul><h4 id="poisson-reconstruction">Poisson reconstruction</h4><ul><li>Convert depth maps into a 3D volume ##### Steps</li></ul><ol type="1"><li>Convert depth map to point cloud</li><li>Compute normal vector for each point -&gt; PCA PCA 能找到分布方差最大最小的方向 variance最小/特征值最小的方向 就是法向</li><li>Represent surface by indicator (occupancy) function 用体素去拟合点云，优化变量就是体素的分布（三维数组）</li></ol><h5 id="how-to-construct-the-indicator-function">How to construct the indicator function?</h5><ul><li>Gradient Relationship There is a relationship between the normals of the points and gradient of indicator function 转化为最小化体素的梯度场和点云的法向场的差</li></ul><p>[[Pasted image 20231120143417.png|500]]</p><p>[[Pasted image 20231120143401.png|500]]</p><h4 id="marching-cubes">Marching cubes</h4><ul><li>Extract 3D surface (mesh) from volumetric representation 移动立方体，找到面片的位置 ##### Marching squares(2D)</li></ul><p>[[Pasted image 20231120143648.png|500]]</p><p>2D情况下只有三种情况：</p><p>[[Pasted image 20231120143715.png|500]] ##### Marching Cubes (3D)</p><p>[[Pasted image 20231120143859.png|500]]</p><p>[[Pasted image 20231120143926.png|500]] ### Texture mapping - Texture mapping: "add color" to 3D surface. 纹理映射</p><h4 id="idea-2">Idea</h4><p>要做的就是把一个2d的纹理图投影到一个3d模型上。纹理图的表达就是一个二维的图像，每个像素都和三角网格有一一对应关系。</p><p>[[Pasted image 20231120144311.png|500]]</p><h4 id="steps-1">Steps</h4><ul><li>Each triangle vertices is assigned a 2D coordinate <span class="math inline">\((u,v)\)</span> in the texture image</li><li>Others get the 2D coordinate with interpolations</li><li>Finally the model get the RGB from the map</li></ul><p>图像之间的特征匹配，对极几何求解相机位姿。多张图像之间两两去做，BA得到相机位姿，然后两两之间做立体匹配得到点云，点云融合得到点云-&gt;volume-&gt;mesh-&gt;上纹理 ## Neural Scene Representations 用神经网络去表达一个场景</p>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;depth-estimation&quot;&gt;Depth Estimation&lt;/h2&gt;
+&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+&lt;h3 id=&quot;stereo-matching&quot;&gt;Stereo matching&lt;/h3&gt;
+&lt;h4 id=&quot;baseline&quot;&gt;Baseline&lt;/h4&gt;
+&lt;p&gt;What&#39;s the optimal baseline? - Too small: large depth error - Too large: difficult search problem&lt;/p&gt;
+&lt;p&gt;Baseline比较大说明看同一个点的视角差距比较大，做匹配会比较难 Baseline比较小的时候做三角化存在歧义性。&lt;/p&gt;
+&lt;p&gt;[[Pasted image 20231120132949.png|423]]&lt;/p&gt;
+&lt;h4 id=&quot;stereo-reconstruction-pipeline&quot;&gt;Stereo reconstruction pipeline&lt;/h4&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;Calibrate cameras&lt;/li&gt;
+&lt;li&gt;Rectify images&lt;/li&gt;
+&lt;li&gt;Compute disparity map&lt;/li&gt;
+&lt;li&gt;Estimate depth&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;errors&quot;&gt;Errors&lt;/h4&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://example.com/2023/11/24/Computer%20Vision%20Lec7%20Structure%20from%20Motion/"/>
+    <id>http://example.com/2023/11/24/Computer%20Vision%20Lec7%20Structure%20from%20Motion/</id>
+    <published>2023-11-24T15:13:40.578Z</published>
+    <updated>2023-11-13T07:10:08.966Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>SfM: Recover camera poses and 3D structure of a scene from its images</li><li>Problems to be noticed</li></ul><ol type="1"><li>How the camera maps the 3D points in the world onto its image plane. (camera model)</li><li>How to compute the position and orientation of the camera w.r.t. the world coordinate frame. (camera calibration and pose estimation)</li><li>How to reconstruct the unknown 3D structure from images (structure from motion)</li></ol><h2 id="camera-model">Camera Model</h2><p>[[Pasted image 20231106063652.png|500]]</p><p>[[Pasted image 20231106063757.png|500]]</p><h3 id="world-to-camera-transformation">World to camera transformation</h3><p>[[Pasted image 20231106064635.png|500]]</p><p>[[Pasted image 20231106064649.png|500]]</p><p>[[Pasted image 20231106064732.png|500]]</p><p>旋转矩阵的自由度为3 ### Perspective projection</p><p>[[Pasted image 20231106065405.png|500]]</p><h3 id="image-plane-to-image-sensor-mapping">Image Plane to Image Sensor Mapping</h3><p>[[Pasted image 20231106071257.png|500]] ### Overall Transformation</p><p>[[Pasted image 20231106071335.png|500]]</p><h2 id="camera-calibration">Camera Calibration</h2><h3 id="procedure">Procedure</h3><ol type="1"><li>Capture an image of an object with known geometry, e.g. a calibration board</li><li>Identify correspondences between 3D scene points and image points.</li><li>For each corresponding point <span class="math inline">\(i\)</span> in scene and image, expanding the matrix unknown <span class="math inline">\(P\)</span> as linear equations</li><li>Rearranging the terms</li></ol><p>[[Pasted image 20231106072338.png|500]] 5. Solve for <span class="math inline">\(p\)</span> from <span class="math inline">\(A\mathbf{p}=0\)</span></p><h4 id="property-of-the-projection-matrices">Property of the projection matrices</h4><ul><li>Scaling projection matrix, implies simultaneously scaling the world and camera, which does not change the image</li></ul><p>[[Pasted image 20231106152926.png|500]]</p><h4 id="decompose-projection-matrices">Decompose Projection Matrices</h4><p>[[Pasted image 20231106153023.png|500]]</p><p>[[Pasted image 20231106153523.png|500]]</p><h3 id="visual-localization-problem">Visual Localization Problem</h3><p>事实上就是求解相机外参的过程，相当于相机标定，一般假设相机的内参是已知的</p><h4 id="procedure-1">Procedure</h4><ol type="1"><li>Find 3D-2D correspondences via feature detection and matching</li><li>Solve camera pose, given 3D-2D correspondences (This is called Perspective-n-Point (PnP) problem if intrinsic parameters are known)</li></ol><h4 id="pnp-problem">PnP problem</h4><p>PnP 问题是相机标定的子问题，因为他假设内参已知</p><ul><li>How many unknown parameters?<ul><li>6 unknowns: 3 for rotation, 3 for translation</li><li>Usually called 6DoF pose estimation</li></ul></li><li>How many points do we need?<ul><li>it depends ##### Direct linear transform (DLT) solution 完全当成相机标定来做，解方程，把内参外参都估计一遍，但是这样多干了活</li></ul></li></ul><p>[[Pasted image 20231106154417.png|500]]</p><h5 id="p3p">P3P</h5><ul><li>Solve the camera pose using the minimal number of points</li><li>Given <span class="math inline">\(Oa, Ob, Oc, AB, AC, BC,\)</span> solve <span class="math inline">\(OA, OB, OC\)</span></li></ul><p>[[Pasted image 20231106154609.png|316]]</p><p>[[Pasted image 20231106154732.png|500]]</p><p>[[Pasted image 20231106154806.png|500]]</p><p>[[Pasted image 20231106154820.png|500]]</p><h2 id="structure-from-motion">Structure from Motion</h2><h3 id="solving-sfm">Solving SfM</h3><ol type="1"><li>Assume intrinsic matrix <span class="math inline">\(K\)</span> is known for each camera</li><li>Find a few reliable corresponding points</li><li>Find relative camera position <span class="math inline">\(t\)</span> and orientation <span class="math inline">\(R\)</span></li><li>Find 3D position of scene points</li></ol><h3 id="epipolar-geometry">Epipolar Geometry</h3><p>[[Pasted image 20231113134800.png|500]]</p><ul><li>Epipolar geometry describes the geometric relation between the 2D projections of a 3D point in two views</li><li>Epipolar geometry tells us how to solve <span class="math inline">\(t\)</span> and <span class="math inline">\(R\)</span> given a few pairs of 2D correspondences</li><li>Epipole: Image point of origin/pinhole of one camera as viewed by the other camera</li></ul><h3 id="math-things-in-sfm">Math Things in SfM</h3><h3 id="sequential-sfm">Sequential SfM</h3><ol type="1"><li>Initialize camera motion and scene structure</li><li>For each additional view<ul><li>Determine projection matrix of new camera using all the known 3D points that are visible in its image</li><li>Refine and extend structure: compute new 3D points, reoptimize existing points that are also seen by this camera<br /></li></ul></li><li>Refine structure and motion: Bundle Adjustment #### Bundle Adjustment</li></ol><p>[[Pasted image 20231113143758.png|500]]</p>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;SfM: Recover camera poses and 3D structure of a scene from its images&lt;/li&gt;
+&lt;li&gt;Problems to be noticed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;How the camera maps the 3D points in the world onto its image plane. (camera model)&lt;/li&gt;
+&lt;li&gt;How to compute the position and orientation of the camera w.r.t. the world coordinate frame. (camera calibration and pose estimation)&lt;/li&gt;
+&lt;li&gt;How to reconstruct the unknown 3D structure from images (structure from motion)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;camera-model&quot;&gt;Camera Model&lt;/h2&gt;
+&lt;p&gt;[[Pasted image 20231106063652.png|500]]&lt;/p&gt;
+&lt;p&gt;[[Pasted image 20231106063757.png|500]]&lt;/p&gt;
+&lt;h3 id=&quot;world-to-camera-transformation&quot;&gt;World to camera transformation&lt;/h3&gt;
+&lt;p&gt;[[Pasted image 20231106064635.png|500]]&lt;/p&gt;
+&lt;p&gt;[[Pasted image 20231106064649.png|500]]&lt;/p&gt;
+&lt;p&gt;[[Pasted image 20231106064732.png|500]]&lt;/p&gt;
+&lt;p&gt;旋转矩阵的自由度为3 ### Perspective projection&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://example.com/2023/11/24/Computer%20Vision%20Lec6%20Image%20Stitching/"/>
+    <id>http://example.com/2023/11/24/Computer%20Vision%20Lec6%20Image%20Stitching/</id>
+    <published>2023-11-24T15:13:40.573Z</published>
+    <updated>2023-11-05T22:09:21.239Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="image-warping">Image warping</h2><h3 id="parametric-global-warping">Parametric (global) warping</h3><ul><li>Linear transformation</li></ul><p>[[Pasted image 20231030155241.png|268]]</p><ul><li>Affine transformation = Linear transformation + translation</li></ul><p>[[Pasted image 20231030155312.png|342]]</p><ul><li>Projective Transformation (Homography) 单应变换的意思就是有一一对应的关系，</li></ul><p>[[Pasted image 20231030151735.png|500]]</p><ul><li>Homography matrix is up to scale (can be multiplied by a scalar), which means the degree of freedom is 8</li><li>We usually constrain the length of the vector <span class="math inline">\([h_{00} h_{01} \cdots h_{22}]\)</span> to be 1</li></ul><p>用一个相机拍照，什么时候拍到的两张图片之间的像素点对应可以用单应变换描述？ 相机中心位置不变，朝向可以变。 中心不重合的时候一般不是单应变换，但也可能是（比如拍一个平面，被拍摄物体为2d的时候）</p><p>In what cases is the transformation of two images a homography? - Camera rotated with its center unmoved(Camera is rotated about its center of projection without any translation) - Camera center moved and the scene is a plane</p><p>[[Pasted image 20231030153207.png|500]]</p><p>[[Pasted image 20231030153506.png|500]]</p><h4 id="forwarding-and-inverse-warping">Forwarding and inverse warping</h4><p>What if the pixel lands between pixels in forwarding warping? - Use inverse warping</p><p>What if pixel lands between pixels in inverse warping? - Interpolate color values from neighboring pixels - Possible interpolation filters: nearest neighbor, bilinear...</p><h2 id="image-stitching">Image stitching</h2><h3 id="affine-transformation">Affine transformation</h3><p>[[Pasted image 20231030154358.png|500]]</p><p>But there can be wrong matches, so we want more pairs to minimize the error</p><p>[[Pasted image 20231030154635.png|500]]</p><p>We can solve <span class="math inline">\(t\)</span> by lease square: <span class="math display">\[A^TAt = A^Tb\]</span> <span class="math display">\[t =(A^TA)^{-1}A^Tb \]</span></p><h3 id="projective-transformation">Projective transformation</h3><p>[[Pasted image 20231030154934.png|500]]</p><p>[[Pasted image 20231030155050.png|500]]</p><h3 id="panorama">Panorama</h3><p>要保证拍的时候相机只能转动，光心不变，被拍的东西也不能动 #### Steps 1. Warp all images to a reference image 2. merge them</p><h4 id="projection-cylinder">Projection cylinder</h4><ul><li>What if you want a 360° field of view?<ul><li>Projection Cylinder.</li></ul></li></ul><p>[[Pasted image 20231106060406.png|500]]</p><ul><li>How to compute the transformation on cylinder?<ul><li>A rotation of the camera is a translation of the cylinder! (change in <span class="math inline">\(x&#39;\)</span> )</li></ul></li></ul><h4 id="problem-drift">Problem: Drift</h4><p>[[Pasted image 20231106060838.png|500]]</p>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;image-warping&quot;&gt;Image warping&lt;/h2&gt;
+&lt;h3 id=&quot;parametric-global-warping&quot;&gt;Parametric (global) warping&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Linear transformation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[[Pasted image 20231030155241.png|268]]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Affine transformation = Linear transformation + translation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[[Pasted image 20231030155312.png|342]]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Projective Transformation (Homography) 单应变换的意思就是有一一对应的关系，&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;[[Pasted image 20231030151735.png|500]]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Homography matrix is up to scale (can be multiplied by a scalar), which means the degree of freedom is 8&lt;/li&gt;
+&lt;li&gt;We usually constrain the length of the vector &lt;span class=&quot;math inline&quot;&gt;&#92;([h_{00} h_{01} &#92;cdots h_{22}]&#92;)&lt;/span&gt; to be 1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用一个相机拍照，什么时候拍到的两张图片之间的像素点对应可以用单应变换描述？ 相机中心位置不变，朝向可以变。 中心不重合的时候一般不是单应变换，但也可能是（比如拍一个平面，被拍摄物体为2d的时候）&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://example.com/2023/11/24/Computer%20Vision%20Lec5%20Image%20Matching%20and%20Motion%20Estimation/"/>
+    <id>http://example.com/2023/11/24/Computer%20Vision%20Lec5%20Image%20Matching%20and%20Motion%20Estimation/</id>
+    <published>2023-11-24T15:13:40.569Z</published>
+    <updated>2023-11-07T03:45:23.907Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="image-matching">Image matching</h2><blockquote><p>Finding point-to-point correspondences between two images.</p></blockquote><ul><li>Main Components of Feature matching<ol type="1"><li>Detection: Identify the interest points</li><li>Description: Extract vector feature descriptor surrounding each interesting point.</li><li>Matching: Determine correspondence between the descriptors in two views ### Detection</li></ol></li><li>What is a good feature?<ul><li>Unique</li><li>Invariant to transformations</li></ul></li><li>Popular detectors<ul><li>Harris corner detector</li><li>Blob detector (<span class="math inline">\(e.g.\)</span>, LoG, DoG) #### Principal Component Analysis</li></ul></li><li>The 1st principal component is the direction with highest variance.</li><li>The 2nd principal component is the direction with highest variance which is orthogonal to the previous components. ##### How to compute PCA components</li></ul><ol type="1"><li>Subtract off the mean for each data point</li><li>Compute the covariance matrix</li><li>Compute eigenvectors and eigenvalues</li><li>The components are the eigenvectors ranked by the eigenvalues</li></ol><h4 id="harris-corner-detector">Harris corner detector</h4><ul><li>Harris corner detector utilizes the PCA ##### Procedure</li></ul><ol type="1"><li>Compute derivatives at each pixel</li><li>Compute covariance matrix <span class="math inline">\(H\)</span> in a Gaussian window around each pixel</li><li>Compute corner response function <span class="math inline">\(f\)</span></li><li>Threshold <span class="math inline">\(f\)</span></li><li>Find local maxima of response function (non-maximum suppression) ##### Invariance properties</li></ol><ul><li>Partially invariant to affine intensity change<ul><li>Invariant to intensity shift <span class="math inline">\(I \rightarrow I+b\)</span></li><li>Not invariant to intensity scaling <span class="math inline">\(I \rightarrow aI\)</span> [[Pasted image 20231024113206.png]]</li></ul></li><li>Corner response is invariant w.r.t. translation</li><li>Corner response is invariant w.r.t. rotation</li><li>Corner response is NOT invariant to scaling #### Automatic scale selection</li><li>Key idea: find scale that gives local maximum of <span class="math inline">\(f\)</span> [[Pasted image 20231024114351.png]] ##### Image pyramid Instead of computing f for larger and larger windows, we can implement using a fixed window size with an image pyramid.</li></ul><h4 id="blob-corner-detector">Blob corner detector</h4><ul><li>Blobs are have large second derivatives in image intensity<ul><li>Compute Laplacian of image</li><li>Find maxima and minima of Laplacian ##### Laplacian of Gaussian (LoG)</li></ul></li><li>Laplacian is sensitive to noise</li><li>Usually using Laplacian of Gaussian (LoG) filter<ul><li>Smooth image with a Gaussian filter</li><li>Compute Laplacian LoG算子就是把高斯滤波核和拉普拉斯滤波器先卷积得到的一个算子，这个算子对于图像的卷积作用等价与对高斯滤波后的图像做拉普拉斯滤波</li></ul></li></ul><p>[[Pasted image 20231023072916.png]] ##### Difference of Gaussian (DoG) - LoG can be approximated by Difference of two Gaussians (DoG) - How to filter the image with DoG? 1. Filter the image with two Gaussians 2. Compute the difference of two filtered images</p><h3 id="description">Description</h3><h4 id="sift-descriptor">SIFT descriptor</h4><blockquote><p>Scale Invariant Feature Transform (SIFT) - Histogram of oriented gradients - Captures important texture information - Robust to small translations / affine deformations</p></blockquote><h5 id="lowes-sift-algorithm">Lowe's SIFT algorithm</h5><ol type="1"><li>Run DoG detector</li><li>Find maxima in location/scale space</li><li>Remove edge points<ul><li>Find dominate orientation</li><li>For each (x, y, scale, orientation), create descriptor ##### How to deal with rotations ? 如何处理旋转带来的描述子变化？对向量直方图旋转归一化，每次把数值最大的方向放在直方图的最左边，这样无论如何旋转所得到的直方图基本都是一样的，使得描述子具有旋转不变性。</li></ul></li><li>Compute orientation histogram</li><li>Select dominant orientation</li><li>Normalize: rotate to fixed orientation</li></ol><h5 id="why-scale-invariant">Why "scale invariant" ?</h5><p>因为在检测的过程中是已经确定了最佳的尺度，所以在后续提取描述子的过程中不用考虑scale了，实际上从描述子本身的定义和构建过程来看对尺度是敏感的。所以我们所说的sift尺度不变是包含了前面的尺度搜索过程</p><h5 id="properties-of-sift">Properties of SIFT</h5><blockquote><p>Extraordinarily robust matching technique - Can handle changes in viewpoint - Theoretically invariant to scale and rotation (why?) - Can handle significant changes in illumination - Sometimes even day vs. night (below) - Fast and efficient — can run in real time - Lots of code available</p></blockquote><h4 id="matching">Matching</h4><h5 id="basic-ideas-about-feature-matching">Basic ideas about feature matching</h5><p>Given a feature in <span class="math inline">\(I_1\)</span>, how to find the best match in <span class="math inline">\(I_2\)</span>? 1. Define distance function that compares two <strong>descriptors</strong> 2. Test all the features in <span class="math inline">\(I_2\)</span>, find the one with min distance</p><p>How to define the difference between two features <span class="math inline">\(f_1, f_2\)</span>? - Simple approach: L2 distance, ||<span class="math inline">\(f_1 - f_2\)</span> || - Can give small distances for ambiguous (incorrect) matches 存在歧义性。</p><h5 id="solutions-to-ambiguous-matches">Solutions to ambiguous matches</h5><ol type="1"><li>Ratio Test<ul><li>Ratio score = ||<span class="math inline">\(f_1 - f_2\)</span> || / ||<span class="math inline">\(f_1 - f_2&#39;\)</span> ||</li><li><span class="math inline">\(f_2\)</span> is best match to <span class="math inline">\(f_1\)</span> in <span class="math inline">\(I_2\)</span></li><li><span class="math inline">\(f_2&#39;\)</span> is 2nd best match to <span class="math inline">\(f_1\)</span> in <span class="math inline">\(I_2\)</span></li><li>Ambiguous matches have large ratio scores</li></ul></li><li>Mutual nearest neighbor<ul><li>find mutual nearest neighbors</li><li><span class="math inline">\(f_2\)</span> is the nearest neighbor of <span class="math inline">\(f_1\)</span> in <span class="math inline">\(I_2\)</span></li><li><span class="math inline">\(f_1\)</span> is the nearest neighbor of <span class="math inline">\(f_2\)</span> in <span class="math inline">\(I_1\)</span></li></ul></li></ol><h2 id="motion-estimation">Motion estimation</h2><p>Two basic problems - Feature-tracking 只跟踪特征点 结果是离散的 - Extract feature (interest) points and “track” them over multiple frames - Output: displacement of sparse points - Optical flow 光流法 跟踪每个像素 结果是稠密的 - Recover image motion at each pixel - Output: dense displacement field (optical flow)</p><blockquote><p>Both feature matching and motion estimation are called correspondence problems</p></blockquote><p>One method - Lucas-Kanade method</p><p>tracking能用特征匹配的方法做吗？不一定。因为tracking包含了连续时间上的信息，我们包含了对于运动连续性的假设（在间隔的两帧中不会移动的太远），但是单独的特征匹配没有包含这些信息。 ### Lucas-Kanade #### Key assumptions 1. Small motion: points do not move very far 2. Brightness constancy: same point looks the same in every frame 3. Spatial coherence: points move like their neighbors</p><h4 id="procedure">Procedure</h4><p>[[Pasted image 20231030135530.png|525]] Brightness Constancy Equation: <span class="math display">\[I(x,y,t) = I(x+u, y+v, t+1)\]</span> Taylor expansion assuming small motion: <span class="math display">\[    I(x+u, y+v, t+1) \approx I(x,y,t) +I_x \cdot u +I_y \cdot v+ I_t \]</span> <span class="math display">\[I_x \cdot u +I_y \cdot v+ I_t \approx 0\]</span> <span class="math display">\[\nabla I \cdot [u \quad v ]^T +I_t = 0\]</span> One equation, two unknowns <span class="math inline">\((u,v)\)</span> - If <span class="math inline">\((u, v)\)</span> satisfies the equation, so does <span class="math inline">\((u+u’ , v+v’ )\)</span> if <span class="math inline">\(\nabla I \cdot [u&#39; \quad v&#39; ]^T +I_t = 0\)</span> - The component of the motion perpendicular to the gradient (i.e., parallel to the edge) cannot be measured</p><p>[[Pasted image 20231030140606.png|500]]</p><p>[[Pasted image 20231030140620.png|500]]</p><p>[[Pasted image 20231030140955.png|500]]</p><h4 id="results-in-different-conditions">Results in different conditions</h4><h5 id="low-texture-region">Low Texture Region</h5><ul><li>Gradients have small magnitude</li><li>Small <span class="math inline">\(\lambda_1\)</span>, small <span class="math inline">\(\lambda_2\)</span></li></ul><h5 id="edge">Edge</h5><p>我们只能确定一个方向的运动（孔径问题） The barber pole illusion - Large gradients, all the same - Large <span class="math inline">\(\lambda_1\)</span>, small <span class="math inline">\(\lambda_2\)</span></p><h5 id="hight-texture-region">Hight Texture Region</h5><ul><li>Gradients are different, large magnitudes</li><li>Large <span class="math inline">\(\lambda_1\)</span>, large <span class="math inline">\(\lambda_2\)</span> #### Errors in Lukas-Kanade What are the potential causes of errors in this procedure?</li><li>Suppose <span class="math inline">\(A^TA\)</span> is easily invertible</li><li>Suppose there is not much noise in the image</li><li>When our assumptions are violated<ul><li>Brightness constancy is not satisfied</li><li>The motion is not small</li><li>A point does not move like its neighbors</li></ul></li></ul><h5 id="solution-to-large-motion">Solution to large motion</h5><p>[[Pasted image 20231030144031.png|500]]</p>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;image-matching&quot;&gt;Image matching&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Finding point-to-point correspondences between two images.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Main Components of Feature matching
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;Detection: Identify the interest points&lt;/li&gt;
+&lt;li&gt;Description: Extract vector feature descriptor surrounding each interesting point.&lt;/li&gt;
+&lt;li&gt;Matching: Determine correspondence between the descriptors in two views ### Detection&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;What is a good feature?
+&lt;ul&gt;
+&lt;li&gt;Unique&lt;/li&gt;
+&lt;li&gt;Invariant to transformations&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Popular detectors
+&lt;ul&gt;
+&lt;li&gt;Harris corner detector&lt;/li&gt;
+&lt;li&gt;Blob detector (&lt;span class=&quot;math inline&quot;&gt;&#92;(e.g.&#92;)&lt;/span&gt;, LoG, DoG) #### Principal Component Analysis&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;The 1st principal component is the direction with highest variance.&lt;/li&gt;
+&lt;li&gt;The 2nd principal component is the direction with highest variance which is orthogonal to the previous components. ##### How to compute PCA components&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;Subtract off the mean for each data point&lt;/li&gt;
+&lt;li&gt;Compute the covariance matrix&lt;/li&gt;
+&lt;li&gt;Compute eigenvectors and eigenvalues&lt;/li&gt;
+&lt;li&gt;The components are the eigenvectors ranked by the eigenvalues&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;harris-corner-detector&quot;&gt;Harris corner detector&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Harris corner detector utilizes the PCA ##### Procedure&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;Compute derivatives at each pixel&lt;/li&gt;
+&lt;li&gt;Compute covariance matrix &lt;span class=&quot;math inline&quot;&gt;&#92;(H&#92;)&lt;/span&gt; in a Gaussian window around each pixel&lt;/li&gt;
+&lt;li&gt;Compute corner response function &lt;span class=&quot;math inline&quot;&gt;&#92;(f&#92;)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Threshold &lt;span class=&quot;math inline&quot;&gt;&#92;(f&#92;)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Find local maxima of response function (non-maximum suppression) ##### Invariance properties&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Partially invariant to affine intensity change
+&lt;ul&gt;
+&lt;li&gt;Invariant to intensity shift &lt;span class=&quot;math inline&quot;&gt;&#92;(I &#92;rightarrow I+b&#92;)&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;Not invariant to intensity scaling &lt;span class=&quot;math inline&quot;&gt;&#92;(I &#92;rightarrow aI&#92;)&lt;/span&gt; [[Pasted image 20231024113206.png]]&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Corner response is invariant w.r.t. translation&lt;/li&gt;
+&lt;li&gt;Corner response is invariant w.r.t. rotation&lt;/li&gt;
+&lt;li&gt;Corner response is NOT invariant to scaling #### Automatic scale selection&lt;/li&gt;
+&lt;li&gt;Key idea: find scale that gives local maximum of &lt;span class=&quot;math inline&quot;&gt;&#92;(f&#92;)&lt;/span&gt; [[Pasted image 20231024114351.png]] ##### Image pyramid Instead of computing f for larger and larger windows, we can implement using a fixed window size with an image pyramid.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;blob-corner-detector&quot;&gt;Blob corner detector&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Blobs are have large second derivatives in image intensity
+&lt;ul&gt;
+&lt;li&gt;Compute Laplacian of image&lt;/li&gt;
+&lt;li&gt;Find maxima and minima of Laplacian ##### Laplacian of Gaussian (LoG)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Laplacian is sensitive to noise&lt;/li&gt;
+&lt;li&gt;Usually using Laplacian of Gaussian (LoG) filter
+&lt;ul&gt;
+&lt;li&gt;Smooth image with a Gaussian filter&lt;/li&gt;
+&lt;li&gt;Compute Laplacian LoG算子就是把高斯滤波核和拉普拉斯滤波器先卷积得到的一个算子，这个算子对于图像的卷积作用等价与对高斯滤波后的图像做拉普拉斯滤波&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://example.com/2023/11/24/Computer%20Vision%20Lec4%20Model%20Fitting%20and%20Optimization/"/>
+    <id>http://example.com/2023/11/24/Computer%20Vision%20Lec4%20Model%20Fitting%20and%20Optimization/</id>
+    <published>2023-11-24T15:13:40.564Z</published>
+    <updated>2023-10-22T22:01:50.041Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="optimization">Optimization</h2><h3 id="mean-square-errormse">Mean Square Error(MSE)</h3><p><span class="math display">\[\hat x = arg \min_x \sum_i(b_i -a_i^T x)^2\]</span> - Why MSE? - Positive because we want to minimize the value of the function. - Square is better than absolute value because the absolute is not always smooth. - The statistics has given the proof. The square stuff comes from the Gaussian distribution. <strong>MSE = MLE with Gaussian noise assumption</strong> ### Maximum Likelihood Estimation(MLE)</p><ul><li>Error comes from:<ul><li>Systematic error</li><li>Measurement limitation</li></ul></li></ul>We assume the data is with Gaussian noise when we have no knowledge and no hypothesis about the distribution. <span class="math display">\[b_i = a_i^T x +n,n \sim G(0, \sigma) \]</span> Given <span class="math inline">\(x\)</span>, the likelihood of observing the <span class="math inline">\((a_i, b_i)\)</span> is: <span class="math display">\[    P[(a_i,b_i)|x] = P[b_i - a_i^Tx] \propto \exp {-\frac{(b_i - a_i^Tx)^2}{2 \sigma^2}}\]</span> If the date points are independent: $$<span class="math display">\[\begin{aligned}P[(a_1,b_1)(a_2,b_2) \cdots |x] &amp;= \prod_i P[(a_i,b_i)|x]\\ &amp;=\prod_iP[b_i - a_i^T x] \\&amp;\propto \exp {-\frac{(b_i - a_i^Tx)^2}{2 \sigma^2}}= \exp {-\frac{||Ax-b||_2^2}{2 \sigma^2}}\end{aligned}\]</span><p>$$</p><p>where: <span class="math display">\[A  = [a_1^T , a_2^T , \cdots, a_n^T]^T\]</span> <span class="math display">\[b = [b_1 ,b_2 ,\cdots ,b_n]^T\]</span> ## Numerical methods</p><p>A simple case with analytical solution: <span class="math display">\[ \hat x = arg \min_x ||Ax-b||^2_2 \]</span> <span class="math inline">\(x\)</span> is the solution to: <span class="math display">\[A^TAx = A^Tb\]</span> If no analytical solution? We should try the numerical method:</p><blockquote><p><span class="math inline">\(x \leftarrow x_0\)</span><br /><span class="math inline">\(while\quad not \quad converge\)</span> <span class="math inline">\(h \leftarrow descending\_direction(x)\)</span> <span class="math inline">\(\alpha \leftarrow decending\_step(x,h)\)</span> <span class="math inline">\(x \leftarrow x+\alpha h\)</span></p></blockquote><h3 id="recap-taylor-expansion">Recap: Taylor expansion</h3><ul><li>First-order approximation <span class="math display">\[F(x_k+\Delta x)  \approx F(x_k) +J_F\Delta x\]</span> the <span class="math inline">\(J_F\)</span> is the Jacobian matrix: <span class="math display">\[J_F =[\frac{\delta f}{\delta x_1},\frac{\delta f}{\delta x_2},\cdots, \frac{\delta f}{\delta x_n} ]\]</span></li><li>Second-order approximation <span class="math display">\[F(x_k+\Delta x)  \approx F(x_k) +J_F\Delta x+\frac{1}{2}\Delta x^TH_F\Delta x \]</span></li></ul><h3 id="gradient-descent-gd">Gradient descent (GD)</h3><h4 id="steps">Steps</h4><ol type="1"><li><p>Determine the direction <span class="math display">\[F(x_k+\Delta x)  \approx F(x_k) +J_F\Delta x\]</span> When direction of <span class="math inline">\(\Delta x\)</span> is same as <span class="math inline">\(-J_F^T\)</span>, the objective function descend <strong>steepest</strong>.</p></li><li><p>Determine the step size</p></li></ol><ul><li>Basic ideas<ul><li><span class="math inline">\(\alpha\)</span> is small, the change of <span class="math inline">\(\phi(\alpha) = F(x_0+\alpha h)\)</span> is small. -&gt; increase <span class="math inline">\(\alpha\)</span></li><li><span class="math inline">\(\alpha\)</span> is big, <span class="math inline">\(\phi(\alpha) \textgreater \phi(0)\)</span>. -&gt;decrease <span class="math inline">\(\alpha\)</span></li><li><span class="math inline">\(\alpha\)</span> is close to <span class="math inline">\(\phi(\alpha)\)</span> minimizer. -&gt; acceptable!</li></ul></li><li>Methods<ul><li>Exact line search(i.e. 穷举法)</li><li>Backtracking Algorithm<ol type="1"><li>Initialize <span class="math inline">\(\alpha\)</span> with a big value.</li><li>Decrease <span class="math inline">\(\alpha\)</span> until <span class="math inline">\(\phi(\alpha) \leq \phi(0) +\gamma \phi&#39;(0)\alpha\)</span>, where <span class="math inline">\(\gamma\)</span> is a parameter and <span class="math inline">\(0 \textless \gamma \textless 1\)</span> #### Pros and Cons</li></ol></li></ul></li><li>Advantage<ul><li>Easy to implement</li><li>Perform well when far from the minimum</li></ul></li><li>Disadvantage<ul><li>Converge slowly when near the minimum</li><li>Waste a lot of computation</li></ul></li></ul><h3 id="newton-method">Newton method</h3><h4 id="steps-1">Steps</h4><ol type="1"><li>Do second-order expansion <span class="math display">\[F(x_k+\Delta x)  \approx F(x_k) +J_F\Delta x+\frac{1}{2}\Delta x^TH_F\Delta x \]</span></li><li>Find <span class="math inline">\(\Delta x\)</span> to minimize the <span class="math inline">\(F(x_k+\Delta x)\)</span> <span class="math display">\[H_F\Delta x + J_F^T = 0\]</span></li><li>The optimal direction(Newton step)<span class="math display">\[\Delta x = -H_F^{-1}J_F^T\]</span>We can see that compared to the GD method, Newton method derive the optimal direction with more information. The <span class="math inline">\(H_F\)</span> contains the information about the variation of gradients. #### Pros and Cons</li></ol><ul><li>Advantage<ul><li>Fast convergence near the minimum</li></ul></li><li>Disadvantage<ul><li>Hessian requires a lot of computation</li></ul></li></ul><h3 id="gauss-newton-method">Gauss-Newton method</h3><h4 id="steps-2">Steps</h4><p>Useful for solving the non-linear least squares: <span class="math display">\[\hat x = arg \min_xF(x) = arg \min_x ||R(x)  ||_2^2\]</span> Instead of expanding the <span class="math inline">\(F(x)\)</span>, we expand the <span class="math inline">\(R(x)\)</span>, which is called the residual vector. <span class="math display">\[\begin{aligned}||R(x_k+\Delta x)||^2_2 &amp;\approx ||R(x_k+J_R\Delta x)||^2_2 \\&amp;= ||R(x_k)||_2^2+2(R_{x_k})^TJ_R\Delta x+ \Delta x^T J_R^T J_R \Delta x\end{aligned}\]</span> where <span class="math inline">\(J_R\)</span> is the Jacobian matrix of the <span class="math inline">\(R(x)\)</span>. And the optimal <span class="math inline">\(\Delta x\)</span> satisfies: <span class="math display">\[J_R^TJ_R\Delta x + J_R^TR(x_k)= 0\]</span> Finally we can get the optimal direction <span class="math inline">\(\Delta x = -(J_R^T J_R)^{-1}J_R^TR(x_k)\)</span>, compared to the result of the Newton method <span class="math inline">\(\Delta x = -H_F^{-1}J_R^TR(x_k)\)</span>, <strong>we can see that the Gauss-Newton method use <span class="math inline">\(J_R^TJ_R\)</span> to approximate the Hessian matrix <span class="math inline">\(H_F\)</span>.</strong> #### Pros and Cons - Advantage - No need to compute Hessian - Fast to converge - Disadvantage - If <span class="math inline">\(J_R^TJ_R\)</span> is singular, the algorithm becomes unstable</p><h2 id="robust-estimation">Robust estimation</h2><h3 id="outliers">Outliers</h3><ul><li>Outliers: differs significantly from the assumption</li><li>Inliers: obeys the model assumption</li></ul><p>The outliers can make the MSE fail. That is because the MSE is proportional to the residual square. So the MSE will be affected a lot by the outliers.</p><ul><li>How to reduce the effect?<ul><li>Not L2 loss, but like L1 loss, Huber loss</li><li>They are called robust functions</li></ul></li></ul><h3 id="random-sample-concensus-ransac">Random Sample Concensus (RANSAC)</h3><blockquote><p>The most powerful method to handle outliers</p></blockquote><h4 id="key-ideas">Key ideas</h4><ul><li>The distribution of inliers is similar while outliers differ a lot.</li><li>Use data point pairs to vote.</li><li>Inliers will vote for the inliers, but outliers will not vote for the outliers. #### Procedure</li></ul><p>每次随机取点进行模型的拟合，然后拿这个模型计算和没有被选中的数据之间的residue，让模型点进行投票。</p><h3 id="overfitting-and-underfitting">Overfitting and underfitting</h3><ul><li>Overfitting occurs when a machine learning model learns the training data too well, capturing noise and fluctuations in the data rather than the underlying patterns. As a result, the model performs very well on the training data but poorly on new, unseen data.</li><li></li><li>Underfitting occurs when a model is too simplistic to capture the underlying patterns in the data. It doesn't learn the training data well and, as a result, performs poorly on both the training and test data. #### Ill-posed problem</li><li>The solution is not unique (<span class="math inline">\(e.g.\)</span>, <span class="math inline">\(\min_x || Ax-b||^2\)</span> when #equations is less than the #variables)</li></ul><h5 id="l2-regularization">L2 regularization</h5><ul><li>L2 norm: <span class="math inline">\(||x||_2 = \sum_i x_i^2\)</span></li><li>L2 regularization:<ul><li>Make <span class="math inline">\(x\)</span>-&gt;0 让x的各个分量尽可能的小</li><li>Supress the redundant variables <span class="math display">\[\min_x ||Ax-b||^2_2\]</span> <span class="math display">\[s.t. ||x||_2 \leq 1\]</span> ##### L1 regularization</li></ul></li><li>L1 norm: <span class="math inline">\(||x||_2 = \sum_i |x_i|\)</span></li><li>L1 regularization:<ul><li>Make <span class="math inline">\(x\)</span> sparse (<span class="math inline">\(x\)</span> will contains a lot of sparse, which means that the variable is useless) 去掉没用的变量，更多的留下有用的变量 <span class="math display">\[\min_x ||Ax-b||^2_2\]</span> <span class="math display">\[s.t. ||x||_1 \leq 1\]</span></li></ul></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;optimization&quot;&gt;Optimization&lt;/h2&gt;
+&lt;h3 id=&quot;mean-square-errormse&quot;&gt;Mean Square Error(MSE)&lt;/h3&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;&#92;[
+&#92;hat x = arg &#92;min_x &#92;sum_i(b_i -a_i^T x)^2
+&#92;]&lt;/span&gt; - Why MSE? - Positive because we want to minimize the value of the function. - Square is better than absolute value because the absolute is not always smooth. - The statistics has given the proof. The square stuff comes from the Gaussian distribution. &lt;strong&gt;MSE = MLE with Gaussian noise assumption&lt;/strong&gt; ### Maximum Likelihood Estimation(MLE)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Error comes from:
+&lt;ul&gt;
+&lt;li&gt;Systematic error&lt;/li&gt;
+&lt;li&gt;Measurement limitation&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+We assume the data is with Gaussian noise when we have no knowledge and no hypothesis about the distribution. &lt;span class=&quot;math display&quot;&gt;&#92;[
+b_i = a_i^T x +n,n &#92;sim G(0, &#92;sigma) 
+&#92;]&lt;/span&gt; Given &lt;span class=&quot;math inline&quot;&gt;&#92;(x&#92;)&lt;/span&gt;, the likelihood of observing the &lt;span class=&quot;math inline&quot;&gt;&#92;((a_i, b_i)&#92;)&lt;/span&gt; is: &lt;span class=&quot;math display&quot;&gt;&#92;[
+    P[(a_i,b_i)|x] = P[b_i - a_i^Tx] &#92;propto &#92;exp {-&#92;frac{(b_i - a_i^Tx)^2}{2 &#92;sigma^2}}
+&#92;]&lt;/span&gt; If the date points are independent: $$
+&lt;span class=&quot;math display&quot;&gt;&#92;[&#92;begin{aligned}
+
+P[(a_1,b_1)(a_2,b_2) &#92;cdots |x] &amp;amp;= &#92;prod_i P[(a_i,b_i)|x]&#92;&#92; 
+&amp;amp;=&#92;prod_iP[b_i - a_i^T x] &#92;&#92;
+&amp;amp;&#92;propto &#92;exp {-&#92;frac{(b_i - a_i^Tx)^2}{2 &#92;sigma^2}}
+= &#92;exp {-&#92;frac{||Ax-b||_2^2}{2 &#92;sigma^2}}
+&#92;end{aligned}&#92;]&lt;/span&gt;
+&lt;p&gt;$$&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://example.com/2023/11/24/Computer%20Vision%20Lec3%20Image%20Processing/"/>
+    <id>http://example.com/2023/11/24/Computer%20Vision%20Lec3%20Image%20Processing/</id>
+    <published>2023-11-24T15:13:40.560Z</published>
+    <updated>2023-10-16T05:54:09.629Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="image-processing-basics">Image Processing Basics</h2><ul><li>Review on Convolution<center></li></ul>[[Pasted image 20231009142547.png]] [[Pasted image 20231009143039.png]]</center><ul><li>Padding: Adding pixels around the image border<ul><li>Zero values (usually)</li><li>Edge values</li><li>Symmetric (different from edge values when more than one row/cols are added)</li></ul></li></ul><h2 id="image-sampling">Image Sampling</h2><h3 id="resolution">Resolution</h3><ul><li>Resolution = # of pixels per inch</li></ul><h3 id="aliasing">Aliasing</h3><blockquote>Alias is artifacts due to sampling. - Reason: Signals are changing too fast but sampled too slow.<center></blockquote><p>[[Pasted image 20231009145934.png]]</p></center><ul><li>Solution: Higher frequencies need faster sampling.</li></ul><h4 id="why-fourier-transform">Why Fourier Transform?</h4><ul><li>Use FT to represent a function as a weighted sum of sines and cosines. <span class="math display">\[F(u) = \int_{ - \infty}^{\infty} f(x)e^{-i2\pi ux} dx\]</span> <span class="math display">\[f(x) = \int_{ - \infty}^{\infty} F(u)e^{-i2\pi ux} du\]</span></li></ul><center><p>[[Pasted image 20231009152550.png]]</p>[[Pasted image 20231009152954.png]]</center><ul><li>The FT result of a image shows the frequency and the directions of the signals.<ul><li>Box filter = low-pass filter</li><li>Wider kernel = lower frequency #### Nyquist-Shannon Theorem Consider a band-limited signal: has no frequencies above <span class="math inline">\(f_0\)</span>, The signal can be perfectly reconstructed if sampled with a frequency larger than <span class="math inline">\(2f_0\)</span> .</li></ul></li></ul><h4 id="to-reduce-aliasing">To Reduce Aliasing</h4><ul><li>Increasing sampling rate.</li><li>Anti-aliasing: <strong>Filtering out high frequencies before sampling</strong>.</li></ul><h2 id="image-magnification">Image Magnification</h2><h3 id="interpolation">Interpolation</h3><ul><li>Linear interpolation</li><li>Cubic interpolation: guarantee continuous and smooth.</li><li>Bilinear interpolation: distribute weights by distance. (Bilinear is good enough)</li><li>Bicubic interpolation</li></ul><h3 id="seam-carvinginsertion">Seam Carving/Insertion</h3><ul><li>Problem statement: we need to remove n pixels from each row.</li><li>Basic idea: remove unimportant pixels.<ul><li>Measurement of importance: EDGES ARE IMPORTANT.</li><li></li></ul></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;image-processing-basics&quot;&gt;Image Processing Basics&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Review on Convolution
+&lt;center&gt;&lt;/center&gt;&lt;/li&gt;
+&lt;/ul&gt;
+[[Pasted image 20231009142547.png]] [[Pasted image 20231009143039.png]]
+
+&lt;ul&gt;
+&lt;li&gt;Padding: Adding pixels around the image border
+&lt;ul&gt;
+&lt;li&gt;Zero values (usually)&lt;/li&gt;
+&lt;li&gt;Edge values&lt;/li&gt;
+&lt;li&gt;Symmetric (different from edge values when more than one row/cols are added)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;image-sampling&quot;&gt;Image Sampling&lt;/h2&gt;
+&lt;h3 id=&quot;resolution&quot;&gt;Resolution&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Resolution = # of pixels per inch&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;aliasing&quot;&gt;Aliasing&lt;/h3&gt;
+&lt;blockquote&gt;
+Alias is artifacts due to sampling. - Reason: Signals are changing too fast but sampled too slow.
+&lt;center&gt;
+&lt;/center&gt;&lt;/blockquote&gt;
+&lt;p&gt;[[Pasted image 20231009145934.png]]&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Solution: Higher frequencies need faster sampling.&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://example.com/2023/11/24/Computer%20Vision%20Lec2%20Image%20Formation/"/>
+    <id>http://example.com/2023/11/24/Computer%20Vision%20Lec2%20Image%20Formation/</id>
+    <published>2023-11-24T15:13:40.555Z</published>
+    <updated>2023-10-09T06:11:55.796Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="photometric-image-formation">Photometric Image Formation</h2><h3 id="image-sensor">Image Sensor</h3><blockquote><p>Photon -&gt; Electron -&gt; Voltage</p></blockquote><ul><li>CMOS (Complimentary Metal-Oxide Semiconductor)<ul><li>Rolling shutter (CMOS scans row by row)</li></ul></li><li>CCD (Charge Coupled Device)<ul><li>Global Shutter ### Shutter</li></ul></li><li>Shutter speed<ul><li>Shutter speed controls the exposure time.</li><li>The pixel value is equal to the integral of the light intensity within the exposure time. (e.g. capturing the lightening with a exposure time of 1 minute)</li></ul></li><li>Shutter effect<ul><li>Rolling Shutter effect (usually happens with cameras using CMOS) ### Color Sensing</li></ul></li></ul><h4 id="color-spaces">Color Spaces</h4><ul><li>RGB (Red, Green, Blue)<ul><li>Easy for devices</li><li>But not perceptual</li></ul></li><li>HSV (Hue, Saturation, Value)</li></ul><h4 id="practical-color-sensing-bayer-filter">Practical Color Sensing: Bayer filter</h4><center><p>[[Pasted image 20231009140258.png]]</p></center><h3 id="shading">Shading</h3><blockquote><p>Shading means computing light reflected toward camera at a specific point.</p></blockquote><ul><li>Inputs:<ul><li>Viewer direction, <span class="math inline">\(v\)</span></li><li>Surface normal, <span class="math inline">\(n\)</span></li><li>Light direction, <span class="math inline">\(I\)</span> (for each of many lights)</li><li>Surface parameters</li></ul></li><li>Material == BRDF<ul><li>bidirectional reflectance distribution function: how light is reflected at a surface.<center></li></ul></li></ul><p>[[Pasted image 20231009141147.png]]</p></center><ul><li>Diffuse (Lambertian) reflection</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;photometric-image-formation&quot;&gt;Photometric Image Formation&lt;/h2&gt;
+&lt;h3 id=&quot;image-sensor&quot;&gt;Image Sensor&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Photon -&amp;gt; Electron -&amp;gt; Voltage&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;CMOS (Complimentary Metal-Oxide Semiconductor)
+&lt;ul&gt;
+&lt;li&gt;Rolling shutter (CMOS scans row by row)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;CCD (Charge Coupled Device)
+&lt;ul&gt;
+&lt;li&gt;Global Shutter ### Shutter&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Shutter speed
+&lt;ul&gt;
+&lt;li&gt;Shutter speed controls the exposure time.&lt;/li&gt;
+&lt;li&gt;The pixel value is equal to the integral of the light intensity within the exposure time. (e.g. capturing the lightening with a exposure time of 1 minute)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Shutter effect
+&lt;ul&gt;
+&lt;li&gt;Rolling Shutter effect (usually happens with cameras using CMOS) ### Color Sensing&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;color-spaces&quot;&gt;Color Spaces&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;RGB (Red, Green, Blue)
+&lt;ul&gt;
+&lt;li&gt;Easy for devices&lt;/li&gt;
+&lt;li&gt;But not perceptual&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;HSV (Hue, Saturation, Value)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;practical-color-sensing-bayer-filter&quot;&gt;Practical Color Sensing: Bayer filter&lt;/h4&gt;
+&lt;center&gt;
+&lt;p&gt;[[Pasted image 20231009140258.png]]&lt;/p&gt;
+&lt;/center&gt;
+&lt;h3 id=&quot;shading&quot;&gt;Shading&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Shading means computing light reflected toward camera at a specific point.&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>Python Handbook</title>
     <link href="http://example.com/2023/09/25/Python%20Handbook/"/>
     <id>http://example.com/2023/09/25/Python%20Handbook/</id>
     <published>2023-09-25T13:47:36.345Z</published>
-    <updated>2023-09-27T10:39:57.760Z</updated>
+    <updated>2023-10-06T03:09:03.844Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="file-io">File I/O</h2><ul><li>将一个txt文件中的矩阵读出/将一个矩阵写入txt文件中。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">file_to_matrix</span>(<span class="params">path</span>):</span><br><span class="line">    mat = np.loadtxt(path, dtype=np.int32, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    mat = np.array(mat, dtype=np.uint8)</span><br><span class="line">    <span class="keyword">return</span> mat</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">matrix_to_file</span>(<span class="params">mat, path</span>):</span><br><span class="line">    np.savetxt(path, np.c_[mat], fmt=<span class="string">&#x27;%d&#x27;</span>, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br></pre></td></tr></table></figure></li></ul><h2 id="matrix">Matrix</h2><ul><li>将矩阵展开成为一维数组。 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mat = mat.ravel() <span class="comment">#横向</span></span><br><span class="line"></span><br><span class="line">mat = mat.ravel(order=<span class="string">&#x27;F&#x27;</span>) <span class="comment">#纵向</span></span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="file-io">File I/O</h2><ul><li>将一个txt文件中的矩阵读出/将一个矩阵写入txt文件中。 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">file_to_matrix</span>(<span class="params">path</span>):</span><br><span class="line">    mat = np.loadtxt(path, dtype=np.int32, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    mat = np.array(mat, dtype=np.uint8)</span><br><span class="line">    <span class="keyword">return</span> mat</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">matrix_to_file</span>(<span class="params">mat, path</span>):</span><br><span class="line">    np.savetxt(path, np.c_[mat], fmt=<span class="string">&#x27;%d&#x27;</span>, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br></pre></td></tr></table></figure></li></ul><h2 id="matrix">Matrix</h2><ul><li>将矩阵展开成为一维数组。 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mat = mat.ravel() <span class="comment">#横向</span></span><br><span class="line"></span><br><span class="line">mat = mat.ravel(order=<span class="string">&#x27;F&#x27;</span>) <span class="comment">#纵向</span></span><br></pre></td></tr></table></figure></li></ul>]]></content>
     
     
-      
-      
     <summary type="html">&lt;h2 id=&quot;file-io&quot;&gt;File I/O&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;将一个txt文件中的矩阵读出/将一个矩阵写入txt文件中。
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre</summary>
-      
+&lt;li&gt;将一个txt文件中的矩阵读出/将一个矩阵写入txt文件中。 &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title function_&quot;&gt;file_to_matrix&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;path&lt;/span&gt;):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    mat = np.loadtxt(path, dtype=np.int32, delimiter=&lt;span class=&quot;string&quot;&gt;&amp;#x27; &amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    mat = np.array(mat, dtype=np.uint8)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; mat&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title function_&quot;&gt;matrix_to_file&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;mat, path&lt;/span&gt;):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    np.savetxt(path, np.c_[mat], fmt=&lt;span class=&quot;string&quot;&gt;&amp;#x27;%d&amp;#x27;&lt;/span&gt;, delimiter=&lt;span class=&quot;string&quot;&gt;&amp;#x27; &amp;#x27;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;matrix&quot;&gt;Matrix&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;将矩阵展开成为一维数组。 &lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mat = mat.ravel() &lt;span class=&quot;comment&quot;&gt;#横向&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mat = mat.ravel(order=&lt;span class=&quot;string&quot;&gt;&amp;#x27;F&amp;#x27;&lt;/span&gt;) &lt;span class=&quot;comment&quot;&gt;#纵向&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</summary>
     
     
     
@@ -42,45 +399,40 @@
   </entry>
   
   <entry>
-    <title>Articulated Robots: Lec1 Introduction</title>
-    <link href="http://example.com/2023/09/24/Articulated%20Robots%20Lec1/"/>
-    <id>http://example.com/2023/09/24/Articulated%20Robots%20Lec1/</id>
-    <published>2023-09-24T07:19:58.405Z</published>
-    <updated>2023-09-27T10:49:42.716Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="intro">Intro</h2><ul><li><strong>Mechanism</strong>: a system of two or more linked machineparts with kinetic parts.<ul><li>serially-connected open chain/close chain</li></ul></li><li><strong>Kinetic pairs</strong>: the moveable contact between twolinked machine pairs (Spot, Line, Surface).<ul><li>by pressure of contacts:<ul><li>lower pairs - surface</li><li>higher pairs - spot and line <strong>Notion: most pairs in a robotare planar pairs.</strong></li></ul></li></ul></li></ul><h2 id="degree-of-freedom">Degree of Freedom</h2><ul><li>a particle: <span class="math inline">\(DoF=3\)</span></li><li>a rigid body: <span class="math inline">\(DoF=6\)</span></li><li>a robot: <span class="math inline">\(DoF\)</span> depends...</li></ul><h3 id="dof-of-planar-mechanisms">DoF of Planar Mechanisms</h3><p>No. of movable parts: <span class="math inline">\(n=N-1\)</span> (Nis the number of pairs) No. of lower pairs: <spanclass="math inline">\(L\)</span> (brings <spanclass="math inline">\(2L\)</span> constraints) No. of higher pairs:<span class="math inline">\(H\)</span> (brings <spanclass="math inline">\(H\)</span> constraints)</p><p>total <span class="math inline">\(DoF\)</span>: <spanclass="math inline">\(3n-2L-H\)</span></p><h2 id="robot-manipulators">Robot Manipulators</h2>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;intro&quot;&gt;Intro&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Mechanism&lt;/strong&gt;: a system of two or more linked machine
-parts with kinetic parts.
-&lt;ul&gt;
-&lt;l</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>z变换</title>
     <link href="http://example.com/2023/09/20/z%E5%8F%98%E6%8D%A2/"/>
     <id>http://example.com/2023/09/20/z%E5%8F%98%E6%8D%A2/</id>
     <published>2023-09-20T08:29:31.493Z</published>
-    <updated>2023-09-27T10:49:51.222Z</updated>
+    <updated>2023-10-01T05:43:15.267Z</updated>
     
-    <content type="html"><![CDATA[<p><span class="math inline">\(z\)</span>变换（<spanclass="math inline">\(ZT\)</span>）<strong>是对离散序列进行的一种数学变换</strong>，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入<spanclass="math inline">\(z\)</span>变换的主要目的是希望方便对于离散控制系统的研究。</p><h2 id="z变换"><span class="math inline">\(z\)</span>变换</h2><h3 id="z变换的定义"><spanclass="math inline">\(z\)</span>变换的定义</h3><p>设连续函数<spanclass="math inline">\(e(t)\)</span>是可拉氏变换的，则其拉氏变换定义为：<span class="math display">\[    E(s)=\mathscr{L}\left[ e(t) \right]=\int_{0}^{\infty}e(t)e^{-sT}dt\]</span> 对<spanclass="math inline">\(e(t)\)</span>的采样后的信号的表达式为： <spanclass="math display">\[e^*(t)=\sum_0^\infty e(nT)\delta(t-nT)\]</span> 采样信号<spanclass="math inline">\(e^*(t)\)</span>的拉氏变换为：</p><p><span class="math display">\[E^*(s)=\mathscr{L}[e^*(t)]=\sum_0^\infty e(nT)e^{-nsT}\]</span> 可以看到在<spanclass="math inline">\(s\)</span>域中的结果是比较复杂的，所以为了方便起见我们定义<spanclass="math inline">\(z=e^{sT}\)</span>，<spanclass="math inline">\(T\)</span>为采样周期，<spanclass="math inline">\(z\)</span>是在复数平面上定义的一个复变量，称为<spanclass="math inline">\(z\)</span>为变换算子。</p><p>采样信号<span class="math inline">\(e^*(t)\)</span>的<spanclass="math inline">\(z\)</span>变换为： <span class="math display">\[E(z)=\mathscr{Z}[e^*(t)]=\sum_0^\infty e(nT)e^{-snT}|_{s=\frac{1}{T}lnz}=\sum_0^\infty e(nT)z^{-n}\]</span>这个结果的形式是很简单的，实际上就是采样所得函数在每个采样点<spanclass="math inline">\(t=nT\)</span>时候的值乘上<spanclass="math inline">\(z^{-n}\)</span>，所以这个序列实际上表达出了每个特定的时刻的原函数取值。</p><h3 id="求z变换的方法">求<spanclass="math inline">\(z\)</span>变换的方法</h3><ol type="1"><li><p>级数求和 根据定义求<span class="math inline">\(z\)</span>变换：<span class="math display">\[F(z)=\mathscr{Z}[f^*(t)]=\sum_0^\infty f(nT)e^{-snT}|_{s=\frac{1}{T}lnz}=\sum_0^\infty f(nT)z^{-n}\]</span> 我们对于连续信号<spanclass="math inline">\(f(t)\)</span>只需要将其在采样时间<spanclass="math inline">\(t=nT\)</span>的时候的取值与对应的<spanclass="math inline">\(z^{-n}\)</span>相乘然后求和即可。</p></li><li><p>部分分式展开 这种方法主要用于对<spanclass="math inline">\(F(s)\)</span>进行变换。也就是说先求出已知的连续时间函数<spanclass="math inline">\(f(x)\)</span>的拉氏变换<spanclass="math inline">\(F(s)\)</span>，再把这个拉氏变换的结果展开成部分分式之和的形式，使得每一个部分对应的分式能够对应简单的时间函数。然后可得对应部分分式之和的<spanclass="math inline">\(z\)</span>变换结果。</p></li></ol><p>注意：<span class="math inline">\(F(z)=\mathscr{Z}[f^*(t)] \neq\mathscr{Z}[f(t)]\)</span></p><p>对于拉氏变换的结果<spanclass="math inline">\(F(s)\)</span>，将其写为有理函数的形式： <spanclass="math display">\[                F(s)=\frac{P(s)}{Q(s)}=\frac{\sum_{i=0}^n(s-s_i)^r}{\sum_{j=0}^m(s-s_j)^r}=\]</span> 从而可以得到</p><ol start="3" type="1"><li>留数法</li></ol><ul><li><span class="math inline">\(f(t)\)</span>的<spanclass="math inline">\(Laplace\)</span>变换是一个有理分式，<spanclass="math inline">\(p_i\)</span>为其极点</li><li><spanclass="math inline">\(F(s)\)</span>分母的阶次比分子的阶次高2阶以上</li></ul><p>此时<spanclass="math inline">\(z\)</span>变换的闭合解析形式表示为：<spanclass="math inline">\(F(z)=\hat{F}(z)+\beta\)</span> 其中： <spanclass="math display">\[    \hat F(z)=\sum_{i=1}^{n}Res[F(p_i)\frac{1}{1-e^{-(s-p_i)T}}]\]</span> <span class="math display">\[\beta = \lim_{s \rightarrow \infty}sF(s) - \lim_{z \rightarrow\infty}\hat F(z)\]</span> <spanclass="math inline">\(\beta\)</span>的引入是为了保证初值相同。 ### <spanclass="math inline">\(z\)</span>变换的性质</p><ol type="1"><li><p>线性性质</p></li><li><p>初值定理 若<span class="math inline">\(\lim_{z \rightarrow\infty} F(z)\)</span>存在，则： <span class="math display">\[\lim_{k \rightarrow 0}f(kT)  = \lim_{z \rightarrow \infty}F(z)\]</span></p></li><li><p>终值定理 如果<spanclass="math inline">\(F(z)\)</span>满足下列条件之一：</p><ol type="1"><li><span class="math inline">\(F(z)\)</span>的所有极点在开单位圆内</li><li><spanclass="math inline">\(F(z)\)</span>至多只有一个在单位圆上的极点，且必须为1处的一阶极点那么： <span class="math display">\[\lim_{k \rightarrow \infty}f(kT)  = \lim_{z \rightarrow1}[(1-z^{-1})F(z)]\]</span></li></ol></li><li><p>复域微分定理 <span class="math display">\[\mathscr Z [tx(t)] = -Tz \frac{dX(z)}{dz}\]</span> <span class="math display">\[\mathscr Z [kx(t)] = -z \frac{dX(z)}{dz} \quad where \quad k =\frac{t}{T}\]</span></p></li><li><p>复位移定理 <span class="math display">\[\mathscr Z[e^{-\alpha T}x(t)]=\]</span></p></li></ol><h2 id="z反变换"><span class="math inline">\(z\)</span>反变换</h2><ul><li>相同的<span class="math inline">\(z\)</span>变换<spanclass="math inline">\(E(z)\)</span>对应于相同的采样函数<spanclass="math inline">\(e^*(t)\)</span>，但是不一定对应于相同的原连续函数<spanclass="math inline">\(e(t)\)</span>。</li></ul>]]></content>
+    <content type="html"><![CDATA[<p><span class="math inline">\(z\)</span>变换（<span class="math inline">\(ZT\)</span>）<strong>是对离散序列进行的一种数学变换</strong>，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入<span class="math inline">\(z\)</span>变换的主要目的是希望方便对于离散控制系统的研究。</p><h2 id="z变换"><span class="math inline">\(z\)</span>变换</h2><h3 id="z变换的定义"><span class="math inline">\(z\)</span>变换的定义</h3><p>设连续函数<span class="math inline">\(e(t)\)</span>是可拉氏变换的，则其拉氏变换定义为： <span class="math display">\[    E(s)=\mathscr{L}\left[ e(t) \right]=\int_{0}^{\infty}e(t)e^{-sT}dt\]</span> 对<span class="math inline">\(e(t)\)</span>的采样后的信号的表达式为： <span class="math display">\[e^*(t)=\sum_0^\infty e(nT)\delta(t-nT)\]</span> 采样信号<span class="math inline">\(e^*(t)\)</span>的拉氏变换为：</p><p><span class="math display">\[E^*(s)=\mathscr{L}[e^*(t)]=\sum_0^\infty e(nT)e^{-nsT}\]</span> 可以看到在<span class="math inline">\(s\)</span>域中的结果是比较复杂的，所以为了方便起见我们定义<span class="math inline">\(z=e^{sT}\)</span>，<span class="math inline">\(T\)</span>为采样周期，<span class="math inline">\(z\)</span>是在复数平面上定义的一个复变量，称为<span class="math inline">\(z\)</span>为变换算子。</p><p>采样信号<span class="math inline">\(e^*(t)\)</span>的<span class="math inline">\(z\)</span>变换为： <span class="math display">\[E(z)=\mathscr{Z}[e^*(t)]=\sum_0^\infty e(nT)e^{-snT} |_{s=\frac{1}{T}lnz}=\sum_0^\infty e(nT)z^{-n}\]</span> 这个结果的形式是很简单的，实际上就是采样所得函数在每个采样点<span class="math inline">\(t=nT\)</span>时候的值乘上<span class="math inline">\(z^{-n}\)</span>，所以这个序列实际上表达出了每个特定的时刻的原函数取值。</p><h3 id="求z变换的方法">求<span class="math inline">\(z\)</span>变换的方法</h3><ol type="1"><li><p>级数求和 根据定义求<span class="math inline">\(z\)</span>变换： <span class="math display">\[F(z)=\mathscr{Z}[f^*(t)]=\sum_0^\infty f(nT)e^{-snT} |_{s=\frac{1}{T}lnz}=\sum_0^\infty f(nT)z^{-n}\]</span> 我们对于连续信号<span class="math inline">\(f(t)\)</span>只需要将其在采样时间<span class="math inline">\(t=nT\)</span>的时候的取值与对应的<span class="math inline">\(z^{-n}\)</span>相乘然后求和即可。</p></li><li><p>部分分式展开 这种方法主要用于对<span class="math inline">\(F(s)\)</span>进行变换。也就是说先求出已知的连续时间函数<span class="math inline">\(f(x)\)</span>的拉氏变换<span class="math inline">\(F(s)\)</span>，再把这个拉氏变换的结果展开成部分分式之和的形式，使得每一个部分对应的分式能够对应简单的时间函数。然后可得对应部分分式之和的<span class="math inline">\(z\)</span>变换结果。</p></li></ol><p>注意：<span class="math inline">\(F(z)=\mathscr{Z}[f^*(t)] \neq \mathscr{Z}[f(t)]\)</span></p><p>对于拉氏变换的结果<span class="math inline">\(F(s)\)</span>，将其写为有理函数的形式： <span class="math display">\[                F(s)=\frac{P(s)}{Q(s)}=\frac{\sum_{i=0}^n(s-s_i)^r}{\sum_{j=0}^m(s-s_j)^r}=\]</span> 从而可以得到</p><ol start="3" type="1"><li>留数法</li></ol><ul><li><span class="math inline">\(f(t)\)</span>的<span class="math inline">\(Laplace\)</span>变换是一个有理分式，<span class="math inline">\(p_i\)</span>为其极点</li><li><span class="math inline">\(F(s)\)</span>分母的阶次比分子的阶次高2阶以上</li></ul><p>此时<span class="math inline">\(z\)</span>变换的闭合解析形式表示为：<span class="math inline">\(F(z)=\hat{F}(z)+\beta\)</span> 其中： <span class="math display">\[    \hat F(z)=\sum_{i=1}^{n}Res[F(p_i)\frac{1}{1-e^{-(s-p_i)T}}]\]</span> <span class="math display">\[\beta = \lim_{s \rightarrow \infty}sF(s) - \lim_{z \rightarrow \infty}\hat F(z)\]</span> <span class="math inline">\(\beta\)</span>的引入是为了保证初值相同。</p><h3 id="z变换的性质"><span class="math inline">\(z\)</span>变换的性质</h3><ol type="1"><li><p>线性性质</p></li><li><p>初值定理 若<span class="math inline">\(\lim_{z \rightarrow \infty} F(z)\)</span>存在，则： <span class="math display">\[ \lim_{k \rightarrow 0}f(kT)  = \lim_{z \rightarrow \infty}F(z)  \]</span></p></li><li><p>终值定理 如果<span class="math inline">\(F(z)\)</span>满足下列条件之一：</p><ol type="1"><li><span class="math inline">\(F(z)\)</span> 的所有极点在开单位圆内</li><li><span class="math inline">\(F(z)\)</span>至多只有一个在单位圆上的极点，且必须为1处的一阶极点 那么： <span class="math display">\[ \lim_{k \rightarrow \infty}f(kT)  = \lim_{z \rightarrow 1}[(z-1)F(z)]  \]</span></li></ol></li><li><p>复域微分定理 <span class="math display">\[\mathscr Z [tx(t)] = -Tz \frac{dX(z)}{dz}\]</span> <span class="math display">\[\mathscr Z [kx(t)] = -z \frac{dX(z)}{dz} \quad where \quad k = \frac{t}{T} \]</span></p></li><li><p>复位移定理 <span class="math display">\[ \mathscr Z[e^{-\alpha T}x(t)]=\]</span></p></li></ol><h2 id="z反变换"><span class="math inline">\(z\)</span>反变换</h2><ul><li>相同的<span class="math inline">\(z\)</span>变换<span class="math inline">\(E(z)\)</span>对应于相同的采样函数<span class="math inline">\(e^*(t)\)</span>，但是不一定对应于相同的原连续函数<span class="math inline">\(e(t)\)</span>。</li></ul>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;p&gt;&lt;span class=&quot;math inline&quot;&gt;&#92;(z&#92;)&lt;/span&gt;变换（&lt;span
-class=&quot;math inline&quot;&gt;&#92;(ZT&#92;)&lt;/span&gt;）&lt;strong&gt;是对离散序列进行的一种数学变换&lt;/strong&gt;，常用于求线性时不变差分方程的解，它在离散系统</summary>
-      
+    <summary type="html">&lt;p&gt;&lt;span class=&quot;math inline&quot;&gt;&#92;(z&#92;)&lt;/span&gt;变换（&lt;span class=&quot;math inline&quot;&gt;&#92;(ZT&#92;)&lt;/span&gt;）&lt;strong&gt;是对离散序列进行的一种数学变换&lt;/strong&gt;，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入&lt;span class=&quot;math inline&quot;&gt;&#92;(z&#92;)&lt;/span&gt;变换的主要目的是希望方便对于离散控制系统的研究。&lt;/p&gt;
+&lt;h2 id=&quot;z变换&quot;&gt;&lt;span class=&quot;math inline&quot;&gt;&#92;(z&#92;)&lt;/span&gt;变换&lt;/h2&gt;
+&lt;h3 id=&quot;z变换的定义&quot;&gt;&lt;span class=&quot;math inline&quot;&gt;&#92;(z&#92;)&lt;/span&gt;变换的定义&lt;/h3&gt;
+&lt;p&gt;设连续函数&lt;span class=&quot;math inline&quot;&gt;&#92;(e(t)&#92;)&lt;/span&gt;是可拉氏变换的，则其拉氏变换定义为： &lt;span class=&quot;math display&quot;&gt;&#92;[
+    E(s)=&#92;mathscr{L}&#92;left[ e(t) &#92;right]=&#92;int_{0}^{&#92;infty}e(t)e^{-sT}dt
+&#92;]&lt;/span&gt; 对&lt;span class=&quot;math inline&quot;&gt;&#92;(e(t)&#92;)&lt;/span&gt;的采样后的信号的表达式为： &lt;span class=&quot;math display&quot;&gt;&#92;[
+e^*(t)=&#92;sum_0^&#92;infty e(nT)&#92;delta(t-nT)
+&#92;]&lt;/span&gt; 采样信号&lt;span class=&quot;math inline&quot;&gt;&#92;(e^*(t)&#92;)&lt;/span&gt;的拉氏变换为：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;&#92;[
+E^*(s)=&#92;mathscr{L}[e^*(t)]=&#92;sum_0^&#92;infty e(nT)e^{-nsT}
+&#92;]&lt;/span&gt; 可以看到在&lt;span class=&quot;math inline&quot;&gt;&#92;(s&#92;)&lt;/span&gt;域中的结果是比较复杂的，所以为了方便起见我们定义&lt;span class=&quot;math inline&quot;&gt;&#92;(z=e^{sT}&#92;)&lt;/span&gt;，&lt;span class=&quot;math inline&quot;&gt;&#92;(T&#92;)&lt;/span&gt;为采样周期，&lt;span class=&quot;math inline&quot;&gt;&#92;(z&#92;)&lt;/span&gt;是在复数平面上定义的一个复变量，称为&lt;span class=&quot;math inline&quot;&gt;&#92;(z&#92;)&lt;/span&gt;为变换算子。&lt;/p&gt;
+&lt;p&gt;采样信号&lt;span class=&quot;math inline&quot;&gt;&#92;(e^*(t)&#92;)&lt;/span&gt;的&lt;span class=&quot;math inline&quot;&gt;&#92;(z&#92;)&lt;/span&gt;变换为： &lt;span class=&quot;math display&quot;&gt;&#92;[
+E(z)=&#92;mathscr{Z}[e^*(t)]=&#92;sum_0^&#92;infty e(nT)e^{-snT} |_{s=&#92;frac{1}{T}lnz}=&#92;sum_0^&#92;infty e(nT)z^{-n}
+&#92;]&lt;/span&gt; 这个结果的形式是很简单的，实际上就是采样所得函数在每个采样点&lt;span class=&quot;math inline&quot;&gt;&#92;(t=nT&#92;)&lt;/span&gt;时候的值乘上&lt;span class=&quot;math inline&quot;&gt;&#92;(z^{-n}&#92;)&lt;/span&gt;，所以这个序列实际上表达出了每个特定的时刻的原函数取值。&lt;/p&gt;
+&lt;h3 id=&quot;求z变换的方法&quot;&gt;求&lt;span class=&quot;math inline&quot;&gt;&#92;(z&#92;)&lt;/span&gt;变换的方法&lt;/h3&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;&lt;p&gt;级数求和 根据定义求&lt;span class=&quot;math inline&quot;&gt;&#92;(z&#92;)&lt;/span&gt;变换： &lt;span class=&quot;math display&quot;&gt;&#92;[
+F(z)=&#92;mathscr{Z}[f^*(t)]=&#92;sum_0^&#92;infty f(nT)e^{-snT} |_{s=&#92;frac{1}{T}lnz}=&#92;sum_0^&#92;infty f(nT)z^{-n}
+&#92;]&lt;/span&gt; 我们对于连续信号&lt;span class=&quot;math inline&quot;&gt;&#92;(f(t)&#92;)&lt;/span&gt;只需要将其在采样时间&lt;span class=&quot;math inline&quot;&gt;&#92;(t=nT&#92;)&lt;/span&gt;的时候的取值与对应的&lt;span class=&quot;math inline&quot;&gt;&#92;(z^{-n}&#92;)&lt;/span&gt;相乘然后求和即可。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;部分分式展开 这种方法主要用于对&lt;span class=&quot;math inline&quot;&gt;&#92;(F(s)&#92;)&lt;/span&gt;进行变换。也就是说先求出已知的连续时间函数&lt;span class=&quot;math inline&quot;&gt;&#92;(f(x)&#92;)&lt;/span&gt;的拉氏变换&lt;span class=&quot;math inline&quot;&gt;&#92;(F(s)&#92;)&lt;/span&gt;，再把这个拉氏变换的结果展开成部分分式之和的形式，使得每一个部分对应的分式能够对应简单的时间函数。然后可得对应部分分式之和的&lt;span class=&quot;math inline&quot;&gt;&#92;(z&#92;)&lt;/span&gt;变换结果。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;注意：&lt;span class=&quot;math inline&quot;&gt;&#92;(F(z)=&#92;mathscr{Z}[f^*(t)] &#92;neq &#92;mathscr{Z}[f(t)]&#92;)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;对于拉氏变换的结果&lt;span class=&quot;math inline&quot;&gt;&#92;(F(s)&#92;)&lt;/span&gt;，将其写为有理函数的形式： &lt;span class=&quot;math display&quot;&gt;&#92;[
+                F(s)=&#92;frac{P(s)}{Q(s)}=&#92;frac{&#92;sum_{i=0}^n(s-s_i)^r}{&#92;sum_{j=0}^m(s-s_j)^r}=
+&#92;]&lt;/span&gt; 从而可以得到&lt;/p&gt;</summary>
     
     
     
@@ -99,11 +451,8 @@ class=&quot;math inline&quot;&gt;&#92;(ZT&#92;)&lt;/span&gt;）&lt;strong&gt;是
     <content type="html"><![CDATA[]]></content>
     
     
-      
-      
     <summary type="html">
 </summary>
-      
     
     
     
@@ -122,12 +471,23 @@ class=&quot;math inline&quot;&gt;&#92;(ZT&#92;)&lt;/span&gt;）&lt;strong&gt;是
     <content type="html"><![CDATA[<h2 id="c-types-and-structs">C++ Types and Structs</h2><h3 id="fundamental-types">Fundamental Types</h3><h3 id="dynamic-and-static-typing">Dynamic and Static typing</h3><p>C++ is a <strong>statically typed language.</strong></p><ul><li><code>statically typed</code>: Everything with a name (variables,functions, etc) is <strong>given a type before runtime.</strong>(C++)</li><li><code>dynamically typed</code>: Everything with a name (variables,functions, etc) is <strong>given a type at runtime</strong> based on thething’s current value. (Python)</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CRASH during runtime, can’t divide a string</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">div_3</span>(<span class="params">x</span>):</span><br><span class="line"><span class="keyword">return</span> x / <span class="number">3</span> </span><br><span class="line"></span><br><span class="line">div_3(<span class="string">&quot;hello&quot;</span>)</span><br></pre></td></tr></table></figure><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Compile error: this code will never run</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">div_3</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line"><span class="keyword">return</span> x / <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">div_3</span>(<span class="string">&quot;hello&quot;</span>);</span><br></pre></td></tr></table></figure><p><code>Runtime</code>: Period when program is executing commands(after compilation, if compiled).</p>]]></content>
     
     
-      
-      
     <summary type="html">&lt;h2 id=&quot;c-types-and-structs&quot;&gt;C++ Types and Structs&lt;/h2&gt;
 &lt;h3 id=&quot;fundamental-types&quot;&gt;Fundamental Types&lt;/h3&gt;
-&lt;h3 id=&quot;dynamic-and-static-typin</summary>
-      
+&lt;h3 id=&quot;dynamic-and-static-typing&quot;&gt;Dynamic and Static typing&lt;/h3&gt;
+&lt;p&gt;C++ is a &lt;strong&gt;statically typed language.&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;statically typed&lt;/code&gt;: Everything with a name (variables,
+functions, etc) is &lt;strong&gt;given a type before runtime.&lt;/strong&gt;
+(C++)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dynamically typed&lt;/code&gt;: Everything with a name (variables,
+functions, etc) is &lt;strong&gt;given a type at runtime&lt;/strong&gt; based on the
+thing’s current value. (Python)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# CRASH during runtime, can’t divide a string&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title function_&quot;&gt;div_3&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;x&lt;/span&gt;):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; x / &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;div_3(&lt;span class=&quot;string&quot;&gt;&amp;quot;hello&amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// Compile error: this code will never run&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;div_3&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; x)&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; x / &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;div_3&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;quot;hello&amp;quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;code&gt;Runtime&lt;/code&gt;: Period when program is executing commands
+(after compilation, if compiled).&lt;/p&gt;
+</summary>
     
     
     
@@ -146,11 +506,8 @@ class=&quot;math inline&quot;&gt;&#92;(ZT&#92;)&lt;/span&gt;）&lt;strong&gt;是
     <content type="html"><![CDATA[]]></content>
     
     
-      
-      
     <summary type="html">
 </summary>
-      
     
     
     
@@ -171,11 +528,8 @@ class=&quot;math inline&quot;&gt;&#92;(ZT&#92;)&lt;/span&gt;）&lt;strong&gt;是
     <content type="html"><![CDATA[]]></content>
     
     
-      
-      
     <summary type="html">
 </summary>
-      
     
     
     
@@ -183,29 +537,6 @@ class=&quot;math inline&quot;&gt;&#92;(ZT&#92;)&lt;/span&gt;）&lt;strong&gt;是
     <category term="Debug" scheme="http://example.com/tags/Debug/"/>
     
     <category term="Linux" scheme="http://example.com/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CS229: Lec1 Supervised Learning</title>
-    <link href="http://example.com/2023/09/19/CS229%20Lec1/"/>
-    <id>http://example.com/2023/09/19/CS229%20Lec1/</id>
-    <published>2023-09-19T01:53:29.923Z</published>
-    <updated>2023-09-19T05:10:29.943Z</updated>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
-      
-      
-    <summary type="html">
-</summary>
-      
-    
-    
-    
-    
-    <category term="MachineLearning" scheme="http://example.com/tags/MachineLearning/"/>
     
   </entry>
   
@@ -219,12 +550,35 @@ class=&quot;math inline&quot;&gt;&#92;(ZT&#92;)&lt;/span&gt;）&lt;strong&gt;是
     <content type="html"><![CDATA[<p>3## Introduction to streams</p><p>Abstractly, a <strong>stream</strong> is a sequence of bytes that canbe accessed sequentially. Over time, a stream may produce or consumepotentially unlimited amounts of data. You can imagine stream to be a<strong>character buffer</strong> that automatically interacts with theexternal source. Streams automatically convert variables to a stringform that can be written into a buffer. And the opposite is a similarcase. A string stream is not connected to any external source.</p><h2 id="standard-streams">Standard streams</h2><ul><li><code>cin</code>: an <code>istream</code> object tied to thestandard input (typically the keyboard)</li><li><code>cout</code>: an <code>ostream</code> object tied to thestandard output (typically the monitor)</li><li><code>cerr</code>: an <code>ostream</code> object tied to thestandard error (typically the monitor), providing unbuffered output</li><li><code>clog</code>: an <code>ostream</code> object tied to thestandard error (typically the monitor), providing buffered output</li></ul><h2 id="output-streams">Output streams</h2><p>After you initializing an stream (empty, or initialized with a<code>const char*</code> or something else), the position starts at thebeginning of the "buffer". But after your stream insertion, the positionstarts at the end. Here is an example with the<code>std::ostringstream</code> :</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span> <span class="comment">// for cout</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span>  <span class="comment">// for ostringstream</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">// ostringstream is a stream that writes to a string</span></span><br><span class="line"></span><br><span class="line">    <span class="function">std::ostringstream <span class="title">oss1</span><span class="params">(<span class="string">&quot; Hello world. &quot;</span>)</span></span>; <span class="comment">// initialize with string</span></span><br><span class="line">    std::cout &lt;&lt; oss1.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    std::ostringstream oss2; <span class="comment">// initialize with no string</span></span><br><span class="line">    oss2 &lt;&lt; <span class="string">&quot; Nice 2 meet u. &quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; oss2.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    oss2 &lt;&lt; <span class="string">&quot; See u tomorrow. &quot;</span> &lt;&lt; std::endl; <span class="comment">// append a string</span></span><br><span class="line">    std::cout &lt;&lt; oss2.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>And the output is:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hello world.</span><br><span class="line">Nice 2 meet u.</span><br><span class="line">Nice 2 meet u. See u tomorrow.</span><br></pre></td></tr></table></figure><h2 id="input-streams">Input streams</h2><p>Now we want to know the behavior of input streams. Take the<code>std::istringstream</code> as an example.</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function">std::istringstream <span class="title">iss</span><span class="params">(<span class="string">&quot; Nice to meet u 2. &quot;</span>)</span></span>;</span><br><span class="line">    std::cout &lt;&lt; iss.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line">    </span><br><span class="line">    std::string word;</span><br><span class="line">    <span class="type">double</span> number;</span><br><span class="line"></span><br><span class="line">    iss &gt;&gt; word &gt;&gt; number;</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;word: &quot;</span> &lt;&lt; word &lt;&lt; std::endl; <span class="comment">// &quot;word: Nice&quot;</span></span><br><span class="line">    std::cout &lt;&lt; iss.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;number: &quot;</span> &lt;&lt; number &lt;&lt; std::endl; <span class="comment">// &quot;number: ?&quot;</span></span><br></pre></td></tr></table></figure><p>And the output is:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> Nice to meet u 2.</span><br><span class="line">word: Nice</span><br><span class="line"> Nice to meet u 2.</span><br><span class="line">number: 0</span><br></pre></td></tr></table></figure><p>In the example above, the variables read something from the<code>std::istringstream</code>. But clearly the <em>number</em> failedto read the value expected. Now we modify the <em>iss</em> a little.</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function">std::istringstream <span class="title">iss</span><span class="params">(<span class="string">&quot; Nice 2 meet u too. &quot;</span>)</span></span>;</span><br></pre></td></tr></table></figure><p>And now the output is:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> Nice to meet u 2.</span><br><span class="line">word: Nice</span><br><span class="line"> Nice to meet u 2.</span><br><span class="line">number: 2</span><br></pre></td></tr></table></figure><h2 id="locate-and-set-the-position">Locate and set the position</h2><p>We use the method <code>tellp()</code> to get the position,<code>std::stream()</code> to create offset, and the<code>seekp()</code> to set a new position in the stream <code>ss</code>in the example below. These methods let you to manually set theposition, and most useful is the offset can be <strong>added</strong> topositions. But remember that <strong>the position can never be less than0</strong>.</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    std::fpos pos = ss.<span class="built_in">tellp</span>() + std::<span class="built_in">streamoff</span>(<span class="number">3</span>); <span class="comment">// get position, and add 3</span></span><br><span class="line">    ss.<span class="built_in">seekp</span>(pos); <span class="comment">// set position</span></span><br></pre></td></tr></table></figure><h2 id="state-bits">State bits</h2><p>There four bits to indicate the state of the stream.</p><ol type="1"><li><code>Good bit</code>: Ready for read/write. Nothing unusual, onwhen <strong>other bits are off</strong>.</li><li><code>Fail bit</code>: Previous operation failed, all futureoperations <strong>frozen</strong>. Like:<ul><li>Type mismatch</li><li>File can't be opened</li><li>Seeking failed</li></ul></li><li><code>EOF bit</code>: Previous operation reached the end of thebuffer content. Nothing left.</li><li><code>Bad bit</code>: External error, likely irrecoverable. Couldnot move characters from external source (e.g. the file you are readingfrom is suddenly deleted).</li></ol><p><strong>Caution !!!</strong> - <code>Good</code> and<code>Fail</code> are not opposite, and <code>Good</code> and<code>Bad</code> are not opposite. - <code>Fail</code> and<code>EOF</code> are normally you will be checking. - You will rarelyuse <code>Good</code>.</p><p>Here is a function <code>printStreamState</code> to print the statebits of a stream.</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="type">void</span> <span class="title">printStreamState</span><span class="params">(std::ostream &amp; os)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;good: &quot;</span> &lt;&lt; os.<span class="built_in">good</span>() &lt;&lt; std::endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;fail: &quot;</span> &lt;&lt; os.<span class="built_in">fail</span>() &lt;&lt; std::endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;eof: &quot;</span> &lt;&lt; os.<span class="built_in">eof</span>() &lt;&lt; std::endl;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;bad: &quot;</span> &lt;&lt; os.<span class="built_in">bad</span>() &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>As a result, we can implement a complete version of the function<code>stringToInteger</code> with <strong>error-checking</strong>.</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">stringToInteger</span><span class="params">(<span class="type">const</span> string&amp; str)</span> <span class="comment">//passing by reference and never change it</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="function">std::istringstream <span class="title">iss</span><span class="params">(str)</span></span>;</span><br><span class="line"><span class="type">int</span> result;</span><br><span class="line">iss &gt;&gt; result;</span><br><span class="line"><span class="keyword">if</span> (iss.<span class="built_in">fail</span>()) <span class="keyword">throw</span> std::<span class="built_in">domin_error</span>(...); <span class="comment">//read an integer from the buffer</span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span> remain;</span><br><span class="line">iss &gt;&gt; remain;</span><br><span class="line"><span class="keyword">if</span> (!iss.<span class="built_in">fail</span>()) <span class="keyword">throw</span> std::<span class="built_in">domin_error</span>(...); <span class="comment">//make sure no characters left in the buffer</span></span><br><span class="line"><span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>In fact, the <code>&gt;&gt;</code> operator returns the stream whichis converted to <code>!stream.fail()</code>. So we can have a veryhelpful shortcut from it:</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iss &gt;&gt; ch;</span><br><span class="line"><span class="keyword">if</span> (iss.<span class="built_in">fail</span>()) &#123; <span class="comment">//report error&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!(iss &gt;&gt; ch)) &#123; <span class="comment">//report error&#125;</span></span><br></pre></td></tr></table></figure><p>So the error-checking part in the function<code>stringToInteger</code> can be rewriten as:</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!(iss &gt;&gt; result) || iss &gt;&gt; remain) </span><br><span class="line"><span class="keyword">throw</span> std::<span class="built_in">domin_error</span>(...); <span class="comment">//read an integer from the buffer</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
     
     
-      
-      
     <summary type="html">&lt;p&gt;3## Introduction to streams&lt;/p&gt;
 &lt;p&gt;Abstractly, a &lt;strong&gt;stream&lt;/strong&gt; is a sequence of bytes that can
-be accessed sequentially. Over</summary>
-      
+be accessed sequentially. Over time, a stream may produce or consume
+potentially unlimited amounts of data. You can imagine stream to be a
+&lt;strong&gt;character buffer&lt;/strong&gt; that automatically interacts with the
+external source. Streams automatically convert variables to a string
+form that can be written into a buffer. And the opposite is a similar
+case. A string stream is not connected to any external source.&lt;/p&gt;
+&lt;h2 id=&quot;standard-streams&quot;&gt;Standard streams&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cin&lt;/code&gt;: an &lt;code&gt;istream&lt;/code&gt; object tied to the
+standard input (typically the keyboard)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cout&lt;/code&gt;: an &lt;code&gt;ostream&lt;/code&gt; object tied to the
+standard output (typically the monitor)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cerr&lt;/code&gt;: an &lt;code&gt;ostream&lt;/code&gt; object tied to the
+standard error (typically the monitor), providing unbuffered output&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;clog&lt;/code&gt;: an &lt;code&gt;ostream&lt;/code&gt; object tied to the
+standard error (typically the monitor), providing buffered output&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;output-streams&quot;&gt;Output streams&lt;/h2&gt;
+&lt;p&gt;After you initializing an stream (empty, or initialized with a
+&lt;code&gt;const char*&lt;/code&gt; or something else), the position starts at the
+beginning of the &quot;buffer&quot;. But after your stream insertion, the position
+starts at the end. Here is an example with the
+&lt;code&gt;std::ostringstream&lt;/code&gt; :&lt;/p&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;// for cout&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;#&lt;span class=&quot;keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;lt;sstream&amp;gt;&lt;/span&gt;  &lt;span class=&quot;comment&quot;&gt;// for ostringstream&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;// ostringstream is a stream that writes to a string&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;std::ostringstream &lt;span class=&quot;title&quot;&gt;oss1&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;string&quot;&gt;&amp;quot; Hello world. &amp;quot;&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;comment&quot;&gt;// initialize with string&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    std::cout &amp;lt;&amp;lt; oss1.&lt;span class=&quot;built_in&quot;&gt;str&lt;/span&gt;() &amp;lt;&amp;lt; std::endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    std::ostringstream oss2; &lt;span class=&quot;comment&quot;&gt;// initialize with no string&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    oss2 &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&amp;quot; Nice 2 meet u. &amp;quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    std::cout &amp;lt;&amp;lt; oss2.&lt;span class=&quot;built_in&quot;&gt;str&lt;/span&gt;() &amp;lt;&amp;lt; std::endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    oss2 &amp;lt;&amp;lt; &lt;span class=&quot;string&quot;&gt;&amp;quot; See u tomorrow. &amp;quot;&lt;/span&gt; &amp;lt;&amp;lt; std::endl; &lt;span class=&quot;comment&quot;&gt;// append a string&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    std::cout &amp;lt;&amp;lt; oss2.&lt;span class=&quot;built_in&quot;&gt;str&lt;/span&gt;() &amp;lt;&amp;lt; std::endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;And the output is:&lt;/p&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Hello world.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Nice 2 meet u.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Nice 2 meet u. See u tomorrow.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;input-streams&quot;&gt;Input streams&lt;/h2&gt;</summary>
     
     
     

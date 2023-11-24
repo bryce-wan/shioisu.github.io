@@ -19,11 +19,15 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta property="og:type" content="website">
+    <meta name="description" content="Depth Estimation Introduction Stereo matching Baseline What&#39;s the optimal baseline? - Too small: large depth error - Too large: difficult search problem Baseline比较大说明看同一个点的视角差距比较大，做匹配会比较难 Baselin">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Shio">
-<meta property="og:url" content="http://example.com/archives/2023/09/index.html">
+<meta property="og:url" content="http://example.com/2023/11/24/Computer%20Vision%20Lec8%20Depth%20Estimation%20and%203D%20reconstruction/index.html">
 <meta property="og:site_name" content="Shio">
+<meta property="og:description" content="Depth Estimation Introduction Stereo matching Baseline What&#39;s the optimal baseline? - Too small: large depth error - Too large: difficult search problem Baseline比较大说明看同一个点的视角差距比较大，做匹配会比较难 Baselin">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-11-24T15:13:40.583Z">
+<meta property="article:modified_time" content="2023-11-20T07:20:06.244Z">
 <meta property="article:author" content="Chenyang Wan">
 <meta name="twitter:card" content="summary">
     <meta http-equiv="Cache-control" content="no-cache">
@@ -232,6 +236,8 @@
         }
     </script>
     
+        <body class="post-body">
+    
         <!-- header -->
         <header class="header header-mobile">
     <!-- top read progress line -->
@@ -261,6 +267,17 @@
     </div>
     <!-- toggle banner for post layout -->
     
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="/">Sh1o&#39;s Studio</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name"></a>
+            </div>
+        </div>
+    
 </header>
 
         <!-- fixed footer -->
@@ -287,24 +304,78 @@
 
 
 
+    height:50vh;
+
 ">
     
     <!-- 主页  -->
     
+        
+    <!-- 404页  -->
+    
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+                [Untitled Post]
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+                
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+    
+</div>
+
+                
+                <!-- 文章字数统计 -->
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">1.4k</span>Reading time: <span class="post-count reading-time">6 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2023/11/24</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -434,344 +505,214 @@
 
             <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
             <div class="container container-unloaded">
-                <main class="main index-page">
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/25/Python%20Handbook/">
-                
-                <span class="abstract-title-text">Python Handbook</span>
-            </a>
-            <div class="abstract-content">
-                <h2 id="file-io">File I/O</h2>
-<ul>
-<li>将一个txt文件中的矩阵读出/将一个矩阵写入txt文件中。 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">file_to_matrix</span>(<span class="params">path</span>):</span><br><span class="line">    mat = np.loadtxt(path, dtype=np.int32, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    mat = np.array(mat, dtype=np.uint8)</span><br><span class="line">    <span class="keyword">return</span> mat</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">matrix_to_file</span>(<span class="params">mat, path</span>):</span><br><span class="line">    np.savetxt(path, np.c_[mat], fmt=<span class="string">&#x27;%d&#x27;</span>, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="matrix">Matrix</h2>
-<ul>
-<li>将矩阵展开成为一维数组。 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mat = mat.ravel() <span class="comment">#横向</span></span><br><span class="line"></span><br><span class="line">mat = mat.ravel(order=<span class="string">&#x27;F&#x27;</span>) <span class="comment">#纵向</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/10/06">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/25</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Python">Python</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/20/z%E5%8F%98%E6%8D%A2/">
-                
-                <span class="abstract-title-text">z变换</span>
-            </a>
-            <div class="abstract-content">
-                <p><span class="math inline">\(z\)</span>变换（<span class="math inline">\(ZT\)</span>）<strong>是对离散序列进行的一种数学变换</strong>，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入<span class="math inline">\(z\)</span>变换的主要目的是希望方便对于离散控制系统的研究。</p>
-<h2 id="z变换"><span class="math inline">\(z\)</span>变换</h2>
-<h3 id="z变换的定义"><span class="math inline">\(z\)</span>变换的定义</h3>
-<p>设连续函数<span class="math inline">\(e(t)\)</span>是可拉氏变换的，则其拉氏变换定义为： <span class="math display">\[
-    E(s)=\mathscr{L}\left[ e(t) \right]=\int_{0}^{\infty}e(t)e^{-sT}dt
-\]</span> 对<span class="math inline">\(e(t)\)</span>的采样后的信号的表达式为： <span class="math display">\[
-e^*(t)=\sum_0^\infty e(nT)\delta(t-nT)
-\]</span> 采样信号<span class="math inline">\(e^*(t)\)</span>的拉氏变换为：</p>
-<p><span class="math display">\[
-E^*(s)=\mathscr{L}[e^*(t)]=\sum_0^\infty e(nT)e^{-nsT}
-\]</span> 可以看到在<span class="math inline">\(s\)</span>域中的结果是比较复杂的，所以为了方便起见我们定义<span class="math inline">\(z=e^{sT}\)</span>，<span class="math inline">\(T\)</span>为采样周期，<span class="math inline">\(z\)</span>是在复数平面上定义的一个复变量，称为<span class="math inline">\(z\)</span>为变换算子。</p>
-<p>采样信号<span class="math inline">\(e^*(t)\)</span>的<span class="math inline">\(z\)</span>变换为： <span class="math display">\[
-E(z)=\mathscr{Z}[e^*(t)]=\sum_0^\infty e(nT)e^{-snT} |_{s=\frac{1}{T}lnz}=\sum_0^\infty e(nT)z^{-n}
-\]</span> 这个结果的形式是很简单的，实际上就是采样所得函数在每个采样点<span class="math inline">\(t=nT\)</span>时候的值乘上<span class="math inline">\(z^{-n}\)</span>，所以这个序列实际上表达出了每个特定的时刻的原函数取值。</p>
-<h3 id="求z变换的方法">求<span class="math inline">\(z\)</span>变换的方法</h3>
+                <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="depth-estimation">Depth Estimation</h2>
+<h3 id="introduction">Introduction</h3>
+<h3 id="stereo-matching">Stereo matching</h3>
+<h4 id="baseline">Baseline</h4>
+<p>What's the optimal baseline? - Too small: large depth error - Too large: difficult search problem</p>
+<p>Baseline比较大说明看同一个点的视角差距比较大，做匹配会比较难 Baseline比较小的时候做三角化存在歧义性。</p>
+<p>[[Pasted image 20231120132949.png|423]]</p>
+<h4 id="stereo-reconstruction-pipeline">Stereo reconstruction pipeline</h4>
 <ol type="1">
-<li><p>级数求和 根据定义求<span class="math inline">\(z\)</span>变换： <span class="math display">\[
-F(z)=\mathscr{Z}[f^*(t)]=\sum_0^\infty f(nT)e^{-snT} |_{s=\frac{1}{T}lnz}=\sum_0^\infty f(nT)z^{-n}
-\]</span> 我们对于连续信号<span class="math inline">\(f(t)\)</span>只需要将其在采样时间<span class="math inline">\(t=nT\)</span>的时候的取值与对应的<span class="math inline">\(z^{-n}\)</span>相乘然后求和即可。</p></li>
-<li><p>部分分式展开 这种方法主要用于对<span class="math inline">\(F(s)\)</span>进行变换。也就是说先求出已知的连续时间函数<span class="math inline">\(f(x)\)</span>的拉氏变换<span class="math inline">\(F(s)\)</span>，再把这个拉氏变换的结果展开成部分分式之和的形式，使得每一个部分对应的分式能够对应简单的时间函数。然后可得对应部分分式之和的<span class="math inline">\(z\)</span>变换结果。</p></li>
+<li>Calibrate cameras</li>
+<li>Rectify images</li>
+<li>Compute disparity map</li>
+<li>Estimate depth</li>
 </ol>
-<p>注意：<span class="math inline">\(F(z)=\mathscr{Z}[f^*(t)] \neq \mathscr{Z}[f(t)]\)</span></p>
-<p>对于拉氏变换的结果<span class="math inline">\(F(s)\)</span>，将其写为有理函数的形式： <span class="math display">\[
-                F(s)=\frac{P(s)}{Q(s)}=\frac{\sum_{i=0}^n(s-s_i)^r}{\sum_{j=0}^m(s-s_j)^r}=
-\]</span> 从而可以得到</p>
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/10/01">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/20</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Math">Math</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/19/CS106L%20Lec2%20Stream%20II/">
-                
-                <span class="abstract-title-text">CS106L: Lec2 Stream II</span>
-            </a>
-            <div class="abstract-content">
-                
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/19">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/19</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Cpp">Cpp</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/19/CS106L%20Lec0%20Intro/">
-                
-                <span class="abstract-title-text">CS106L: Lec0 Intro</span>
-            </a>
-            <div class="abstract-content">
-                <h2 id="c-types-and-structs">C++ Types and Structs</h2>
-<h3 id="fundamental-types">Fundamental Types</h3>
-<h3 id="dynamic-and-static-typing">Dynamic and Static typing</h3>
-<p>C++ is a <strong>statically typed language.</strong></p>
+<h4 id="errors">Errors</h4>
+<h5 id="what-will-cause-errors">What will cause errors?</h5>
 <ul>
-<li><code>statically typed</code>: Everything with a name (variables,
-functions, etc) is <strong>given a type before runtime.</strong>
-(C++)</li>
-<li><code>dynamically typed</code>: Everything with a name (variables,
-functions, etc) is <strong>given a type at runtime</strong> based on the
-thing’s current value. (Python)</li>
+<li>Camera calibration errors</li>
+<li>Poor image resolution</li>
+<li>Occlusions</li>
+<li>Violations of brightness constancy (specular reflections) 两张图像是接近的同一位置同一时间拍的，但是由于镜面反射会导致亮度差距比较大，打破了亮度一致性的假设，造成匹配时候的误差。比如透明的玻璃或者金属表面</li>
+<li>Texture-less regions 缺少纹理特征难以匹配 ##### Solution: Active stereo with structured light</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CRASH during runtime, can’t divide a string</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">div_3</span>(<span class="params">x</span>):</span><br><span class="line">	<span class="keyword">return</span> x / <span class="number">3</span> </span><br><span class="line"></span><br><span class="line">div_3(<span class="string">&quot;hello&quot;</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Compile error: this code will never run</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">div_3</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x / <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">div_3</span>(<span class="string">&quot;hello&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p><code>Runtime</code>: Period when program is executing commands
-(after compilation, if compiled).</p>
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/23">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/19</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Cpp">Cpp</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/19/Debug%20list%20ROS/">
-                
-                <span class="abstract-title-text">Debug list: ROS</span>
-            </a>
-            <div class="abstract-content">
-                
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/19">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/19</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Debug">Debug</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="ROS">ROS</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/19/Debug%20list%20Linux/">
-                
-                <span class="abstract-title-text">Debug list: Linux</span>
-            </a>
-            <div class="abstract-content">
-                
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/19">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/19</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Debug">Debug</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/18/CS106L%20Lec1%20Stream%20I/">
-                
-                <span class="abstract-title-text">CS106L: Lec1 Stream I</span>
-            </a>
-            <div class="abstract-content">
-                <p>3## Introduction to streams</p>
-<p>Abstractly, a <strong>stream</strong> is a sequence of bytes that can
-be accessed sequentially. Over time, a stream may produce or consume
-potentially unlimited amounts of data. You can imagine stream to be a
-<strong>character buffer</strong> that automatically interacts with the
-external source. Streams automatically convert variables to a string
-form that can be written into a buffer. And the opposite is a similar
-case. A string stream is not connected to any external source.</p>
-<h2 id="standard-streams">Standard streams</h2>
+<p>[[Pasted image 20231120133908.png|500]]</p>
 <ul>
-<li><code>cin</code>: an <code>istream</code> object tied to the
-standard input (typically the keyboard)</li>
-<li><code>cout</code>: an <code>ostream</code> object tied to the
-standard output (typically the monitor)</li>
-<li><code>cerr</code>: an <code>ostream</code> object tied to the
-standard error (typically the monitor), providing unbuffered output</li>
-<li><code>clog</code>: an <code>ostream</code> object tied to the
-standard error (typically the monitor), providing buffered output</li>
+<li>Two methods:
+<ul>
+<li>1 projector and 2 cameras 一个红外相机和一个RGB相机，投影仪投影的是红外光的pattern。红外相机接收的是红外光，所以pattern是红外光能够避免物体本身色彩的影响进行估计。然后重建要求恢复色彩模型所以加一个RGB相机。更精确。</li>
+<li>1 projector and 1 camera 为什么可以少一个相机？因为投影的pattern是已知的，所以projector相当于一个相机。</li>
+</ul></li>
 </ul>
-<h2 id="output-streams">Output streams</h2>
-<p>After you initializing an stream (empty, or initialized with a
-<code>const char*</code> or something else), the position starts at the
-beginning of the "buffer". But after your stream insertion, the position
-starts at the end. Here is an example with the
-<code>std::ostringstream</code> :</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span> <span class="comment">// for cout</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span>  <span class="comment">// for ostringstream</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// ostringstream is a stream that writes to a string</span></span><br><span class="line">	</span><br><span class="line">    <span class="function">std::ostringstream <span class="title">oss1</span><span class="params">(<span class="string">&quot; Hello world. &quot;</span>)</span></span>; <span class="comment">// initialize with string</span></span><br><span class="line">    std::cout &lt;&lt; oss1.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    std::ostringstream oss2; <span class="comment">// initialize with no string</span></span><br><span class="line">    oss2 &lt;&lt; <span class="string">&quot; Nice 2 meet u. &quot;</span>;</span><br><span class="line">    std::cout &lt;&lt; oss2.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    oss2 &lt;&lt; <span class="string">&quot; See u tomorrow. &quot;</span> &lt;&lt; std::endl; <span class="comment">// append a string</span></span><br><span class="line">    std::cout &lt;&lt; oss2.<span class="built_in">str</span>() &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>And the output is:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hello world.</span><br><span class="line">Nice 2 meet u.</span><br><span class="line">Nice 2 meet u. See u tomorrow.</span><br></pre></td></tr></table></figure>
-<h2 id="input-streams">Input streams</h2>
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/09/21">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/18</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Cpp">Cpp</a>
-    
-</div>
+<h4 id="summary">Summary</h4>
+<ul>
+<li>Passive stereo: 2 RGB cameras</li>
+<li>Active stereo: +projector</li>
+<li>Lidar(ToF) ### Multi-view stereo(MVS)</li>
+</ul>
+<h4 id="introduction-1">Introduction</h4>
+<h5 id="advantages">Advantages</h5>
+<ul>
+<li>Can match windows using more than 1 neighbor, giving a stronger constraint</li>
+<li>If you have lots of potential neighbors, can choose the best subset of neighbors to match per reference image</li>
+<li>Can reconstruct a depth map for each reference frame, and the merge into a complete 3D model</li>
+</ul>
+<h5 id="basic-idea">Basic idea</h5>
+<ul>
+<li>Correct depth gives consistent projections</li>
+<li>Incorrect depth gives inconsistent projections</li>
+<li>Compute the error for each depth value for each point in the reference image</li>
+</ul>
+<p>[[Pasted image 20231120135409.png|475]]</p>
+<ul>
+<li>Find the depth value that gives the smallest error 一般的做法是，对于每一个像素，每一个深度都遍历求解。计算开销比较大。得到一个cost volume</li>
+</ul>
+<h4 id="cost-volume">Cost Volume</h4>
+<h5 id="idea">Idea</h5>
+<ul>
+<li>A 4D tensor and a search space 双目视觉立体匹配中的一种左右视差搜索空间，用于表示左右相机的水平视差和对应的像素点 ##### Plane Sweep</li>
+<li>用来构造cost volume，方法是每次假设一个统一的深度，再把这个plane投影到其他的perspective上，然后对所有深度重复这一过程，得到cost volume</li>
+</ul>
+<p>[[Pasted image 20231120135837.png|500]]</p>
+<p>[[Pasted image 20231120135940.png|500]]</p>
+<h4 id="patch-match">Patch Match</h4>
+<p>An efficient algorithm for solving correspondence problems - Assumptions - Large number of random sampling will yield some good guesses 随便猜，总有能猜中的 - Neighbors have similar offsets 相邻的像素的disparity是相似的</p>
+<p>[[Pasted image 20231120140254.png|500]]</p>
+<h5 id="steps">Steps</h5>
+<ol type="1">
+<li>Initialization
+<ul>
+<li>Each pixel is given a random patch offset as initialization 随机初始化</li>
+</ul></li>
+<li>Propagation
+<ul>
+<li>Each pixels checks if the offsets from neighboring patches give a better matching patch. If so, adopt neighbor’s patch offset. 将一个patch的变换传播到邻近的patch，看看是不是变得更好，如果误差减小就接受，否则抛弃。</li>
+</ul></li>
+<li>Search
+<ul>
+<li>Each pixels searches for better patch offsets within a concentric radius around the current offset.</li>
+<li>The search radius starts with the size of the image and is halved each time until it is 1. 做一个局部的搜索，微调</li>
+</ul></li>
+</ol>
+<p>[[Pasted image 20231120140706.png|500]]</p>
+<h2 id="d-reconstruction">3D Reconstruction</h2>
+<p>[[Pasted image 20231120140914.png|500]] ### 3D representations</p>
+<h4 id="point-cloud">Point cloud</h4>
+<ul>
+<li>A set of 3D points</li>
+</ul>
+<p>[[Pasted image 20231120141904.png|500]]</p>
+<h4 id="volume">Volume</h4>
+<ul>
+<li>Occupancy volume: a 3D volume with each voxel being 和点云相比，更加稠密，但是占用空间比较大，空间分辨率低，只是0和1的话变动大不够细致</li>
+</ul>
+<p>[[Pasted image 20231120141844.png|500]]</p>
+<ul>
+<li>SDF volume: 刻画更加精细，就是我可以知道某个点离表面多远（距离），是在表面外面还算是里面（带符号），不是简单的0或者1了</li>
+</ul>
+<p>[[Pasted image 20231120142113.png|500]]</p>
+<ul>
+<li>TSDF volume: 对于volume我只关心表面，所以我会把距离限定到一个范围内，不关心离表面太远的点，是SDF的特殊情况 #### Mesh</li>
+<li>A polygon mesh with vertices and edges, Usually triangle mesh</li>
+</ul>
+<p>[[Pasted image 20231120142425.png|500]] ### 3D surface reconstruction</p>
+<h4 id="idea-1">Idea</h4>
+<h5 id="how-to-fuse-depth-maps-into-a-complete-3d-mesh">How to fuse depth maps into a complete 3D mesh?</h5>
+<ol type="1">
+<li>Depth maps -&gt; Occupancy volume
+<ul>
+<li>Poisson reconstruction</li>
+</ul></li>
+<li>Occupancy volume -&gt; mesh
+<ul>
+<li>Marching cubes ##### Why first constructing a volume?</li>
+</ul></li>
+</ol>
+<ul>
+<li>Easier to be converted to mesh</li>
+<li>Good for denoising volume相比pointcloud更好去噪</li>
+</ul>
+<h4 id="poisson-reconstruction">Poisson reconstruction</h4>
+<ul>
+<li>Convert depth maps into a 3D volume ##### Steps</li>
+</ul>
+<ol type="1">
+<li>Convert depth map to point cloud</li>
+<li>Compute normal vector for each point -&gt; PCA PCA 能找到分布方差最大最小的方向 variance最小/特征值最小的方向 就是法向</li>
+<li>Represent surface by indicator (occupancy) function 用体素去拟合点云，优化变量就是体素的分布（三维数组）</li>
+</ol>
+<h5 id="how-to-construct-the-indicator-function">How to construct the indicator function?</h5>
+<ul>
+<li>Gradient Relationship There is a relationship between the normals of the points and gradient of indicator function 转化为最小化体素的梯度场和点云的法向场的差</li>
+</ul>
+<p>[[Pasted image 20231120143417.png|500]]</p>
+<p>[[Pasted image 20231120143401.png|500]]</p>
+<h4 id="marching-cubes">Marching cubes</h4>
+<ul>
+<li>Extract 3D surface (mesh) from volumetric representation 移动立方体，找到面片的位置 ##### Marching squares(2D)</li>
+</ul>
+<p>[[Pasted image 20231120143648.png|500]]</p>
+<p>2D情况下只有三种情况：</p>
+<p>[[Pasted image 20231120143715.png|500]] ##### Marching Cubes (3D)</p>
+<p>[[Pasted image 20231120143859.png|500]]</p>
+<p>[[Pasted image 20231120143926.png|500]] ### Texture mapping - Texture mapping: "add color" to 3D surface. 纹理映射</p>
+<h4 id="idea-2">Idea</h4>
+<p>要做的就是把一个2d的纹理图投影到一个3d模型上。纹理图的表达就是一个二维的图像，每个像素都和三角网格有一一对应关系。</p>
+<p>[[Pasted image 20231120144311.png|500]]</p>
+<h4 id="steps-1">Steps</h4>
+<ul>
+<li>Each triangle vertices is assigned a 2D coordinate <span class="math inline">\((u,v)\)</span> in the texture image</li>
+<li>Others get the 2D coordinate with interpolations</li>
+<li>Finally the model get the RGB from the map</li>
+</ul>
+<p>图像之间的特征匹配，对极几何求解相机位姿。多张图像之间两两去做，BA得到相机位姿，然后两两之间做立体匹配得到点云，点云融合得到点云-&gt;volume-&gt;mesh-&gt;上纹理 ## Neural Scene Representations 用神经网络去表达一个场景</p>
 
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
+    </article>
+    <!-- license -->
     
-    <!-- paginator  -->
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2023/11/24/Computer%20Vision%20Lec9%20Deep%20Learning/" title="">
+                    <div class="nextTitle">[Untitled Post]</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2023/11/24/Computer%20Vision%20Lec7%20Structure%20from%20Motion/" title="">
+                    <div class="prevTitle">[Untitled Post]</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- comment -->
+    
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+
+            
+
+            
+
+            
+
+            <!-- utteranc评论 -->
+
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
+            
+            
+
+            
+
+        </div>
+    
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <!-- Mathjax -->
     
 </main>
 
@@ -873,6 +814,23 @@ starts at the end. Here is an example with the
 
         </div>
         <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#depth-estimation"><span class="toc-number">1.</span> <span class="toc-text">Depth Estimation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#introduction"><span class="toc-number">1.1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stereo-matching"><span class="toc-number">1.2.</span> <span class="toc-text">Stereo matching</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#baseline"><span class="toc-number">1.2.1.</span> <span class="toc-text">Baseline</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#stereo-reconstruction-pipeline"><span class="toc-number">1.2.2.</span> <span class="toc-text">Stereo reconstruction pipeline</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#errors"><span class="toc-number">1.2.3.</span> <span class="toc-text">Errors</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#what-will-cause-errors"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">What will cause errors?</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#summary"><span class="toc-number">1.2.4.</span> <span class="toc-text">Summary</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#introduction-1"><span class="toc-number">1.2.5.</span> <span class="toc-text">Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#advantages"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">Advantages</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#basic-idea"><span class="toc-number">1.2.5.2.</span> <span class="toc-text">Basic idea</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cost-volume"><span class="toc-number">1.2.6.</span> <span class="toc-text">Cost Volume</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#idea"><span class="toc-number">1.2.6.1.</span> <span class="toc-text">Idea</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#patch-match"><span class="toc-number">1.2.7.</span> <span class="toc-text">Patch Match</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#steps"><span class="toc-number">1.2.7.1.</span> <span class="toc-text">Steps</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#d-reconstruction"><span class="toc-number">2.</span> <span class="toc-text">3D Reconstruction</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#point-cloud"><span class="toc-number">2.0.1.</span> <span class="toc-text">Point cloud</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#volume"><span class="toc-number">2.0.2.</span> <span class="toc-text">Volume</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#idea-1"><span class="toc-number">2.0.3.</span> <span class="toc-text">Idea</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#how-to-fuse-depth-maps-into-a-complete-3d-mesh"><span class="toc-number">2.0.3.1.</span> <span class="toc-text">How to fuse depth maps into a complete 3D mesh?</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#poisson-reconstruction"><span class="toc-number">2.0.4.</span> <span class="toc-text">Poisson reconstruction</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#how-to-construct-the-indicator-function"><span class="toc-number">2.0.4.1.</span> <span class="toc-text">How to construct the indicator function?</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#marching-cubes"><span class="toc-number">2.0.5.</span> <span class="toc-text">Marching cubes</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#idea-2"><span class="toc-number">2.0.6.</span> <span class="toc-text">Idea</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#steps-1"><span class="toc-number">2.0.7.</span> <span class="toc-text">Steps</span></a></li></ol></li></ol></li></ol>
+            </div>
         
         <!-- sidebar -->
         <div class="sidebar sidebar-hide">
@@ -1282,7 +1240,16 @@ starts at the end. Here is an example with the
         
         <!-- async load share.js -->
         
+            <script src="/scripts/share.js?v=20211217" async></script>
+        
         <!-- mermaid -->
+        
+            <script src='https://cdn.jsdelivr.net/npm/mermaid@8.11.0/dist/mermaid.min.js'></script>
+            <script>
+                if (window.mermaid) {
+                    mermaid.initialize({theme: 'dark'});
+                }
+            </script>
         
     </body>
 </html>

@@ -21,7 +21,7 @@
     <meta name="description" content="">
     <meta property="og:type" content="website">
 <meta property="og:title" content="Shio">
-<meta property="og:url" content="http://example.com/archives/2023/09/index.html">
+<meta property="og:url" content="http://example.com/page/2/index.html">
 <meta property="og:site_name" content="Shio">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Chenyang Wan">
@@ -232,8 +232,10 @@
         }
     </script>
     
+        <body class="home-body">
+    
         <!-- header -->
-        <header class="header header-mobile">
+        <header class="header header-mobile index-header">
     <!-- top read progress line -->
     <div class="header-element">
         <div class="read-progress"></div>
@@ -264,7 +266,7 @@
 </header>
 
         <!-- fixed footer -->
-        <footer class="footer-fixed">
+        <footer class="footer-fixed index-footer-fixed">
     <!-- back to top button -->
     <div class="footer-fixed-element">
         
@@ -287,21 +289,34 @@
 
 
 
+    height:50vh;
+
 ">
     
     <!-- 主页  -->
     
+        
+    <!-- 文章页  -->
+    
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+                Sh1o's Studio
+            <!-- 文章页  -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
+            
+                
+                    Love & Peace
+                
+            <!-- 文章页  -->
             
         </p>
         <!-- 文章页 meta -->
@@ -435,110 +450,6 @@
             <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
             <div class="container container-unloaded">
                 <main class="main index-page">
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/25/Python%20Handbook/">
-                
-                <span class="abstract-title-text">Python Handbook</span>
-            </a>
-            <div class="abstract-content">
-                <h2 id="file-io">File I/O</h2>
-<ul>
-<li>将一个txt文件中的矩阵读出/将一个矩阵写入txt文件中。 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">file_to_matrix</span>(<span class="params">path</span>):</span><br><span class="line">    mat = np.loadtxt(path, dtype=np.int32, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    mat = np.array(mat, dtype=np.uint8)</span><br><span class="line">    <span class="keyword">return</span> mat</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">matrix_to_file</span>(<span class="params">mat, path</span>):</span><br><span class="line">    np.savetxt(path, np.c_[mat], fmt=<span class="string">&#x27;%d&#x27;</span>, delimiter=<span class="string">&#x27; &#x27;</span>)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="matrix">Matrix</h2>
-<ul>
-<li>将矩阵展开成为一维数组。 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mat = mat.ravel() <span class="comment">#横向</span></span><br><span class="line"></span><br><span class="line">mat = mat.ravel(order=<span class="string">&#x27;F&#x27;</span>) <span class="comment">#纵向</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/10/06">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/25</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Python">Python</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
-        
-        
-        
-        
-            
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2023/09/20/z%E5%8F%98%E6%8D%A2/">
-                
-                <span class="abstract-title-text">z变换</span>
-            </a>
-            <div class="abstract-content">
-                <p><span class="math inline">\(z\)</span>变换（<span class="math inline">\(ZT\)</span>）<strong>是对离散序列进行的一种数学变换</strong>，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入<span class="math inline">\(z\)</span>变换的主要目的是希望方便对于离散控制系统的研究。</p>
-<h2 id="z变换"><span class="math inline">\(z\)</span>变换</h2>
-<h3 id="z变换的定义"><span class="math inline">\(z\)</span>变换的定义</h3>
-<p>设连续函数<span class="math inline">\(e(t)\)</span>是可拉氏变换的，则其拉氏变换定义为： <span class="math display">\[
-    E(s)=\mathscr{L}\left[ e(t) \right]=\int_{0}^{\infty}e(t)e^{-sT}dt
-\]</span> 对<span class="math inline">\(e(t)\)</span>的采样后的信号的表达式为： <span class="math display">\[
-e^*(t)=\sum_0^\infty e(nT)\delta(t-nT)
-\]</span> 采样信号<span class="math inline">\(e^*(t)\)</span>的拉氏变换为：</p>
-<p><span class="math display">\[
-E^*(s)=\mathscr{L}[e^*(t)]=\sum_0^\infty e(nT)e^{-nsT}
-\]</span> 可以看到在<span class="math inline">\(s\)</span>域中的结果是比较复杂的，所以为了方便起见我们定义<span class="math inline">\(z=e^{sT}\)</span>，<span class="math inline">\(T\)</span>为采样周期，<span class="math inline">\(z\)</span>是在复数平面上定义的一个复变量，称为<span class="math inline">\(z\)</span>为变换算子。</p>
-<p>采样信号<span class="math inline">\(e^*(t)\)</span>的<span class="math inline">\(z\)</span>变换为： <span class="math display">\[
-E(z)=\mathscr{Z}[e^*(t)]=\sum_0^\infty e(nT)e^{-snT} |_{s=\frac{1}{T}lnz}=\sum_0^\infty e(nT)z^{-n}
-\]</span> 这个结果的形式是很简单的，实际上就是采样所得函数在每个采样点<span class="math inline">\(t=nT\)</span>时候的值乘上<span class="math inline">\(z^{-n}\)</span>，所以这个序列实际上表达出了每个特定的时刻的原函数取值。</p>
-<h3 id="求z变换的方法">求<span class="math inline">\(z\)</span>变换的方法</h3>
-<ol type="1">
-<li><p>级数求和 根据定义求<span class="math inline">\(z\)</span>变换： <span class="math display">\[
-F(z)=\mathscr{Z}[f^*(t)]=\sum_0^\infty f(nT)e^{-snT} |_{s=\frac{1}{T}lnz}=\sum_0^\infty f(nT)z^{-n}
-\]</span> 我们对于连续信号<span class="math inline">\(f(t)\)</span>只需要将其在采样时间<span class="math inline">\(t=nT\)</span>的时候的取值与对应的<span class="math inline">\(z^{-n}\)</span>相乘然后求和即可。</p></li>
-<li><p>部分分式展开 这种方法主要用于对<span class="math inline">\(F(s)\)</span>进行变换。也就是说先求出已知的连续时间函数<span class="math inline">\(f(x)\)</span>的拉氏变换<span class="math inline">\(F(s)\)</span>，再把这个拉氏变换的结果展开成部分分式之和的形式，使得每一个部分对应的分式能够对应简单的时间函数。然后可得对应部分分式之和的<span class="math inline">\(z\)</span>变换结果。</p></li>
-</ol>
-<p>注意：<span class="math inline">\(F(z)=\mathscr{Z}[f^*(t)] \neq \mathscr{Z}[f(t)]\)</span></p>
-<p>对于拉氏变换的结果<span class="math inline">\(F(s)\)</span>，将其写为有理函数的形式： <span class="math display">\[
-                F(s)=\frac{P(s)}{Q(s)}=\frac{\sum_{i=0}^n(s-s_i)^r}{\sum_{j=0}^m(s-s_j)^r}=
-\]</span> 从而可以得到</p>
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2023/10/01">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2023/09/20</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Math">Math</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
     
         
         
@@ -773,9 +684,129 @@ starts at the end. Here is an example with the
     
     <!-- paginator  -->
     
+        <nav class="page-nav">
+            <a class="extend prev" rel="prev" href="/">&lt; PREV</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+        </nav>
+    
 </main>
 
                 <!-- profile -->
+                
+                    <div class="profile">
+    <img class="profile-avatar" alt="avatar" src= /avatar/Aki1.jpg />
+    <div class="profile-name">Sh1o</div>
+    
+        <div class="profile-signature">
+            crybaby
+        </div>
+    
+    
+        <div class="profile-social">
+            
+    
+        
+            
+                <a href="mailto:bryce.chenyang.w@gmail.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/shioisu" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                    
+                    <img class="profile-qr" src="/assets/wechat_qr.png" />
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title=qq>
+                    
+                    <img class="profile-qr" src="/assets/qq_qr.png" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
+            
+        
+    
+
+
+        </div>
+    
+    
+        <div class="friends">
+            <div>
+                
+                FRIENDS
+            </div>
+            
+                
+                    <span>
+                        <a href="//www.baidu.com" target="_blank">friendA</a>
+                    </span>
+                
+            
+                
+                    <span>
+                        <a href="//www.google.com" target="_blank">friendB</a>
+                    </span>
+                
+            
+        </div>
+    
+    
+        <div class="profile-link-item">
+            <a href="/about" class="about-me">
+                
+                ABOUT ME
+            </a>
+        </div>
+    
+    
+    
+</div>
+
                 
             </div>
             <footer class="footer footer-unloaded">

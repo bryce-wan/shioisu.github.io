@@ -19,15 +19,15 @@
         <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
     
     <meta name="description" content="">
-    <meta name="description" content="\(z\)变换（\(ZT\)）是对离散序列进行的一种数学变换，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入\(z\)变换的主要目的是希望方便对于离散控制系统的研究。 \(z\)变换 \(z\)变换的定义 设连续函数\(e(t)\)是可拉氏变换的，则其拉氏变换定义为： \[     E(s)&#x3D;\mathscr{L}\left[">
+    <meta name="description" content="\(z\)变换（\(ZT\)）是对离散序列进行的一种数学变换，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入\(z\)变换的主要目的是希望方便对于离散控制系统的研究。 \(z\)变换 \(z\)变换的定义 设连续函数\(e(t)\)是可拉氏变换的，则其拉氏变换定义为： \[     E(s)&#x3D;\mathscr{L}\left[">
 <meta property="og:type" content="article">
 <meta property="og:title" content="z变换">
 <meta property="og:url" content="http://example.com/2023/09/20/z%E5%8F%98%E6%8D%A2/index.html">
 <meta property="og:site_name" content="Shio">
-<meta property="og:description" content="\(z\)变换（\(ZT\)）是对离散序列进行的一种数学变换，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入\(z\)变换的主要目的是希望方便对于离散控制系统的研究。 \(z\)变换 \(z\)变换的定义 设连续函数\(e(t)\)是可拉氏变换的，则其拉氏变换定义为： \[     E(s)&#x3D;\mathscr{L}\left[">
+<meta property="og:description" content="\(z\)变换（\(ZT\)）是对离散序列进行的一种数学变换，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入\(z\)变换的主要目的是希望方便对于离散控制系统的研究。 \(z\)变换 \(z\)变换的定义 设连续函数\(e(t)\)是可拉氏变换的，则其拉氏变换定义为： \[     E(s)&#x3D;\mathscr{L}\left[">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-20T08:29:31.493Z">
-<meta property="article:modified_time" content="2023-09-27T10:49:51.222Z">
+<meta property="article:modified_time" content="2023-10-01T05:43:15.267Z">
 <meta property="article:author" content="Chenyang Wan">
 <meta property="article:tag" content="Math">
 <meta name="twitter:card" content="summary">
@@ -349,7 +349,7 @@
                 <!-- 文章字数统计 -->
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">911</span>Reading time: <span class="post-count reading-time">3 min</span></span>
+                        <span>Word count: <span class="post-count word-count">910</span>Reading time: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -510,117 +510,68 @@
             <div class="container container-unloaded">
                 <main class="main post-page">
     <article class="article-entry">
-        <p><span class="math inline">\(z\)</span>变换（<span
-class="math inline">\(ZT\)</span>）<strong>是对离散序列进行的一种数学变换</strong>，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入<span
-class="math inline">\(z\)</span>变换的主要目的是希望方便对于离散控制系统的研究。</p>
+        <p><span class="math inline">\(z\)</span>变换（<span class="math inline">\(ZT\)</span>）<strong>是对离散序列进行的一种数学变换</strong>，常用于求线性时不变差分方程的解，它在离散系统中的地位如同拉普拉斯变换在连续系统中的地位。在自动控制系统中引入<span class="math inline">\(z\)</span>变换的主要目的是希望方便对于离散控制系统的研究。</p>
 <h2 id="z变换"><span class="math inline">\(z\)</span>变换</h2>
-<h3 id="z变换的定义"><span
-class="math inline">\(z\)</span>变换的定义</h3>
-<p>设连续函数<span
-class="math inline">\(e(t)\)</span>是可拉氏变换的，则其拉氏变换定义为：
-<span class="math display">\[
+<h3 id="z变换的定义"><span class="math inline">\(z\)</span>变换的定义</h3>
+<p>设连续函数<span class="math inline">\(e(t)\)</span>是可拉氏变换的，则其拉氏变换定义为： <span class="math display">\[
     E(s)=\mathscr{L}\left[ e(t) \right]=\int_{0}^{\infty}e(t)e^{-sT}dt
-\]</span> 对<span
-class="math inline">\(e(t)\)</span>的采样后的信号的表达式为： <span
-class="math display">\[
+\]</span> 对<span class="math inline">\(e(t)\)</span>的采样后的信号的表达式为： <span class="math display">\[
 e^*(t)=\sum_0^\infty e(nT)\delta(t-nT)
-\]</span> 采样信号<span
-class="math inline">\(e^*(t)\)</span>的拉氏变换为：</p>
+\]</span> 采样信号<span class="math inline">\(e^*(t)\)</span>的拉氏变换为：</p>
 <p><span class="math display">\[
 E^*(s)=\mathscr{L}[e^*(t)]=\sum_0^\infty e(nT)e^{-nsT}
-\]</span> 可以看到在<span
-class="math inline">\(s\)</span>域中的结果是比较复杂的，所以为了方便起见我们定义<span
-class="math inline">\(z=e^{sT}\)</span>，<span
-class="math inline">\(T\)</span>为采样周期，<span
-class="math inline">\(z\)</span>是在复数平面上定义的一个复变量，称为<span
-class="math inline">\(z\)</span>为变换算子。</p>
-<p>采样信号<span class="math inline">\(e^*(t)\)</span>的<span
-class="math inline">\(z\)</span>变换为： <span class="math display">\[
-E(z)=\mathscr{Z}[e^*(t)]=\sum_0^\infty e(nT)e^{-snT}
-|_{s=\frac{1}{T}lnz}=\sum_0^\infty e(nT)z^{-n}
-\]</span>
-这个结果的形式是很简单的，实际上就是采样所得函数在每个采样点<span
-class="math inline">\(t=nT\)</span>时候的值乘上<span
-class="math inline">\(z^{-n}\)</span>，所以这个序列实际上表达出了每个特定的时刻的原函数取值。</p>
-<h3 id="求z变换的方法">求<span
-class="math inline">\(z\)</span>变换的方法</h3>
+\]</span> 可以看到在<span class="math inline">\(s\)</span>域中的结果是比较复杂的，所以为了方便起见我们定义<span class="math inline">\(z=e^{sT}\)</span>，<span class="math inline">\(T\)</span>为采样周期，<span class="math inline">\(z\)</span>是在复数平面上定义的一个复变量，称为<span class="math inline">\(z\)</span>为变换算子。</p>
+<p>采样信号<span class="math inline">\(e^*(t)\)</span>的<span class="math inline">\(z\)</span>变换为： <span class="math display">\[
+E(z)=\mathscr{Z}[e^*(t)]=\sum_0^\infty e(nT)e^{-snT} |_{s=\frac{1}{T}lnz}=\sum_0^\infty e(nT)z^{-n}
+\]</span> 这个结果的形式是很简单的，实际上就是采样所得函数在每个采样点<span class="math inline">\(t=nT\)</span>时候的值乘上<span class="math inline">\(z^{-n}\)</span>，所以这个序列实际上表达出了每个特定的时刻的原函数取值。</p>
+<h3 id="求z变换的方法">求<span class="math inline">\(z\)</span>变换的方法</h3>
 <ol type="1">
-<li><p>级数求和 根据定义求<span class="math inline">\(z\)</span>变换：
-<span class="math display">\[
-F(z)=\mathscr{Z}[f^*(t)]=\sum_0^\infty f(nT)e^{-snT}
-|_{s=\frac{1}{T}lnz}=\sum_0^\infty f(nT)z^{-n}
-\]</span> 我们对于连续信号<span
-class="math inline">\(f(t)\)</span>只需要将其在采样时间<span
-class="math inline">\(t=nT\)</span>的时候的取值与对应的<span
-class="math inline">\(z^{-n}\)</span>相乘然后求和即可。</p></li>
-<li><p>部分分式展开 这种方法主要用于对<span
-class="math inline">\(F(s)\)</span>进行变换。也就是说先求出已知的连续时间函数<span
-class="math inline">\(f(x)\)</span>的拉氏变换<span
-class="math inline">\(F(s)\)</span>，再把这个拉氏变换的结果展开成部分分式之和的形式，使得每一个部分对应的分式能够对应简单的时间函数。然后可得对应部分分式之和的<span
-class="math inline">\(z\)</span>变换结果。</p></li>
+<li><p>级数求和 根据定义求<span class="math inline">\(z\)</span>变换： <span class="math display">\[
+F(z)=\mathscr{Z}[f^*(t)]=\sum_0^\infty f(nT)e^{-snT} |_{s=\frac{1}{T}lnz}=\sum_0^\infty f(nT)z^{-n}
+\]</span> 我们对于连续信号<span class="math inline">\(f(t)\)</span>只需要将其在采样时间<span class="math inline">\(t=nT\)</span>的时候的取值与对应的<span class="math inline">\(z^{-n}\)</span>相乘然后求和即可。</p></li>
+<li><p>部分分式展开 这种方法主要用于对<span class="math inline">\(F(s)\)</span>进行变换。也就是说先求出已知的连续时间函数<span class="math inline">\(f(x)\)</span>的拉氏变换<span class="math inline">\(F(s)\)</span>，再把这个拉氏变换的结果展开成部分分式之和的形式，使得每一个部分对应的分式能够对应简单的时间函数。然后可得对应部分分式之和的<span class="math inline">\(z\)</span>变换结果。</p></li>
 </ol>
-<p>注意：<span class="math inline">\(F(z)=\mathscr{Z}[f^*(t)] \neq
-\mathscr{Z}[f(t)]\)</span></p>
-<p>对于拉氏变换的结果<span
-class="math inline">\(F(s)\)</span>，将其写为有理函数的形式： <span
-class="math display">\[
+<p>注意：<span class="math inline">\(F(z)=\mathscr{Z}[f^*(t)] \neq \mathscr{Z}[f(t)]\)</span></p>
+<p>对于拉氏变换的结果<span class="math inline">\(F(s)\)</span>，将其写为有理函数的形式： <span class="math display">\[
                 F(s)=\frac{P(s)}{Q(s)}=\frac{\sum_{i=0}^n(s-s_i)^r}{\sum_{j=0}^m(s-s_j)^r}=
 \]</span> 从而可以得到</p>
 <ol start="3" type="1">
 <li>留数法</li>
 </ol>
 <ul>
-<li><span class="math inline">\(f(t)\)</span>的<span
-class="math inline">\(Laplace\)</span>变换是一个有理分式，<span
-class="math inline">\(p_i\)</span>为其极点</li>
-<li><span
-class="math inline">\(F(s)\)</span>分母的阶次比分子的阶次高2阶以上</li>
+<li><span class="math inline">\(f(t)\)</span>的<span class="math inline">\(Laplace\)</span>变换是一个有理分式，<span class="math inline">\(p_i\)</span>为其极点</li>
+<li><span class="math inline">\(F(s)\)</span>分母的阶次比分子的阶次高2阶以上</li>
 </ul>
-<p>此时<span
-class="math inline">\(z\)</span>变换的闭合解析形式表示为：<span
-class="math inline">\(F(z)=\hat{F}(z)+\beta\)</span> 其中： <span
-class="math display">\[
+<p>此时<span class="math inline">\(z\)</span>变换的闭合解析形式表示为：<span class="math inline">\(F(z)=\hat{F}(z)+\beta\)</span> 其中： <span class="math display">\[
     \hat F(z)=\sum_{i=1}^{n}Res[F(p_i)\frac{1}{1-e^{-(s-p_i)T}}]
 \]</span> <span class="math display">\[
-\beta = \lim_{s \rightarrow \infty}sF(s) - \lim_{z \rightarrow
-\infty}\hat F(z)
-\]</span> <span
-class="math inline">\(\beta\)</span>的引入是为了保证初值相同。 ### <span
-class="math inline">\(z\)</span>变换的性质</p>
+\beta = \lim_{s \rightarrow \infty}sF(s) - \lim_{z \rightarrow \infty}\hat F(z)
+\]</span> <span class="math inline">\(\beta\)</span>的引入是为了保证初值相同。</p>
+<h3 id="z变换的性质"><span class="math inline">\(z\)</span>变换的性质</h3>
 <ol type="1">
 <li><p>线性性质</p></li>
-<li><p>初值定理 若<span class="math inline">\(\lim_{z \rightarrow
-\infty} F(z)\)</span>存在，则： <span class="math display">\[
-\lim_{k \rightarrow 0}f(kT)  = \lim_{z \rightarrow \infty}F(z)
-\]</span></p></li>
-<li><p>终值定理 如果<span
-class="math inline">\(F(z)\)</span>满足下列条件之一：</p>
+<li><p>初值定理 若<span class="math inline">\(\lim_{z \rightarrow \infty} F(z)\)</span>存在，则： <span class="math display">\[
+ \lim_{k \rightarrow 0}f(kT)  = \lim_{z \rightarrow \infty}F(z) 
+ \]</span></p></li>
+<li><p>终值定理 如果<span class="math inline">\(F(z)\)</span>满足下列条件之一：</p>
 <ol type="1">
-<li><span class="math inline">\(F(z)\)</span>
-的所有极点在开单位圆内</li>
-<li><span
-class="math inline">\(F(z)\)</span>至多只有一个在单位圆上的极点，且必须为1处的一阶极点
-那么： <span class="math display">\[
-\lim_{k \rightarrow \infty}f(kT)  = \lim_{z \rightarrow
-1}[(1-z^{-1})F(z)]
-\]</span></li>
+<li><span class="math inline">\(F(z)\)</span> 的所有极点在开单位圆内</li>
+<li><span class="math inline">\(F(z)\)</span>至多只有一个在单位圆上的极点，且必须为1处的一阶极点 那么： <span class="math display">\[
+ \lim_{k \rightarrow \infty}f(kT)  = \lim_{z \rightarrow 1}[(z-1)F(z)] 
+ \]</span></li>
 </ol></li>
 <li><p>复域微分定理 <span class="math display">\[
 \mathscr Z [tx(t)] = -Tz \frac{dX(z)}{dz}
 \]</span> <span class="math display">\[
-\mathscr Z [kx(t)] = -z \frac{dX(z)}{dz} \quad where \quad k =
-\frac{t}{T}
+\mathscr Z [kx(t)] = -z \frac{dX(z)}{dz} \quad where \quad k = \frac{t}{T} 
 \]</span></p></li>
 <li><p>复位移定理 <span class="math display">\[
-\mathscr Z[e^{-\alpha T}x(t)]=
+ \mathscr Z[e^{-\alpha T}x(t)]=
 \]</span></p></li>
 </ol>
 <h2 id="z反变换"><span class="math inline">\(z\)</span>反变换</h2>
 <ul>
-<li>相同的<span class="math inline">\(z\)</span>变换<span
-class="math inline">\(E(z)\)</span>对应于相同的采样函数<span
-class="math inline">\(e^*(t)\)</span>，但是不一定对应于相同的原连续函数<span
-class="math inline">\(e(t)\)</span>。</li>
+<li>相同的<span class="math inline">\(z\)</span>变换<span class="math inline">\(E(z)\)</span>对应于相同的采样函数<span class="math inline">\(e^*(t)\)</span>，但是不一定对应于相同的原连续函数<span class="math inline">\(e(t)\)</span>。</li>
 </ul>
 
     </article>
@@ -631,8 +582,8 @@ class="math inline">\(e(t)\)</span>。</li>
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2023/09/24/Articulated%20Robots%20Lec1/" title="Articulated Robots: Lec1 Introduction">
-                    <div class="nextTitle">Articulated Robots: Lec1 Introduction</div>
+                <a href="/2023/09/25/Python%20Handbook/" title="Python Handbook">
+                    <div class="nextTitle">Python Handbook</div>
                 </a>
             
         </li>
@@ -806,7 +757,7 @@ class="math inline">\(e(t)\)</span>。</li>
                 <div class="toc-catalog">
                     <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
                 </div>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#z%E5%8F%98%E6%8D%A2"><span class="toc-number">1.</span> <span class="toc-text">\(z\)变换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#z%E5%8F%98%E6%8D%A2%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">\(z\)变换的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%82z%E5%8F%98%E6%8D%A2%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">求\(z\)变换的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#z%E5%8F%8D%E5%8F%98%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text">\(z\)反变换</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#z%E5%8F%98%E6%8D%A2"><span class="toc-number">1.</span> <span class="toc-text">\(z\)变换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#z%E5%8F%98%E6%8D%A2%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">\(z\)变换的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%82z%E5%8F%98%E6%8D%A2%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">求\(z\)变换的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#z%E5%8F%98%E6%8D%A2%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">1.3.</span> <span class="toc-text">\(z\)变换的性质</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#z%E5%8F%8D%E5%8F%98%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text">\(z\)反变换</span></a></li></ol>
             </div>
         
         <!-- sidebar -->
@@ -865,7 +816,87 @@ class="math inline">\(e(t)\)</span>。</li>
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -910,7 +941,7 @@ class="math inline">\(e(t)\)</span>。</li>
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 9
+        Total : 15
         </div>
         <!-- search  -->
         
@@ -930,14 +961,56 @@ class="math inline">\(e(t)\)</span>。</li>
             
         
         <li class="archive-post-item">
-            <span class="archive-post-date">09/25</span>
-            <a class="archive-post-title" href="/2023/09/25/Python%20Handbook/">Python Handbook</a>
+            <span class="archive-post-date">11/24</span>
+            <a class="archive-post-title" href="/2023/11/24/Computer%20Vision%20Lec8%20Depth%20Estimation%20and%203D%20reconstruction/">[Untitled Post]</a>
         </li>
     
         
         <li class="archive-post-item">
-            <span class="archive-post-date">09/24</span>
-            <a class="archive-post-title" href="/2023/09/24/Articulated%20Robots%20Lec1/">Articulated Robots: Lec1 Introduction</a>
+            <span class="archive-post-date">11/24</span>
+            <a class="archive-post-title" href="/2023/11/24/Computer%20Vision%20Lec9%20Deep%20Learning/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/24</span>
+            <a class="archive-post-title" href="/2023/11/24/Computer%20Vision%20Lec7%20Structure%20from%20Motion/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/24</span>
+            <a class="archive-post-title" href="/2023/11/24/Computer%20Vision%20Lec6%20Image%20Stitching/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/24</span>
+            <a class="archive-post-title" href="/2023/11/24/Computer%20Vision%20Lec3%20Image%20Processing/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/24</span>
+            <a class="archive-post-title" href="/2023/11/24/Computer%20Vision%20Lec4%20Model%20Fitting%20and%20Optimization/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/24</span>
+            <a class="archive-post-title" href="/2023/11/24/Computer%20Vision%20Lec5%20Image%20Matching%20and%20Motion%20Estimation/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/24</span>
+            <a class="archive-post-title" href="/2023/11/24/Computer%20Vision%20Lec2%20Image%20Formation/">[Untitled Post]</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/25</span>
+            <a class="archive-post-title" href="/2023/09/25/Python%20Handbook/">Python Handbook</a>
         </li>
     
         
@@ -985,21 +1058,6 @@ class="math inline">\(e(t)\)</span>。</li>
             <a class="archive-post-title" href="/2023/09/19/CS106L%20Lec2%20Stream%20II/">CS106L: Lec2 Stream II</a>
         </li>
     
-        
-            
-            
-                
-                </ul>
-            
-            <div class="archive-year"> Invalid date </div>
-            <ul class="year-list">
-            
-        
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span>
-            <a class="archive-post-title" href="/2023/09/19/CS229%20Lec1/">CS229: Lec1 Supervised Learning</a>
-        </li>
-    
     </div>
 </div>
 
@@ -1024,11 +1082,6 @@ class="math inline">\(e(t)\)</span>。</li>
             <span class="sidebar-tag-name" data-tags="ROS">
                 <span class="iconfont-archer">&#xe606;</span>
                 ROS
-            </span>
-        
-            <span class="sidebar-tag-name" data-tags="MachineLearning">
-                <span class="iconfont-archer">&#xe606;</span>
-                MachineLearning
             </span>
         
             <span class="sidebar-tag-name" data-tags="Math">
